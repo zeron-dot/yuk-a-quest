@@ -6,4 +6,4 @@
 - 엄마 성향 테스트 · 육아 도감 · 체크리스트
 - 파일 하나로 동작하는 정적 웹앱 (서버·DB 없음)
 
-**바로 열기 →** https://zeron-dot.github.io/yuka-quest/
+**바로 열기 →** https://zeron-dot.github.io/yuk-a-quest/
