@@ -296,6 +296,8 @@
   .btn.paper{background:var(--paper)}
   .btn.lav{background:var(--lav)}
   .btn.sky{background:var(--sky)}
+  .btn.share{background:var(--butter);font-size:15px;letter-spacing:.2px}
+  .share-note{margin:7px 0 2px;text-align:center;font-size:11px;color:var(--muted);line-height:1.4}
   .btn.small{font-size:12.5px;padding:7px 10px;min-height:38px;box-shadow:3px 3px 0 var(--ink)}
   .btn-row{display:flex;gap:8px;margin-top:12px}
   .btn-row .btn{flex:1 1 0}
@@ -873,7 +875,7 @@
     <div class="months" id="dexMonthRow" role="group" aria-label="도감 임신 주수·월령 선택"></div>
     <p class="avg-note">※ 안내된 발달·식단·체크리스트·임신 주수별 정보는 <b>평균치</b>이며 개인·아기마다 다를 수 있어요.</p>
 
-    <div class="sec-title"><span id="dexPlayTitle">🍼 발달 놀이</span><span class="cnt" id="dexCnt">0 / 5</span></div>
+    <div class="sec-title"><span id="dexPlayTitle">🍼 발달 놀이</span><span class="cnt" id="dexCnt">체크 0 / 5</span></div>
     <div id="dexPlays"></div>
 
     <div class="sec-title"><span id="dexCheckTitle">✅ 체크리스트 · 영유아검진</span></div>
@@ -1571,7 +1573,7 @@
       dex: {
         plays: [
           { k: "play1", em: "🪞", t: "거울 보고 놀기", d: "거울 앞에 앉혀두고 엄마 얼굴과 거울 속 얼굴을 번갈아 가리키기. 반응이 재밌어요.", tags: ["인지", "5분"] },
-          { k: "play2", em: "✊", t: "손 잡고 따라 흔들기", d: "딸랑이를 쥐여주고 흔들어 소리를 내보게 하기. 손을 발견하는 시기예요.", tags: ["소근육", "3분"] },
+          { k: "play2", em: "✊", t: "손 잡고 따라 흔들기", d: "딸랑이를 쥐여주고 흔들어 소리를 내보게 하기. 손을 알아가는 시기예요.", tags: ["소근육", "3분"] },
           { k: "play3", em: "🔄", t: "뒤집기 미리 보기", d: "수건 한쪽을 살짝 들어 몸이 굴러가게 도와주기. 억지로 돌리진 않아요.", tags: ["대근육", "3분"] },
           { k: "play4", em: "🫶", t: "노래하며 손 놀이", d: "손을 잡고 짝짜꿍·곤지곤지 놀이. 같은 노래를 반복하면 기억해요.", tags: ["언어", "3분"] },
           { k: "play5", em: "🦶", t: "발바닥 촉감 놀이", d: "발바닥에 여러 천을 대보고 발가락을 하나씩 잡아보기.", tags: ["촉감", "2분"] }
@@ -4050,8 +4052,8 @@
     return '<span class="delta ' + (v > 0 ? "up" : "down") + '">' + label + " " + (v > 0 ? "+" : "") + v + "</span>";
   }
 
-  function copyText(text) {
-    var done = function () { toast("복사했어요. 붙여넣기만 하면 돼요."); };
+  function copyText(text, okMsg) {
+    var done = function () { toast(okMsg || "복사했어요. 붙여넣기만 하면 돼요."); };
     var fail = function () { toast("복사가 막혔어요. 길게 눌러 직접 복사해 주세요."); };
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -4062,6 +4064,22 @@
     } catch (e) {
       legacyCopy(text) ? done() : fail();
     }
+  }
+  var APP_URL = "https://zeron-dot.github.io/yuk-a-quest/";
+  function shareResult(title, body) {
+    var full = body + "\n" + APP_URL;
+    var copy = function () { copyText(full, "결과가 복사됐어요! 카톡방에 붙여넣기 하세요"); };
+    if (navigator.share) {
+      try {
+        var p = navigator.share({ title: title, text: body, url: APP_URL });
+        if (p && p.then) p.then(function () {}, function (err) {
+          if (err && err.name === "AbortError") return;   /* 사용자가 공유를 그만둔 경우 */
+          copy();                                          /* 미지원·인앱 브라우저 → 복사로 대체 */
+        });
+        return;
+      } catch (e) { /* share 호출 자체 실패 → 복사로 대체 */ }
+    }
+    copy();
   }
   function legacyCopy(text) {
     try {
@@ -4825,6 +4843,10 @@
         (isNew ? '<span class="new">NEW</span>' : "") + "</div>" +
       careBoxHTML(st) +
       '<div id="resultCare">' + careBranchHTML(st) + "</div>" +
+      '<div class="share-wrap">' +
+        '<button class="btn wide share" type="button" id="shareBtn">📤 내 결과 공유하기</button>' +
+        '<p class="share-note">카톡·문자로 오늘 결과를 보내보세요</p>' +
+      "</div>" +
       '<div class="btn-row">' +
         '<button class="btn orange" type="button" id="againBtn">다시하기</button>' +
         '<button class="btn paper" type="button" id="copyBtn">문장 복사</button>' +
@@ -4841,6 +4863,13 @@
       var line = stageWho(st) + " " + st.chip + " · " + charNameOf() + " Lv." + lv.lv + " " + lv.name +
         " (" + score + "점). 오늘도 살아남았다 ㅋㅋ";
       copyText(line);
+    });
+    $("#shareBtn").addEventListener("click", function () {
+      var body = "🌱 육아 퀘스트 · " + st.chip + " 오늘의 결과\n" +
+        charNameOf() + " Lv." + lv.lv + " " + lv.name + " · " + score + "점\n" +
+        (st.kind === "todd" ? "아이" : "아기") + " 컨디션 " + S.baby + " · 엄마 체력 " + S.mom + "\n" +
+        "너도 해볼래? 👇";
+      shareResult("육아 퀘스트 · " + st.chip + " 오늘의 결과", body);
     });
     if (!keepScroll) $("#tab-quest").scrollTo({ top: 0, behavior: "auto" });
   }
@@ -4928,7 +4957,7 @@
         '<div class="tags"><span class="tag">' + st.chip + "</span>" +
         p.tags.map(function (t) { return '<span class="tag">' + t + "</span>"; }).join("") +
         "</div></div>" +
-        '<button class="dex-toggle" type="button">발견</button>' +
+        '<button class="dex-toggle" type="button" aria-pressed="false" aria-label="' + p.t + ' 체크하기">체크</button>' +
         "</div>";
     }).join("");
 
@@ -4981,9 +5010,11 @@
       var on = !!all[key];
       if (on) n++;
       card.classList.toggle("on", on);
-      $(".dex-toggle", card).textContent = on ? "발견 ✓" : "발견";
+      var tog = $(".dex-toggle", card);
+      tog.textContent = on ? "체크 완료 ✓" : "체크";
+      tog.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    el.dexCnt.textContent = n + " / " + st.dex.plays.length;
+    el.dexCnt.textContent = "체크 " + n + " / " + st.dex.plays.length;
     return n;
   }
 
