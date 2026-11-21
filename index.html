@@ -476,10 +476,10 @@
     background-image:linear-gradient(180deg,#fffaf0 0%, #fdf4e2 100%);
     display:flex;flex-direction:column;
     overflow-y:auto;overscroll-behavior:contain;
-    padding:14px 14px calc(16px + env(safe-area-inset-bottom,0px));
+    padding:12px 13px calc(16px + env(safe-area-inset-bottom,0px));
   }
   .opening[hidden]{display:none}
-  .op-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .op-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}
   .op-head .op-snd{margin-left:auto}
   .op-head .op-snd[aria-pressed="false"]{color:#b0a48c;text-decoration:line-through;background:#f7efdd}
   .op-head .op-snd{box-shadow:2px 2px 0 var(--shell-line);border:2px solid var(--ink);border-radius:0}
@@ -491,15 +491,16 @@
   .op-head .sub2{font-size:10px;color:var(--muted);letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .op-head > div{min-width:0}
   .op-hero{
-    background:linear-gradient(180deg,#eef9f1 0%, var(--lcd) 100%);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--shell-line);
-    padding:12px;margin-bottom:12px;color:var(--ink);text-align:center;
+    background:linear-gradient(180deg,#eef9f1 0%, var(--lcd) 100%);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--shell-line);
+    padding:7px;margin-bottom:9px;color:var(--ink);text-align:center;
   }
-  .op-hero svg{width:100%;height:96px;display:block;image-rendering:pixelated;border:2px solid var(--ink)}
+  .op-hero svg{width:100%;height:56px;display:block;image-rendering:pixelated;border:2px solid var(--ink)}
   .op-title{
-    margin:12px 0 2px;font-size:19px;letter-spacing:.5px;line-height:1.4;
+    margin:6px 0 0;font-size:15px;letter-spacing:.3px;line-height:1.3;
   }
-  .op-lead{
-    margin:0;font-size:12.5px;color:#4a6a5b;line-height:1.55;
+  .op-flow{
+    margin:9px 0 0;padding-top:8px;border-top:2px dashed #c9c0ad;
+    font-size:10px;color:var(--muted);line-height:1.5;text-align:center;
   }
   .op-body{
     background:var(--paper);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
@@ -510,34 +511,37 @@
   .op-body ul{margin:6px 0 0;padding-left:16px;font-size:12.5px;line-height:1.7;color:#5f594d}
   .op-meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
   .op-meta span{font-size:10.5px;border:2px solid var(--ink);background:#f2ead7;padding:2px 6px}
-  .steps{margin:10px 0 0;border-top:2px dashed #c9c0ad;padding-top:9px}
-  .steps div{display:flex;align-items:center;gap:7px;font-size:12px;line-height:1.5;margin-bottom:5px}
-  .steps div:last-child{margin-bottom:0}
-  .steps b{flex:0 0 auto;width:18px;height:18px;display:grid;place-items:center;background:var(--ink);color:var(--cream);font-size:10px;font-weight:normal}
   .saved-line{
-    display:flex;align-items:center;gap:8px;background:#eef7f1;border:2px solid var(--ink);
-    padding:8px 9px;margin-bottom:10px;font-size:11.5px;line-height:1.45;
+    display:flex;align-items:center;gap:6px;background:#eef7f1;border:2px solid var(--ink);
+    padding:4px 8px;margin-bottom:8px;font-size:10.5px;line-height:1.35;
   }
-  .saved-line .cb{width:28px;height:28px;flex:0 0 auto;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center}
-  .saved-line .cb svg{width:18px;height:18px}
+  .saved-line .cb{width:20px;height:20px;flex:0 0 auto;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center}
+  .saved-line .cb svg{width:14px;height:14px}
 
   /* opening step 1 · 아기 월령 선택 */
-  .op-pick-lead{margin:0 0 10px;font-size:13.5px;line-height:1.6}
+  .op-pick-lead{margin:0 0 8px;font-size:12.5px;line-height:1.5}
   .op-pick-lead b{font-weight:normal;background:#ffe2bd;padding:0 3px}
-  .m-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .m-pick{display:grid;grid-template-columns:1fr 1fr;gap:6px}
   .m-pick.one{grid-template-columns:1fr}
-  .m-pick-card.preg-hub{
-    grid-column:1/-1;background:linear-gradient(180deg,#fff6e6,#fff0d6);border-left-width:9px;border-left-color:var(--apricot);
+  /* step 1 · 4대 허브 카드 */
+  .m-pick-card.hub{
+    display:block;min-height:0;padding:5px 9px 6px 10px;border-left-width:7px;letter-spacing:-.1px;
   }
-  .m-pick-card.preg-hub .no{color:#a45b33}
-  .m-pick-card.preg-hub .ch{font-size:16px}
-  .m-pick-card.preg-hub .th{color:#a45b33}
-  .m-pick-card.tod-hub{
-    grid-column:1/-1;background:linear-gradient(180deg,#eefaf2,#e2f5ea);border-left-width:9px;border-left-color:var(--mint-d);
-  }
-  .m-pick-card.tod-hub .no{color:var(--mint-d)}
-  .m-pick-card.tod-hub .ch{font-size:16px}
-  .m-pick-card.tod-hub .th{color:var(--mint-d)}
+  .m-pick-card.hub .hub-top{display:flex;align-items:center;gap:5px;min-height:14px}
+  .m-pick-card.hub .no{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .m-pick-card.hub .tags{margin:0;padding:0;gap:4px;flex:0 0 auto;flex-wrap:nowrap}
+  .m-pick-card.hub .ch{display:flex;align-items:center;font-size:16px;line-height:1.3;margin-top:1px}
+  .m-pick-card.hub .ch .arw{margin-left:auto;font-size:18px;line-height:1;opacity:.55}
+  .m-pick-card.hub .th{display:block;font-size:10.5px;line-height:1.35}
+  .m-pick-card.hub .ds{display:block;font-size:9.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .m-pick-card.hub-preg{background:linear-gradient(180deg,#fff6e6,#fff0d6);border-left-color:var(--apricot)}
+  .m-pick-card.hub-preg .no,.m-pick-card.hub-preg .th{color:#a45b33}
+  .m-pick-card.hub-newborn{background:linear-gradient(180deg,#f2f9ff,#e3eefa);border-left-color:var(--sky)}
+  .m-pick-card.hub-newborn .no,.m-pick-card.hub-newborn .th{color:#3d6e94}
+  .m-pick-card.hub-infant{background:linear-gradient(180deg,#f3fbf6,#e4f5ea);border-left-color:var(--mint-d)}
+  .m-pick-card.hub-infant .no,.m-pick-card.hub-infant .th{color:var(--mint-d)}
+  .m-pick-card.hub-todd{background:linear-gradient(180deg,#f7f3fe,#efe6fb);border-left-color:var(--lav)}
+  .m-pick-card.hub-todd .no,.m-pick-card.hub-todd .th{color:#6a52a0}
   .m-pick-card .ageb{font-size:11px;color:var(--muted);letter-spacing:0}
   .m-pick-card{
     display:flex;flex-direction:column;text-align:left;font-family:inherit;color:var(--ink);
@@ -725,52 +729,51 @@
   .mominfo{margin:0 0 10px;font-size:11px;color:var(--muted);line-height:1.5}
   .mom-badge{font-size:44px;line-height:1}
 
-  /* ---------- 바로 찾기 · 주수/개월수 숫자 입력 ---------- */
+  /* ---------- 바로 찾기 · 주수/개월수 숫자 입력 (슬림 바) ---------- */
   .jump{
     background:linear-gradient(180deg,#fff9ec,#fff2d9);
-    border:3px solid var(--ink);border-left-width:9px;border-left-color:var(--butter);
-    box-shadow:4px 4px 0 var(--shell-line);
-    padding:10px 11px 11px;margin-bottom:12px;
+    border:2.5px solid var(--ink);border-left-width:8px;border-left-color:var(--butter);
+    box-shadow:3px 3px 0 var(--shell-line);
+    padding:7px 9px 8px;margin-bottom:10px;
   }
-  .jump-hd{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-  .jump-ttl{font-size:13px;letter-spacing:.2px}
-  .jump-hd .sub3{margin-left:auto;font-size:9.5px;color:var(--muted)}
-  .jump-seg{display:flex;gap:6px;margin-bottom:8px}
+  .jump-hd{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+  .jump-ttl{font-size:11.5px;letter-spacing:.1px;color:#5f594d;flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .jump-row{display:flex;gap:5px;align-items:stretch;flex-wrap:nowrap}
+  .jump-seg{display:flex;gap:4px;flex:0 0 auto}
   .jump-seg button{
-    flex:1 1 0;font-family:inherit;font-size:12px;color:var(--ink);background:var(--paper);
-    border:2.5px solid var(--ink);padding:7px 4px;min-height:40px;cursor:pointer;box-shadow:2px 2px 0 var(--shell-line);
+    font-family:inherit;font-size:11px;color:var(--ink);background:var(--paper);
+    border:2px solid var(--ink);padding:2px 5px;min-height:36px;cursor:pointer;line-height:1.1;
   }
-  .jump-seg button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-d);box-shadow:none;transform:translate(2px,2px)}
+  .jump-seg button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-d)}
   .jump-seg button[data-jump-mode="preg"][aria-pressed="true"]{background:var(--butter);border-color:#d9a94e}
-  .jump-row{display:flex;gap:7px;align-items:stretch}
   .jump-field{
-    flex:1 1 auto;display:flex;align-items:center;gap:5px;min-width:0;
-    background:#fff;border:2.5px solid var(--ink);padding:0 8px;
+    flex:1 1 auto;display:flex;align-items:center;gap:4px;min-width:0;
+    background:#fff;border:2px solid var(--ink);padding:0 6px;
   }
   .jump-field input{
-    flex:1 1 auto;width:100%;min-width:0;font-family:inherit;font-size:19px;color:var(--ink);
-    background:transparent;border:0;padding:8px 0;text-align:right;letter-spacing:.5px;
+    flex:1 1 auto;width:100%;min-width:0;font-family:inherit;font-size:17px;color:var(--ink);
+    background:transparent;border:0;padding:4px 0;text-align:right;letter-spacing:.5px;
     -moz-appearance:textfield;appearance:textfield;
   }
   .jump-field input::-webkit-outer-spin-button,.jump-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   .jump-field input:focus{outline:none}
-  .jump-field:focus-within{outline:3px solid var(--mint);outline-offset:1px}
-  .jump-field .unit{flex:0 0 auto;font-size:12px;color:#5f594d}
-  .jump-go{flex:0 0 auto;font-size:13px;padding:9px 12px;min-height:46px;background:var(--mint);box-shadow:3px 3px 0 var(--shell-line)}
-  .jump-quick{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:8px}
+  .jump-field:focus-within{outline:2px solid var(--mint);outline-offset:1px}
+  .jump-field .unit{flex:0 0 auto;font-size:11px;color:#5f594d}
+  .jump-go{flex:0 0 auto;font-size:12px;padding:6px 9px;min-height:36px;background:var(--mint);box-shadow:2px 2px 0 var(--shell-line)}
+  .jump-quick{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:6px}
   .jump-quick .lb{font-size:9.5px;color:var(--muted)}
   .jump-quick button{
-    font-family:inherit;font-size:10.5px;color:var(--ink);background:var(--paper);
-    border:1.5px solid var(--ink);padding:3px 6px;cursor:pointer;min-height:30px;
+    font-family:inherit;font-size:10px;color:var(--ink);background:var(--paper);
+    border:1.5px solid var(--ink);padding:2px 5px;cursor:pointer;min-height:28px;
   }
   .jump-quick button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-d)}
   .jump-quick button:active{transform:translate(1px,1px)}
-  .jump-preview{margin:8px 0 0;font-size:10.5px;line-height:1.45;color:#5f594d;min-height:15px}
+  .jump-preview{margin:5px 0 0;font-size:10px;line-height:1.4;color:#5f594d;min-height:14px}
   .jump-preview b{font-weight:normal;background:#ffe9b8;padding:0 3px}
   .jump-preview.err{color:#a8442f}
   @media (max-width:359px){
-    .jump-go{font-size:12px;padding:9px 8px}
-    .jump-field input{font-size:17px}
+    .jump-go{font-size:11px;padding:6px 6px}
+    .jump-seg button{font-size:10px;padding:2px 4px}
   }
 </style>
 </head>
@@ -930,17 +933,16 @@
         <button class="sound-btn op-snd" type="button" data-sound="1" aria-pressed="true" aria-label="효과음 끄기" title="효과음 켜기/끄기">♪</button>
       </div>
 
-      <!-- 바로 찾기 · 주수/개월수 숫자 입력 -->
+      <!-- 바로 찾기 · 주수/개월수 숫자 입력 (슬림 바) -->
       <div class="jump" id="opJump">
         <div class="jump-hd">
           <span class="jump-ttl">🔎 내 아기 · 임신 주수 바로 찾기</span>
-          <span class="sub3">숫자만 넣으면 그 구간으로 직행</span>
-        </div>
-        <div class="jump-seg" role="group" aria-label="임신 중 · 육아 중 선택">
-          <button type="button" data-jump-mode="preg" aria-pressed="false">🤰 임신 중</button>
-          <button type="button" data-jump-mode="baby" aria-pressed="true">👶 육아 중</button>
         </div>
         <div class="jump-row">
+          <div class="jump-seg" role="group" aria-label="임신 중 · 육아 중 선택">
+            <button type="button" data-jump-mode="preg" aria-pressed="false">🤰 임신</button>
+            <button type="button" data-jump-mode="baby" aria-pressed="true">👶 육아</button>
+          </div>
           <label class="jump-field" for="jumpNum">
             <input id="jumpNum" type="number" inputmode="numeric" min="0" max="72" step="1" placeholder="26" aria-label="임신 주수 또는 아기 개월수" autocomplete="off">
             <span class="unit" id="jumpUnit">개월</span>
@@ -958,8 +960,7 @@
 
       <div class="op-hero">
         <svg viewBox="0 0 176 44" preserveAspectRatio="none" shape-rendering="crispEdges" aria-hidden="true" id="opHero"></svg>
-        <p class="op-title">오늘, 우리 아이는<br>어디쯤인가요?</p>
-        <p class="op-lead">임신 중이면 주수, 태어났으면 월령, 36개월 이후면 유아기 구간을 고르세요.<br>그 시기에 진짜 터지는 상황 5개가 바로 열립니다.</p>
+        <p class="op-title">오늘, 우리 아이는 어디쯤인가요?</p>
       </div>
 
       <div class="saved-line" id="opSaved" hidden>
@@ -968,15 +969,10 @@
       </div>
 
       <div class="op-body">
-        <p class="op-pick-lead"><b>지금 어디쯤인가요?</b><br>임신 중이면 맨 위 🤰 카드를, 태어났으면 아기 월령을, 36개월 이후면 맨 아래 🧒 카드를 고르세요.</p>
-        <div class="m-pick" id="opMonthList" role="group" aria-label="임신 주수·아기 월령·유아기 구간 선택"></div>
+        <p class="op-pick-lead"><b>지금 어디쯤인가요?</b><br>큰 카테고리를 하나만 고르세요.</p>
+        <div class="m-pick one" id="opMonthList" role="group" aria-label="임신 준비·신생아·생후 4~36개월·유아기 허브 선택"></div>
+        <p class="op-flow">1 구간 고르기 → 2 성향 테스트 5문항 → 3 엄마 컨디션(선택) → 4 퀘스트 5개</p>
         <div class="op-meta"><span>18개 구간 (임신 5 · 영유아 10 · 유아기 3)</span><span>내 구간 퀘스트 5문항</span><span>구간별 성향 테스트 5문항</span><span>저장은 이 기기에만</span></div>
-        <div class="steps">
-          <div><b>1</b> 임신 주수 · 아기 월령 · 유아기 구간 선택 (18구간)</div>
-          <div><b>2</b> 고른 구간 성향 테스트 5문항</div>
-          <div><b>3</b> 엄마 컨디션 체크 (선택 +5문항)</div>
-          <div><b>4</b> 고른 구간 퀘스트 5개 버티고 결과 카드</div>
-        </div>
       </div>
       <p class="op-pick-note">구간은 퀘스트 화면 위쪽 칩에서 언제든 바꿀 수 있어요.</p>
       <p class="avg-note">※ 안내된 발달·식단·체크리스트·임신 주수별 정보는 <b>평균치</b>이며 개인·아기마다 다를 수 있어요.</p>
@@ -998,7 +994,43 @@
       </div>
       <p class="op-pick-note">초기 입덧부터 막달 출산가방까지, 주수에 맞춰 5문항씩 준비했어요.</p>
       <p class="avg-note">※ 안내된 임신 주수별 정보·체크리스트는 <b>평균치</b>이며 개인과 병원 안내에 따라 다를 수 있어요.</p>
-      <button class="linkish" type="button" id="opPregBack">월령·구간 다시 고르기</button>
+      <button class="linkish" type="button" id="opPregBack">← 뒤로 (첫 화면)</button>
+    </section>
+
+    <!-- step 1-2 · 🍼 신생아 3구간 선택 -->
+    <section id="opNewborn" hidden>
+      <div class="op-head">
+        <div class="logo"><svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#i-baby"/></svg></div>
+        <div>
+          <div class="ttl">🍼 신생아 (~100일)</div>
+          <div class="sub2">등센서·수유텀·통잠 도전기 · 3개 구간</div>
+        </div>
+      </div>
+      <div class="op-body">
+        <p class="op-pick-lead"><b>태어난 지 며칠 됐나요?</b><br>0개월은 일수로 나뉘어요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <div class="m-pick one" id="opNewbornList" role="group" aria-label="신생아 구간 선택"></div>
+      </div>
+      <p class="op-pick-note">조리원 퇴소부터 백일까지, 구간별 5문항씩 준비했어요.</p>
+      <p class="avg-note">※ 안내된 수유·수면·발달 정보는 <b>평균치</b>이며 아기마다 다를 수 있어요.</p>
+      <button class="linkish" type="button" id="opNewbornBack">← 뒤로 (첫 화면)</button>
+    </section>
+
+    <!-- step 1-3 · 👶 생후 4~36개월 7구간 선택 -->
+    <section id="opInfant" hidden>
+      <div class="op-head">
+        <div class="logo"><svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#i-baby"/></svg></div>
+        <div>
+          <div class="ttl">👶 생후 4~36개월</div>
+          <div class="sub2">이유식·걸음마·어린이집·훈육까지 · 7개 구간</div>
+        </div>
+      </div>
+      <div class="op-body">
+        <p class="op-pick-lead"><b>몇 개월인가요?</b><br>구간마다 터지는 상황이 달라요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <div class="m-pick" id="opInfantList" role="group" aria-label="생후 4~36개월 구간 선택"></div>
+      </div>
+      <p class="op-pick-note">뒤집기·이유식부터 배변훈련·사회성까지, 구간별 5문항씩 준비했어요.</p>
+      <p class="avg-note">※ 안내된 발달·식단·훈육 정보는 <b>평균치</b>이며 아이마다 다를 수 있어요.</p>
+      <button class="linkish" type="button" id="opInfantBack">← 뒤로 (첫 화면)</button>
     </section>
 
     <!-- step 1-2 · 🧒 36개월+ 유아기 3구간 선택 -->
@@ -1016,7 +1048,7 @@
       </div>
       <p class="op-pick-note">만 3세 유치원 입학부터 만 5세 초등 준비까지, 구간별 5문항씩 준비했어요.</p>
       <p class="avg-note">※ 안내된 발달·기관·검진 정보는 <b>평균치</b>이며 아이와 기관마다 다를 수 있어요.</p>
-      <button class="linkish" type="button" id="opToddBack">월령·구간 다시 고르기</button>
+      <button class="linkish" type="button" id="opToddBack">← 뒤로 (첫 화면)</button>
     </section>
 
     <!-- test -->
@@ -4083,6 +4115,8 @@
     charTip: $("#charTip"), charAxes: $("#charAxes"),
     opCare: $("#opCare"), opCareBack: $("#opCareBack"), opMom: $("#opMom"), opMomResult: $("#opMomResult"),
     opPreg: $("#opPreg"), opPregList: $("#opPregList"), opPregBack: $("#opPregBack"),
+    opNewborn: $("#opNewborn"), opNewbornList: $("#opNewbornList"), opNewbornBack: $("#opNewbornBack"),
+    opInfant: $("#opInfant"), opInfantList: $("#opInfantList"), opInfantBack: $("#opInfantBack"),
     opTodd: $("#opTodd"), opToddList: $("#opToddList"), opToddBack: $("#opToddBack"),
     stageChipLabel: $("#stageChipLabel"), dexCheckTitle: $("#dexCheckTitle"), dexNote: $("#dexNote"), dexTinyNote: $("#dexTinyNote"),
     opMomBtn: $("#opMomBtn"), opMomGo: $("#opMomGo"), opMomRetest: $("#opMomRetest"),
@@ -4375,49 +4409,58 @@
   }
   function savedStageIdx() { return stageIndexById(store(KEYS.month)); }
 
+  /* 첫 화면 4대 허브 — 큰 카테고리만 보여주고 누르면 세부 구간이 열려요 */
+  var HUBS = [
+    { key: "preg",    no: "STAGE 00 · 임신 준비", em: "🤰", ch: "출산 전 · 임신 준비", th: "초기 입덧부터 막달 출산가방까지", ds: "5개 구간 · 주수별 5문항 (임신 확인 ~ 막달)" },
+    { key: "newborn", no: "STAGE 01–03 · 신생아", em: "🍼", ch: "신생아 (~100일)", th: "등센서·수유텀·통잠 도전기", ds: "3개 구간 · ~30일 / 31~60일 / 61~100일" },
+    { key: "infant",  no: "STAGE 04–10 · 영아", em: "👶", ch: "생후 4~36개월", th: "이유식·걸음마·어린이집·훈육까지", ds: "7개 구간 · 4~6개월 ~ 31~36개월+" },
+    { key: "todd",    no: "STAGE 11–13 · 유아기", em: "🧒", ch: "36개월+ · 유아기", th: "유치원 입학부터 초등 준비까지", ds: "3개 구간 · 37~48 / 49~60 / 61~72개월+" }
+  ];
+
+  function hubKeyOf(st) {
+    if (!st) return "";
+    if (st.kind === "preg") return "preg";
+    if (st.kind === "todd") return "todd";
+    return (st.id === "s0" || st.id === "s1" || st.id === "s2") ? "newborn" : "infant";
+  }
+  function hubStageIdx(key) {
+    var out = [];
+    for (var i = 0; i < STAGES.length; i++) { if (hubKeyOf(STAGES[i]) === key) out.push(i); }
+    return out;
+  }
+
   function renderOpeningMonths() {
     var b = bests();
     var last = savedStageIdx();
-    var hubTag = (last >= 0 && STAGES[last] && STAGES[last].kind === "preg")
-      ? '<span class="last">지난번 · ' + STAGES[last].chip + '</span>' : "";
-    var todTag = (last >= 0 && STAGES[last] && STAGES[last].kind === "todd")
-      ? '<span class="last">지난번 · ' + STAGES[last].chip + '</span>' : "";
-    var hub = '<button class="m-pick-card preg-hub" type="button" data-preg="1" aria-label="임신 준비 5개 주수 구간 열기">' +
-      '<span class="no">STAGE 00 · 임신 준비</span>' +
-      '<span class="ch">🤰 출산 전 · 임신 준비</span>' +
-      '<span class="th">초기 입덧부터 막달 출산가방까지</span>' +
-      '<span class="ds">주수별 5문항 · 5개 구간 (임신 확인~막달)</span>' +
-      '<span class="tags">' + hubTag + '</span>' +
-    '</button>';
-    var todHub = '<button class="m-pick-card tod-hub" type="button" data-todd="1" aria-label="유아기 3개 구간 열기">' +
-      '<span class="no">STAGE 11 · 유아기</span>' +
-      '<span class="ch">🧒 36개월+ · 유아기</span>' +
-      '<span class="th">유치원 입학부터 초등 준비까지</span>' +
-      '<span class="ds">구간별 5문항 · 3개 구간 (37~72개월+)</span>' +
-      '<span class="tags">' + todTag + '</span>' +
-    '</button>';
-    el.opMonthList.innerHTML = hub + STAGES.map(function (st, i) {
-      if (st.kind === "preg" || st.kind === "todd") return "";
-      var best = b[st.id];
-      return '<button class="m-pick-card" type="button" data-stage="' + i + '" aria-pressed="' + (i === last ? "true" : "false") + '">' +
-        '<span class="no">STAGE ' + st.stageNo + '</span>' +
-        '<span class="ch">' + st.chip + '</span>' +
-        '<span class="th">' + st.theme + '</span>' +
-        '<span class="ds">' + (st.sub || "") + '</span>' +
-        '<span class="tags">' +
-          (best ? '<span class="best">최고 ' + best + '</span>' : "") +
-          (i === last ? '<span class="last">지난번 선택</span>' : "") +
+    var lastHub = last >= 0 ? hubKeyOf(STAGES[last]) : "";
+    el.opMonthList.innerHTML = HUBS.map(function (h) {
+      var best = 0;
+      hubStageIdx(h.key).forEach(function (i) {
+        var v = Number(b[STAGES[i].id]);
+        if (v > best) best = v;
+      });
+      var tags = "";
+      if (lastHub === h.key) tags += '<span class="last">지난번 · ' + STAGES[last].chip + '</span>';
+      if (best) tags += '<span class="best">최고 ' + best + '</span>';
+      return '<button class="m-pick-card hub hub-' + h.key + '" type="button" data-hub="' + h.key + '" aria-label="' + h.ch + ' ' + h.ds + ' 열기">' +
+        '<span class="hub-top"><span class="no">' + h.no + '</span>' +
+          (tags ? '<span class="tags">' + tags + '</span>' : "") +
         '</span>' +
+        '<span class="ch">' + h.em + ' ' + h.ch + '<span class="arw">›</span></span>' +
+        '<span class="th">' + h.th + '</span>' +
+        '<span class="ds">' + h.ds + '</span>' +
       '</button>';
-    }).join("") + todHub;
+    }).join("");
     $$("#opMonthList .m-pick-card").forEach(function (c) {
-      if (c.getAttribute("data-preg") || c.getAttribute("data-todd")) return;
-      c.addEventListener("click", function () { pickOpeningStage(Number(c.getAttribute("data-stage"))); });
+      c.addEventListener("click", function () { showHubStep(c.getAttribute("data-hub")); });
     });
-    var hubBtn = $("#opMonthList [data-preg]");
-    if (hubBtn) hubBtn.addEventListener("click", showPregStep);
-    var todBtn = $("#opMonthList [data-todd]");
-    if (todBtn) todBtn.addEventListener("click", showToddStep);
+  }
+
+  function showHubStep(key) {
+    if (key === "preg") showPregStep();
+    else if (key === "newborn") showNewbornStep();
+    else if (key === "infant") showInfantStep();
+    else if (key === "todd") showToddStep();
   }
 
   /* ---------------- 바로 찾기 · 주수/개월수 숫자 입력 ---------------- */
@@ -4562,16 +4605,23 @@
     paintJump();
   }
 
-  /* 임신 준비 · 주수 5구간 선택 화면 */
-  function renderPregMonths() {
+  /* 하위 구간 선택 화면 (임신 준비 · 신생아 · 생후 4~36개월 · 유아기 공통) */
+  function subStageNo(st) {
+    if (st.kind === "preg") return "PRE " + st.stageNo.slice(1) + " · 임신 준비";
+    if (st.kind === "todd") return "TOD " + st.stageNo.slice(1) + " · 유아기";
+    return "STAGE " + st.stageNo + (st.id === "s0" || st.id === "s1" || st.id === "s2" ? " · 신생아" : " · 영아");
+  }
+
+  function renderSubList(key, listEl) {
+    if (!listEl) return;
     var b = bests();
     var last = savedStageIdx();
-    el.opPregList.innerHTML = STAGES.map(function (st, i) {
-      if (st.kind !== "preg") return "";
+    listEl.innerHTML = hubStageIdx(key).map(function (i) {
+      var st = STAGES[i];
       var best = b[st.id];
       return '<button class="m-pick-card" type="button" data-stage="' + i + '" aria-pressed="' + (i === last ? "true" : "false") + '">' +
-        '<span class="no">PRE ' + st.stageNo.slice(1) + ' · 임신 준비</span>' +
-        '<span class="ch">' + st.chip + '</span>' +
+        '<span class="no">' + subStageNo(st) + '</span>' +
+        '<span class="ch">' + st.chip + (st.ageBand ? ' <span class="ageb">(' + st.ageBand + ')</span>' : '') + '</span>' +
         '<span class="th">' + st.theme + '</span>' +
         '<span class="ds">' + (st.sub || "") + '</span>' +
         '<span class="tags">' +
@@ -4580,60 +4630,44 @@
         '</span>' +
       '</button>';
     }).join("");
-    $$("#opPregList .m-pick-card").forEach(function (c) {
+    $$("button.m-pick-card", listEl).forEach(function (c) {
       c.addEventListener("click", function () { pickOpeningStage(Number(c.getAttribute("data-stage"))); });
     });
   }
 
-  function showPregStep() {
-    el.opIntro.hidden = true;
-    el.opTest.hidden = true;
-    el.opChar.hidden = true;
-    if (el.opCare) el.opCare.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    if (el.opMom) el.opMom.hidden = true;
-    if (el.opMomResult) el.opMomResult.hidden = true;
-    renderPregMonths();
-    if (el.opPreg) el.opPreg.hidden = false;
-    el.opening.scrollTop = 0;
-  }
-
-  /* 유아기 · 3구간 선택 화면 */
-  function renderToddMonths() {
-    var b = bests();
-    var last = savedStageIdx();
-    el.opToddList.innerHTML = STAGES.map(function (st, i) {
-      if (st.kind !== "todd") return "";
-      var best = b[st.id];
-      return '<button class="m-pick-card" type="button" data-stage="' + i + '" aria-pressed="' + (i === last ? "true" : "false") + '">' +
-        '<span class="no">TOD ' + st.stageNo.slice(1) + ' · 유아기</span>' +
-        '<span class="ch">' + st.chip + ' <span class="ageb">(' + st.ageBand + ')</span></span>' +
-        '<span class="th">' + st.theme + '</span>' +
-        '<span class="ds">' + (st.sub || "") + '</span>' +
-        '<span class="tags">' +
-          (best ? '<span class="best">최고 ' + best + '</span>' : "") +
-          (i === last ? '<span class="last">지난번 선택</span>' : "") +
-        '</span>' +
-      '</button>';
-    }).join("");
-    $$("#opToddList .m-pick-card").forEach(function (c) {
-      c.addEventListener("click", function () { pickOpeningStage(Number(c.getAttribute("data-stage"))); });
-    });
-  }
-
-  function showToddStep() {
-    el.opIntro.hidden = true;
+  /* 첫 화면(Step 1) 말고 다른 단계 화면 모두 숨기기 */
+  function hideOpeningSteps() {
     el.opTest.hidden = true;
     el.opChar.hidden = true;
     if (el.opCare) el.opCare.hidden = true;
     if (el.opPreg) el.opPreg.hidden = true;
+    if (el.opNewborn) el.opNewborn.hidden = true;
+    if (el.opInfant) el.opInfant.hidden = true;
     if (el.opTodd) el.opTodd.hidden = true;
     if (el.opMom) el.opMom.hidden = true;
     if (el.opMomResult) el.opMomResult.hidden = true;
-    renderToddMonths();
-    if (el.opTodd) el.opTodd.hidden = false;
+  }
+
+  function showSubStep(key) {
+    var map = {
+      preg: [el.opPreg, el.opPregList],
+      newborn: [el.opNewborn, el.opNewbornList],
+      infant: [el.opInfant, el.opInfantList],
+      todd: [el.opTodd, el.opToddList]
+    };
+    var pair = map[key];
+    if (!pair || !pair[0]) return;
+    el.opIntro.hidden = true;
+    hideOpeningSteps();
+    renderSubList(key, pair[1]);
+    pair[0].hidden = false;
     el.opening.scrollTop = 0;
   }
+
+  function showPregStep() { showSubStep("preg"); }
+  function showNewbornStep() { showSubStep("newborn"); }
+  function showInfantStep() { showSubStep("infant"); }
+  function showToddStep() { showSubStep("todd"); }
 
   function pickOpeningStage(i) {
     if (i < 0 || i >= STAGES.length) return;
@@ -4647,12 +4681,7 @@
 
   function showCareStep() {
     el.opIntro.hidden = true;
-    el.opTest.hidden = true;
-    el.opChar.hidden = true;
-    if (el.opPreg) el.opPreg.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    if (el.opMom) el.opMom.hidden = true;
-    if (el.opMomResult) el.opMomResult.hidden = true;
+    hideOpeningSteps();
     el.opCare.hidden = false;
     el.opening.scrollTop = 0;
   }
@@ -5152,14 +5181,9 @@
 
   function openOpening() {
     el.opening.hidden = false;
+    hideOpeningSteps();
     el.opIntro.hidden = false;
-    el.opTest.hidden = true;
-    el.opChar.hidden = true;
-    if (el.opCare) el.opCare.hidden = true;
-    if (el.opPreg) el.opPreg.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    if (el.opMom) el.opMom.hidden = true;
-    if (el.opMomResult) el.opMomResult.hidden = true;
+    renderOpeningMonths();
     el.opening.scrollTop = 0;
   }
   function closeOpening() {
@@ -5176,10 +5200,7 @@
   function startTest() {
     T = { i: 0, scores: { S: 0, F: 0, A: 0, B: 0 }, lastSF: "S", lastAB: "A", bonusPick: null, picked: -1 };
     el.opIntro.hidden = true;
-    el.opChar.hidden = true;
-    if (el.opPreg) el.opPreg.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    if (el.opCare) el.opCare.hidden = true;
+    hideOpeningSteps();
     el.opTest.hidden = false;
     updateTestMonthBar();
     renderTest();
@@ -5187,16 +5208,9 @@
   }
 
   function backToMonthPick(forceIntro) {
-    el.opTest.hidden = true;
-    el.opChar.hidden = true;
-    if (el.opCare) el.opCare.hidden = true;
-    if (el.opPreg) el.opPreg.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    if (el.opMom) el.opMom.hidden = true;
-    if (el.opMomResult) el.opMomResult.hidden = true;
     var st = STAGES[S.stage];
-    if (!forceIntro && st && st.kind === "preg") { showPregStep(); return; }
-    if (!forceIntro && st && st.kind === "todd") { showToddStep(); return; }
+    if (!forceIntro && st && hubKeyOf(st)) { showSubStep(hubKeyOf(st)); return; }
+    hideOpeningSteps();
     el.opIntro.hidden = false;
     renderOpeningMonths();
     el.opening.scrollTop = 0;
@@ -5272,10 +5286,7 @@
     var ch = computeChar();
     var st = STAGES[S.stage];
     el.opIntro.hidden = true;
-    el.opTest.hidden = true;
-    if (el.opPreg) el.opPreg.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    if (el.opCare) el.opCare.hidden = true;
+    hideOpeningSteps();
     el.opChar.hidden = false;
 
     el.charBadge.innerHTML = '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#' + ch.icon + '"/></svg>';
@@ -5308,11 +5319,7 @@
   function startMomCheck() {
     M = { i: 0, total: 0, picked: -1 };
     el.opIntro.hidden = true;
-    el.opTest.hidden = true;
-    el.opChar.hidden = true;
-    if (el.opPreg) el.opPreg.hidden = true;
-    if (el.opTodd) el.opTodd.hidden = true;
-    el.opMomResult.hidden = true;
+    hideOpeningSteps();
     el.opMom.hidden = false;
     renderMomQ();
     el.opening.scrollTop = 0;
@@ -5397,6 +5404,8 @@
   });
   if (el.opCareBack) el.opCareBack.addEventListener("click", function () { backToMonthPick(true); });
   if (el.opPregBack) el.opPregBack.addEventListener("click", function () { backToMonthPick(true); });
+  if (el.opNewbornBack) el.opNewbornBack.addEventListener("click", function () { backToMonthPick(true); });
+  if (el.opInfantBack) el.opInfantBack.addEventListener("click", function () { backToMonthPick(true); });
   if (el.opToddBack) el.opToddBack.addEventListener("click", function () { backToMonthPick(true); });
   $$("#careSheet [data-care-pick]").forEach(function (b) {
     b.addEventListener("click", function () { applyCareMode(b.getAttribute("data-care-pick")); });
