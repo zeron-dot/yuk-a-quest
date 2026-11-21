@@ -1712,6 +1712,7 @@
       dayRow.hidden = !isNewborn;
       if(!isNewborn) state.days = null;
       if(isNewborn && state.days == null){
+        dayRow.querySelectorAll('.day').forEach(function(x){ x.classList.remove('sel'); });
         numNote.textContent = '며칠인지도 골라 주세요';
       } else {
         numNote.textContent = '0~72개월. 0개월이면 일수로 한 번 더 골라요';
@@ -2009,6 +2010,7 @@
     numBox.hidden = true;
     numInput.value = '';
     dayRow.hidden = true;
+    dayRow.querySelectorAll('.day').forEach(function(x){ x.classList.remove('sel'); });
     updateStart();
     beep(440,0.05);
   }
