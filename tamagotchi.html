@@ -442,16 +442,19 @@
   }
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
-  /* 짧은 화면에서는 엔딩 카드가 버튼까지 한 번에 보이도록 압축 */
+  /* 짧은 화면에서는 엔딩 카드가 공유·다시 키우기 버튼까지 한 번에 보이도록 압축 */
   @media (max-height:700px){
-    .card{padding:7px 9px 7px}
-    .card p.comment{font-size:9px;line-height:1.45;margin-bottom:4px}
-    .tip li{font-size:8px;line-height:1.4}
-    .tip{margin-bottom:5px}
-    .share-row{margin-bottom:3px}
-    .share{padding:4px 0;font-size:10px}
-    .share-copy{padding:4px 6px;font-size:9px}
-    .card-btns button{padding:7px 0}
+    .card{padding:6px 8px 6px}
+    .card-head{padding-bottom:3px;margin-bottom:4px}
+    .verdict{margin:4px 0 3px}
+    .card p.comment{font-size:9px;line-height:1.4;margin-bottom:3px}
+    .tip li{font-size:8px;line-height:1.38}
+    .tip{margin-bottom:4px;padding:4px 6px}
+    .record{padding-top:3px;margin-bottom:4px}
+    .share-row{margin-bottom:2px}
+    .share{padding:3px 0;font-size:10px}
+    .share-copy{padding:3px 6px;font-size:9px}
+    .card-btns button{padding:6px 0}
   }
 
   @media (max-width:344px){
