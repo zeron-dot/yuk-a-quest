@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>육아 퀘스트 · 10개 월령 구간별 5문항 + 엄마 성향·컨디션 테스트</title>
-<meta name="description" content="우리 아기 월령에 맞는 돌발 상황을 버티는 도트 게임형 육아 가이드. 0~36개월+ 10개 구간 중 우리 아기 구간 5문항만 풀면 돼요.">
+<title>육아 퀘스트 · 임신 준비~36개월+ 구간별 5문항 + 엄마 성향·컨디션 테스트</title>
+<meta name="description" content="임신 준비부터 36개월+까지 구간별 돌발 상황을 버티는 도트 게임형 가이드. 출산 전 5개 주수 + 육아 10개 월령 중 우리 구간 5문항만 풀면 돼요.">
 
 <!-- 공유 미리보기 카드 (카카오톡·인스타·슬랙·X 등) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="육아 퀘스트">
 <meta property="og:url" content="https://zeron-dot.github.io/yuk-a-quest/">
-<meta property="og:title" content="육아 퀘스트 · 0~36개월+ 육아 생존 테스트">
-<meta property="og:description" content="엄마 성향 테스트부터 월령별 육아 퀘스트·발달 도감·영유아검진 체크까지 한 번에!">
+<meta property="og:title" content="육아 퀘스트 · 임신 준비~36개월+ 구간별 5문항">
+<meta property="og:description" content="출산 전 임신 주수 5구간부터 36개월+ 육아 10구간까지. 엄마 성향 테스트·주수별 태교 도감·산전검사 체크까지 한 번에!">
 <meta property="og:image" content="https://zeron-dot.github.io/yuk-a-quest/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="육아 퀘스트 엄마 성향 테스트 화면">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="육아 퀘스트 · 0~36개월+ 육아 생존 테스트">
-<meta name="twitter:description" content="엄마 성향 테스트부터 월령별 육아 퀘스트·발달 도감·영유아검진 체크까지 한 번에!">
+<meta name="twitter:title" content="육아 퀘스트 · 임신 준비~36개월+ 구간별 5문항">
+<meta name="twitter:description" content="출산 전 임신 주수 5구간부터 36개월+ 육아 10구간까지. 엄마 성향 테스트·주수별 태교 도감·산전검사 체크까지 한 번에!">
 <meta name="twitter:image" content="https://zeron-dot.github.io/yuk-a-quest/og-image.png">
 <meta name="twitter:image:alt" content="육아 퀘스트 엄마 성향 테스트 화면">
 <meta name="theme-color" content="#151522">
@@ -505,6 +505,13 @@
   .op-pick-lead{margin:0 0 10px;font-size:13.5px;line-height:1.6}
   .op-pick-lead b{font-weight:normal;background:#ffe2bd;padding:0 3px}
   .m-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .m-pick.one{grid-template-columns:1fr}
+  .m-pick-card.preg-hub{
+    grid-column:1/-1;background:#fdf1e3;border-left-width:9px;border-left-color:var(--apricot);
+  }
+  .m-pick-card.preg-hub .no{color:#a45b33}
+  .m-pick-card.preg-hub .ch{font-size:16px}
+  .m-pick-card.preg-hub .th{color:#a45b33}
   .m-pick-card{
     display:flex;flex-direction:column;text-align:left;font-family:inherit;color:var(--ink);
     background:var(--paper);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
@@ -701,17 +708,17 @@
     </div>
     <div>
       <h1>육아 퀘스트</h1>
-      <p class="sub" id="headSub">10개 월령 · 구간별 5문항</p>
+      <p class="sub" id="headSub">임신 준비~36개월+ · 구간별 5문항</p>
     </div>
     <button class="home-btn" type="button" id="homeBtn" aria-label="첫 화면(월령 선택)으로 돌아가기">🏠 홈</button>
-    <div class="stage-chip">STAGE<b id="stageChip">01</b></div>
+    <div class="stage-chip"><span id="stageChipLabel">STAGE</span><b id="stageChip">01</b></div>
   </header>
 
   <!-- ================= QUEST ================= -->
   <main class="screen" id="tab-quest" role="tabpanel" aria-label="퀘스트">
 
-    <div class="months" id="monthRow" role="group" aria-label="아기 월령 선택"></div>
-    <p class="avg-note">※ 안내된 발달·식단·체크리스트 시기는 <b>평균치</b>이며 아기마다 다를 수 있어요.</p>
+    <div class="months" id="monthRow" role="group" aria-label="임신 주수·아기 월령 선택"></div>
+    <p class="avg-note">※ 안내된 발달·식단·체크리스트·임신 주수별 정보는 <b>평균치</b>이며 개인·아기마다 다를 수 있어요.</p>
 
     <div class="char-strip" id="charStrip">
       <span class="cb" id="charStripIcon" aria-hidden="true">🙂</span>
@@ -784,13 +791,13 @@
 
   <!-- ================= DEX ================= -->
   <main class="screen" id="tab-dex" role="tabpanel" aria-label="도감·체크" hidden>
-    <div class="months" id="dexMonthRow" role="group" aria-label="도감 월령 선택"></div>
-    <p class="avg-note">※ 안내된 발달·식단·체크리스트 시기는 <b>평균치</b>이며 아기마다 다를 수 있어요.</p>
+    <div class="months" id="dexMonthRow" role="group" aria-label="도감 임신 주수·월령 선택"></div>
+    <p class="avg-note">※ 안내된 발달·식단·체크리스트·임신 주수별 정보는 <b>평균치</b>이며 개인·아기마다 다를 수 있어요.</p>
 
     <div class="sec-title"><span id="dexPlayTitle">🍼 발달 놀이</span><span class="cnt" id="dexCnt">0 / 5</span></div>
     <div id="dexPlays"></div>
 
-    <div class="sec-title">✅ 체크리스트 · 영유아검진</div>
+    <div class="sec-title"><span id="dexCheckTitle">✅ 체크리스트 · 영유아검진</span></div>
     <div id="dexChecks"></div>
     <div id="dexCareWrap"></div>
 
@@ -799,7 +806,7 @@
     <div id="dexShop"></div>
 
     <div class="note" id="dexNote">도감·체크 내용은 일반적인 발달 놀이 예시예요. 아이마다 속도가 다르고, 진단·치료를 대신하지 않아요. 발달이 걱정되면 소아과에서 진료를 받아보세요.</div>
-    <p class="tiny">검진 시기는 국민건강보험공단 영유아 건강검진 안내를 참고한 값이에요. 아이 상태에 따라 달라질 수 있어요.</p>
+    <p class="tiny" id="dexTinyNote">검진 시기는 국민건강보험공단 영유아 건강검진 안내를 참고한 값이에요. 아이 상태에 따라 달라질 수 있어요.</p>
   </main>
 
   <!-- ================= POSTBOX ================= -->
@@ -842,14 +849,14 @@
         <div class="logo"><svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#i-baby-dark"/></svg></div>
         <div>
           <div class="ttl">육아 퀘스트</div>
-          <div class="sub2">0~36개월+ · 10개 구간 · 구간별 5문항</div>
+          <div class="sub2">임신 준비~36개월+ · 15개 구간 · 구간별 5문항</div>
         </div>
       </div>
 
       <div class="op-hero">
         <svg viewBox="0 0 176 44" preserveAspectRatio="none" shape-rendering="crispEdges" aria-hidden="true" id="opHero"></svg>
-        <p class="op-title">오늘, 우리 아기는<br>몇 개월인가요?</p>
-        <p class="op-lead">월령을 먼저 고르면, 그 달에 진짜 터지는<br>상황 5개가 바로 열립니다.</p>
+        <p class="op-title">오늘, 우리 아이는<br>어디쯤인가요?</p>
+        <p class="op-lead">임신 중이면 주수, 태어났으면 월령을 고르세요.<br>그 시기에 진짜 터지는 상황 5개가 바로 열립니다.</p>
       </div>
 
       <div class="saved-line" id="opSaved" hidden>
@@ -858,19 +865,37 @@
       </div>
 
       <div class="op-body">
-        <p class="op-pick-lead"><b>우리 아기 지금 몇 개월인가요?</b><br>고르면 그 월령 퀘스트가 열리고, 바로 1분 성향 테스트로 넘어가요.</p>
-        <div class="m-pick" id="opMonthList" role="group" aria-label="아기 월령 선택"></div>
-        <div class="op-meta"><span>10개 구간</span><span>내 아기 구간 퀘스트 5문항</span><span>월령별 성향 테스트 5문항</span><span>저장은 이 기기에만</span></div>
+        <p class="op-pick-lead"><b>지금 어디쯤인가요?</b><br>임신 중이면 맨 위 🤰 카드를, 태어났으면 아기 월령을 고르세요.</p>
+        <div class="m-pick" id="opMonthList" role="group" aria-label="임신 주수·아기 월령 선택"></div>
+        <div class="op-meta"><span>15개 구간 (임신 5 · 월령 10)</span><span>내 구간 퀘스트 5문항</span><span>구간별 성향 테스트 5문항</span><span>저장은 이 기기에만</span></div>
         <div class="steps">
-          <div><b>1</b> 우리 아기 월령 선택 (10구간)</div>
-          <div><b>2</b> 고른 월령 성향 테스트 5문항</div>
+          <div><b>1</b> 임신 주수 또는 아기 월령 선택 (15구간)</div>
+          <div><b>2</b> 고른 구간 성향 테스트 5문항</div>
           <div><b>3</b> 엄마 컨디션 체크 (선택 +5문항)</div>
-          <div><b>4</b> 고른 월령 퀘스트 5개 버티고 결과 카드</div>
+          <div><b>4</b> 고른 구간 퀘스트 5개 버티고 결과 카드</div>
         </div>
       </div>
-      <p class="op-pick-note">월령은 퀘스트 화면 위쪽 칩에서 언제든 바꿀 수 있어요.</p>
-      <p class="avg-note">※ 안내된 발달·식단·체크리스트 시기는 <b>평균치</b>이며 아기마다 다를 수 있어요.</p>
+      <p class="op-pick-note">구간은 퀘스트 화면 위쪽 칩에서 언제든 바꿀 수 있어요.</p>
+      <p class="avg-note">※ 안내된 발달·식단·체크리스트·임신 주수별 정보는 <b>평균치</b>이며 개인·아기마다 다를 수 있어요.</p>
       <p class="foot-note">이 앱은 의학적 진단을 대신하지 않아요.<br>기록은 이 기기 브라우저에만 저장됩니다.</p>
+    </section>
+
+    <!-- step 1-1 · 🤰 임신 준비 주수 5구간 선택 -->
+    <section id="opPreg" hidden>
+      <div class="op-head">
+        <div class="logo"><svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#i-heart"/></svg></div>
+        <div>
+          <div class="ttl">🤰 출산 전 · 임신 준비</div>
+          <div class="sub2">주수별 5문항 · 5개 구간</div>
+        </div>
+      </div>
+      <div class="op-body">
+        <p class="op-pick-lead"><b>지금 몇 주차인가요?</b><br>주수마다 챙길 게 달라요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <div class="m-pick one" id="opPregList" role="group" aria-label="임신 주수 구간 선택"></div>
+      </div>
+      <p class="op-pick-note">초기 입덧부터 막달 출산가방까지, 주수에 맞춰 5문항씩 준비했어요.</p>
+      <p class="avg-note">※ 안내된 임신 주수별 정보·체크리스트는 <b>평균치</b>이며 개인과 병원 안내에 따라 다를 수 있어요.</p>
+      <button class="linkish" type="button" id="opPregBack">월령·구간 다시 고르기</button>
     </section>
 
     <!-- test -->
@@ -2111,6 +2136,592 @@
   ];
 
   /* =========================================================
+     DATA · 🤰 출산 전 · 임신 준비 5구간 (p0~p4)
+     주수별 퀘스트 5문항 = 25문항 · 태교 도감 · 산전검사 체크
+     (보험·상품 이야기는 넣지 않습니다. 돌도리맘 페르소나 원칙)
+     ========================================================= */
+  var PREG_STAGES = [
+    {
+      id: "p0", kind: "preg", chip: "~12주", theme: "초기 · 임신 확인·입덧",
+      stageNo: "P0", sub: "임신 확인, 입덧, 엽산, 1차 기형아 검사",
+      caption: "HOME · 09:20",
+      scene: { sky: "#a9d3e8", floor: "#d8b26a", prop: "belly", pose: "sit", night: false },
+      care: [
+        { t: "물은 한 모금씩 자주", d: "입덧으로 물 마시기가 어려우면 한 번에 많이 대신 하루 종일 조금씩 마셔보세요. 소변 색이 진해지면 수분이 부족하다는 신호예요." },
+        { t: "먹을 수 있을 때 먹기", d: "식사 시간을 지키기 어려우면 배고픈 순간에 작게 먹어도 괜찮아요. 영양보다 '오늘 무언가를 먹었다'가 먼저예요." }
+      ],
+      quests: [
+        {
+          tag: "임신 확인",
+          text: "테스트 두 줄이 나왔어요. 아직 병원은 안 갔는데 <span class='hl'>당장 가야 할까요?</span>",
+          choices: [
+            { text: "산부인과에 전화해 첫 초음파 일정을 잡는다", baby: 8, mom: 6,
+              fb: "임신 확인은 병원 초음파로 자궁 안에 잘 자리 잡았는지 보는 게 첫 단계예요. 6~8주쯤 첫 진료를 잡는 경우가 많아요." },
+            { text: "조금 더 기다렸다가 12주에 맞춰 간다", baby: -2, mom: 2,
+              fb: "급하게 서두를 필요는 없지만, 출혈이나 통증이 있으면 바로 가야 해요. 일주일 안에 한 번은 진료를 잡아보세요." },
+            { text: "맘카페에 먼저 물어본다", baby: 0, mom: -4,
+              fb: "경험담은 마음을 놓는 데 도움이 돼요. 다만 진료 일정과 초음파 확인은 병원에서 정해요." }
+          ]
+        },
+        {
+          tag: "입덧",
+          text: "아침마다 속이 울렁거려서 <span class='hl'>물도 잘 못 마셔요.</span>",
+          choices: [
+            { text: "한 번에 많이 대신 조금씩 자주, 입에 맞는 것부터", baby: 4, mom: 8,
+              fb: "빈속이 더 울렁거려요. 크래커·식빵처럼 마른 것부터 소량씩 자주 먹어보세요." },
+            { text: "그냥 참고 버틴다", baby: -2, mom: -12,
+              fb: "버티는 게 미덕은 아니에요. 물도 못 마시고 소변량이 눈에 띄게 줄면 진료를 받아야 해요." },
+            { text: "입덧약은 위험하다고 생각해 절대 안 먹는다", baby: 2, mom: -6,
+              fb: "처방받는 입덧약과 임의로 사 먹는 약은 달라요. 너무 힘들면 진료 때 상의해 보세요." }
+          ]
+        },
+        {
+          tag: "엽산",
+          text: "엽산은 <span class='hl'>언제까지, 얼마나</span> 먹어야 하나요?",
+          choices: [
+            { text: "임신 초기까지 꾸준히, 병원에서 안내한 용량으로", baby: 8, mom: 6,
+              fb: "아기 신경관이 만들어지는 초기에 엽산이 중요해요. 용량은 병원 안내를 따르면 돼요." },
+            { text: "이제 임신했으니 오늘부터 시작한다", baby: 4, mom: 2,
+              fb: "늦지 않았어요. 임신 전부터 먹는 게 좋지만, 지금부터라도 매일 챙기는 게 낫습니다." },
+            { text: "종합비타민과 엽산을 같이 먹는다", baby: 0, mom: -6,
+              fb: "성분이 겹치면 같은 영양소를 과하게 먹을 수 있어요. 성분표를 한 번 확인해 보세요." }
+          ]
+        },
+        {
+          tag: "1차 기형아 검사",
+          text: "1차 기형아 검사 시기를 <span class='hl'>놓칠까 봐</span> 걱정돼요.",
+          choices: [
+            { text: "11~13주 사이 일정을 미리 병원에 확인한다", baby: 8, mom: 6,
+              fb: "목덜미투명대 초음파와 혈액검사를 함께 보는 시기예요. 주수를 보고 병원이 날짜를 잡아줘요." },
+            { text: "검사는 아프니까 안 받는다", baby: -2, mom: 0,
+              fb: "선별검사는 '가능성'을 보는 검사예요. 받지 않는 선택도 있지만, 이유를 알고 정하는 게 좋아요." },
+            { text: "인터넷에서 검사 종류를 전부 비교하고 결정한다", baby: 2, mom: -6,
+              fb: "정보가 많을수록 결정이 늦어져요. 우리 병원에서 하는 검사와 날짜부터 확인해 보세요." }
+          ]
+        },
+        {
+          tag: "몸조심",
+          text: "출혈이 살짝 비쳤어요. <span class='hl'>괜찮은 걸까요?</span>",
+          choices: [
+            { text: "양·색·통증을 적어두고 병원에 바로 연락한다", baby: 10, mom: 6,
+              fb: "초기 출혈은 흔하지만 양이 늘거나 통증이 동반되면 진료가 먼저예요. 적어두면 전화 상담이 빨라요." },
+            { text: "안 아프니까 누워서 지켜본다", baby: -6, mom: -4,
+              fb: "안정이 도움이 되는 경우도 있지만 판단은 진료로 해요. 출혈이 이어지면 바로 가세요." },
+            { text: "검색해서 괜찮다는 글을 찾는다", baby: -2, mom: -8,
+              fb: "같은 증상도 사람마다 달라요. 오늘은 검색보다 전화 한 통이 빠릅니다." }
+          ]
+        }
+      ],
+      dex: {
+        plays: [
+          { k: "play1", em: "🫧", t: "배에 손 얹고 10분", d: "하루 한 번, 배에 손을 얹고 아무 말이나 해보기. 아직 소리는 안 들려도 엄마 리듬이 안정되는 시간이에요.", tags: ["태교", "10분"] },
+          { k: "play2", em: "🎵", t: "좋아하는 노래 한 곡", d: "이어폰을 배에 대기보다 방 안에 작게 틀어두기. 정해진 태교 음악보다 엄마가 편한 곡이 낫습니다.", tags: ["태교", "5분"] },
+          { k: "play3", em: "📖", t: "아기 그림책 한 장 읽기", d: "소리 내어 읽어보기. 지금은 연습이지만 나중에 같은 리듬으로 읽어줄 수 있어요.", tags: ["목소리", "5분"] },
+          { k: "play4", em: "🚶", t: "10분 천천히 걷기", d: "컨디션 좋은 날 평지에서 짧게. 숨이 차거나 배가 뭉치면 바로 쉬세요.", tags: ["가벼운 운동", "10분"] },
+          { k: "play5", em: "🌿", t: "오늘 몸 상태 한 줄", d: "출혈·통증·입덧 정도를 한 줄로 남기기. 다음 진료 때 그대로 보여주면 돼요.", tags: ["기록", "2분"] }
+        ],
+        checks: [
+          { k: "c1", t: "첫 산부인과 진료 예약 (6~8주 전후)", when: "이번 주" },
+          { k: "c2", t: "엽산 복용 시작 — 병원 안내 용량 확인", when: "매일" },
+          { k: "c3", t: "1차 기형아 검사 시기 확인 (11~13주)", when: "다음 진료" },
+          { k: "c4", t: "카페인은 하루 200mg 이하로 (커피 1잔 정도)", when: "이번 주" }
+        ],
+        shop: [
+          { t: "엽산 단일제", d: "병원 안내 용량에 맞춘 제품" },
+          { t: "입덧용 크래커·캔디", d: "빈속에 소량씩 먹기 좋은 것" },
+          { t: "임산부 바디필로우", d: "옆으로 잘 때 무릎 사이에" }
+        ]
+      }
+    },
+    {
+      id: "p1", kind: "preg", chip: "13~19주", theme: "중기 초반 · 입덧 탈출",
+      stageNo: "P1", sub: "입덧 탈출, 조리원 예약, 성별 확인",
+      caption: "HOME · 14:10",
+      scene: { sky: "#8fb8e0", floor: "#d8b26a", prop: "belly", pose: "sit", night: false },
+      care: [
+        { t: "배가 나오면 자세부터", d: "허리가 아플 때는 서 있는 시간을 줄이고, 앉을 때 허리를 받쳐주세요. 통증이 다리로 내려오면 진료를 받아보세요." },
+        { t: "단백질 한 접시", d: "입덧이 줄면 단백질이 부족해지기 쉬워요. 달걀·두부·생선 중 하나를 한 끼에 더해보세요." }
+      ],
+      quests: [
+        {
+          tag: "입덧 탈출",
+          text: "입덧이 갑자기 사라졌어요. <span class='hl'>괜찮은 건가요?</span>",
+          choices: [
+            { text: "다음 정기검진에서 아기 심장소리를 확인한다", baby: 6, mom: 6,
+              fb: "입덧은 12~16주쯤 줄어드는 경우가 많아요. 다만 갑자기 사라졌다면 검진에서 한 번 확인하면 안심돼요." },
+            { text: "좋아졌으니 그동안 못 먹은 걸 몰아 먹는다", baby: 0, mom: -8,
+              fb: "갑자기 많이 먹으면 속이 다시 불편해요. 하루 세 끼로 천천히 돌아가세요." },
+            { text: "입덧이 다시 올까 봐 계속 죽만 먹는다", baby: 2, mom: -6,
+              fb: "편한 음식이 좋지만 단백질이 빠지기 쉬워요. 달걀·두부처럼 부드러운 단백질을 더해보세요." }
+          ]
+        },
+        {
+          tag: "조리원",
+          text: "조리원은 <span class='hl'>언제 예약</span>해야 하나요?",
+          choices: [
+            { text: "갈 만한 곳 몇 곳에 전화해 기간·가격·인원을 적어 비교한다", baby: 4, mom: 8,
+              fb: "인기 지역은 20주 전에 마감되기도 해요. 같은 기간으로 맞춰 비교하면 결정이 빨라져요." },
+            { text: "출산하고 나서 알아본다", baby: 0, mom: -8,
+              fb: "막달엔 몸이 무거워 비교할 여력이 없어요. 지금 두세 곳만 봐두면 충분해요." },
+            { text: "가장 비싼 곳이 좋겠지 하고 바로 계약한다", baby: 2, mom: -4,
+              fb: "가격과 만족이 꼭 같진 않아요. 인원·신생아실 구조·모자동실 여부를 확인해 보세요." }
+          ]
+        },
+        {
+          tag: "성별 확인",
+          text: "성별은 <span class='hl'>언제 알 수 있나요?</span>",
+          choices: [
+            { text: "16주 전후 초음파에서 확인되면 그때 듣는다", baby: 2, mom: 2,
+              fb: "보통 16~20주 사이 초음파로 보지만 아기 자세에 따라 늦어질 수 있어요. 초음파 소견은 진단과 다를 수 있어요." },
+            { text: "이름·옷부터 성별을 정해서 준비한다", baby: 0, mom: -4,
+              fb: "태어나서 알게 되는 경우도 있어요. 색이 중성적인 것부터 준비하면 안전해요." },
+            { text: "물어보기 부끄러워서 그냥 넘긴다", baby: 0, mom: 2,
+              fb: "물어보는 건 자연스러운 일이에요. 다음 초음파 때 편하게 물어보세요." }
+          ]
+        },
+        {
+          tag: "몸 변화",
+          text: "배가 나오기 시작했는데 <span class='hl'>허리가 아파요.</span>",
+          choices: [
+            { text: "옆으로 잘 때 무릎 사이에 쿠션을 받친다", baby: 2, mom: 8,
+              fb: "자세 하나만 바꿔도 허리 부담이 줄어요. 오래 서 있는 일부터 줄여보세요." },
+            { text: "아프면 참고 집안일을 그대로 한다", baby: 0, mom: -12,
+              fb: "허리 통증은 자세에서 오는 경우가 많아요. 무거운 것·오래 서 있는 일부터 덜어보세요." },
+            { text: "운동은 위험하다고 생각해 아예 안 한다", baby: 2, mom: -4,
+              fb: "걷기나 임산부 스트레칭은 도움이 돼요. 시작 전에 병원에 한 번 확인하세요." }
+          ]
+        },
+        {
+          tag: "주변 말",
+          text: "'이제 안정기니까 괜찮다'는 말을 <span class='hl'>너무 많이 들어요.</span>",
+          choices: [
+            { text: "몸이 보내는 신호를 기준으로 내 페이스를 지킨다", baby: 4, mom: 8,
+              fb: "안정기는 '위험 없다'가 아니라 '조금 덜 조심해도 되는' 시기예요. 피곤하면 쉬는 게 기준이죠." },
+            { text: "그 말대로 여행·일정을 다 채운다", baby: -4, mom: -10,
+              fb: "무리한 일정은 몸이 먼저 신호를 보내요. 하루에 한 가지로 줄여보세요." },
+            { text: "말이 상처가 되니 사람들을 피한다", baby: 0, mom: -4,
+              fb: "피하는 대신 '지금은 이 정도만 하려고'라고 한 줄 말해두면 편해져요." }
+          ]
+        }
+      ],
+      dex: {
+        plays: [
+          { k: "play1", em: "🎧", t: "노래·이야기 들려주기", d: "배에 스피커를 대기보다 방 안에 작게 틀어두기. 큰 소리는 오히려 피하세요.", tags: ["태교", "5분"] },
+          { k: "play2", em: "✋", t: "배 위에 손 얹고 호흡", d: "코로 4초 들이쉬고 6초 내쉬기 5번. 아직 태동이 없어도 괜찮아요.", tags: ["호흡", "3분"] },
+          { k: "play3", em: "📝", t: "태명 정하고 불러보기", d: "하루 두세 번 이름을 불러보기. 소리보다 리듬이 중요해요.", tags: ["태교", "2분"] },
+          { k: "play4", em: "🧺", t: "아기 물건 한 칸 정리", d: "서랍 한 칸만 비워두고 받은 물건을 모아두기. 지금은 자리만 잡아도 충분해요.", tags: ["준비", "10분"] },
+          { k: "play5", em: "🚶", t: "20분 산책", d: "경사 없는 길로 짧게. 중간에 앉아 쉴 곳을 먼저 확인하세요.", tags: ["가벼운 운동", "20분"] }
+        ],
+        checks: [
+          { k: "c1", t: "2차 기형아(쿼드) 검사 시기 확인 (15~20주)", when: "다음 진료" },
+          { k: "c2", t: "조리원 후보 2~3곳 전화 비교 (기간·가격·인원)", when: "이번 달" },
+          { k: "c3", t: "성별은 다음 초음파 때 물어보기", when: "다음 진료" },
+          { k: "c4", t: "허리 통증 — 자세·쿠션부터 바꿔보기", when: "오늘" }
+        ],
+        shop: [
+          { t: "임산부 바디필로우", d: "허리·무릎을 함께 받치는 타입" },
+          { t: "임산부 레깅스", d: "배를 조이지 않는 허리 밴드" },
+          { t: "태교 노트", d: "검사 일정·몸 상태 한 줄 기록" }
+        ]
+      }
+    },
+    {
+      id: "p2", kind: "preg", chip: "20~27주", theme: "중기 후반 · 태동·정밀초음파",
+      stageNo: "P2", sub: "태동, 정밀초음파, 임당 검사, 체형 변화",
+      caption: "CLINIC · 10:40",
+      scene: { sky: "#a9d3e8", floor: "#c9a227", prop: "belly", pose: "sit", night: false },
+      care: [
+        { t: "다리 붓기·쥐", d: "저녁에 발을 심장보다 높게 올려두고, 종아리가 당길 때는 발끝을 몸 쪽으로 당겨 10초 늘여보세요. 한쪽만 붓거나 아프면 진료를 받아야 해요." },
+        { t: "철분제가 불편하면", d: "철분제는 공복 흡수가 좋지만 속이 아프면 식후로 바꿔도 돼요. 변비가 심하면 병원에 상의하세요." }
+      ],
+      quests: [
+        {
+          tag: "태동",
+          text: "아기가 <span class='hl'>오늘은 잘 안 움직여요.</span>",
+          choices: [
+            { text: "평소 잘 움직이던 시간에 누워 1시간 세어본다", baby: 8, mom: 6,
+              fb: "조용한 시간이 있어도 괜찮아요. 하루 중 아기가 잘 움직이는 시간에 세어보면 내 기준이 생겨요." },
+            { text: "내일은 움직이겠지 하고 넘긴다", baby: -8, mom: -4,
+              fb: "태동이 눈에 띄게 줄면 병원에서 확인하는 게 먼저예요. 하루 넘기지 마세요." },
+            { text: "단 음료를 마시고 계속 흔들어본다", baby: -2, mom: -4,
+              fb: "당이 당장 태동을 늘리진 않아요. 흔드는 것보다 조용히 누워 세는 게 정확해요." }
+          ]
+        },
+        {
+          tag: "정밀초음파",
+          text: "정밀초음파는 <span class='hl'>꼭 받아야 하나요?</span>",
+          choices: [
+            { text: "20~24주 사이 일정을 미리 잡아둔다", baby: 8, mom: 6,
+              fb: "이 시기 초음파는 아기 장기 구조를 자세히 보는 검사예요. 시기가 지나면 보기 어려운 부위도 있어요." },
+            { text: "정기검진 초음파로 충분하다고 생각한다", baby: 0, mom: 0,
+              fb: "정기검진은 짧게 보는 경우가 많아요. 원하는지 병원에 먼저 물어보세요." },
+            { text: "결과가 무서워서 미룬다", baby: -2, mom: -10,
+              fb: "확인해서 준비하는 게 대부분의 경우 더 안심돼요. 결과 설명도 함께 들을 수 있어요." }
+          ]
+        },
+        {
+          tag: "임당 검사",
+          text: "임신성 당뇨 검사를 <span class='hl'>전날 밤부터 굶어야</span> 하나요?",
+          choices: [
+            { text: "병원 안내를 그대로 확인하고 예약 시간을 맞춘다", baby: 6, mom: 6,
+              fb: "검사 종류에 따라 금식 기준이 달라요. 병원이 안내한 시간이 가장 정확해요." },
+            { text: "그냥 아무것도 안 먹고 간다", baby: 2, mom: -4,
+              fb: "너무 오래 굶으면 기운이 빠져요. 병원이 안내한 시간만 지키세요." },
+            { text: "검사 전날 단 음식을 몰아 먹는다", baby: -4, mom: -2,
+              fb: "결과에 영향이 갈 수 있어요. 평소대로 드세요." }
+          ]
+        },
+        {
+          tag: "체형 변화",
+          text: "거울 볼 때마다 <span class='hl'>내 몸이 낯설어요.</span>",
+          choices: [
+            { text: "체중보다 컨디션을 기준으로 하루를 본다", baby: 4, mom: 10,
+              fb: "체중은 범위 안에서 늘어나는 게 정상이에요. 늘어난 폭은 진료 때 같이 확인하면 돼요." },
+            { text: "덜 먹어서 체중을 맞춘다", baby: -8, mom: -10,
+              fb: "먹는 양을 줄이면 아기에게 가는 영양이 먼저 줄어요. 조절은 진료 후에 상의하세요." },
+            { text: "다른 사람과 체중을 비교한다", baby: 0, mom: -8,
+              fb: "키·체형·임신 전 체중이 다 달라요. 비교는 도움이 안 됩니다." }
+          ]
+        },
+        {
+          tag: "잠",
+          text: "배가 커지니 <span class='hl'>밤에 자꾸 깨요.</span>",
+          choices: [
+            { text: "옆으로 누워 다리 사이에 쿠션을 받친다", baby: 4, mom: 8,
+              fb: "자세가 편하면 깨는 횟수가 줄어요. 답답하면 자세를 바꿔도 괜찮아요." },
+            { text: "잠을 포기하고 새벽에 집안일을 한다", baby: 0, mom: -8,
+              fb: "새벽 활동은 다음 날을 더 무겁게 해요. 깨면 다시 눕는 것만으로도 회복돼요." },
+            { text: "잘 자려고 약을 찾아 먹는다", baby: -6, mom: -4,
+              fb: "수면제는 임신 중 임의 복용이 위험해요. 잠이 계속 어려우면 진료 때 상의하세요." }
+          ]
+        }
+      ],
+      dex: {
+        plays: [
+          { k: "play1", em: "🎵", t: "같은 노래 반복해 들려주기", d: "태동이 느껴지는 시간에 같은 노래를 들려주기. 나중에 낯익은 소리가 돼요.", tags: ["태교", "5분"] },
+          { k: "play2", em: "✋", t: "태동 세어보기", d: "누워서 1시간 동안 움직임 세기. 하루 중 같은 시간에 하면 비교가 쉬워요.", tags: ["태동", "20분"] },
+          { k: "play3", em: "💬", t: "오늘 한 줄 말 걸기", d: "'오늘 엄마는 이걸 했어'처럼 구체적으로 말하기. 아기가 리듬을 기억해요.", tags: ["태교", "2분"] },
+          { k: "play4", em: "🪑", t: "골반 기울이기", d: "벽에 기대어 골반을 앞뒤로 천천히 움직이기. 허리 부담을 덜어줘요.", tags: ["스트레칭", "5분"] },
+          { k: "play5", em: "🧺", t: "아기 옷 한 번 빨기", d: "새 옷은 한 번 세탁해두기. 지금은 두세 벌만 해도 충분해요.", tags: ["준비", "30분"] }
+        ],
+        checks: [
+          { k: "c1", t: "정밀초음파 예약 (20~24주)", when: "이번 달" },
+          { k: "c2", t: "임신성 당뇨 검사 일정 확인 (24~28주)", when: "다음 진료" },
+          { k: "c3", t: "빈혈 검사 결과 확인 — 철분제 상의", when: "다음 진료" },
+          { k: "c4", t: "태동이 눈에 띄게 줄면 바로 병원 연락", when: "수시로" }
+        ],
+        shop: [
+          { t: "임산부 압박 스타킹", d: "다리 붓기·저림 완화용" },
+          { t: "임산부 철분제", d: "병원 상의 후 선택" },
+          { t: "옆잠 베개", d: "배 아래·무릎 사이 받침" }
+        ]
+      }
+    },
+    {
+      id: "p3", kind: "preg", chip: "28~35주", theme: "후기 · 백일해·출산용품",
+      stageNo: "P3", sub: "백일해 주사, 출산용품, 아기 빨래 시작",
+      caption: "NURSERY · 16:30",
+      scene: { sky: "#f5a97f", floor: "#d8b26a", prop: "belly", pose: "sit", night: false },
+      care: [
+        { t: "잠들기 전 다리 스트레칭", d: "벽에 발을 대고 5분 눕기, 발끝 당기기 10초씩 3번. 다리 쥐가 덜해져요." },
+        { t: "한 번에 다 사지 않기", d: "출산용품은 36주까지 나눠서 준비하세요. 오늘은 한 칸만 채우면 충분해요." }
+      ],
+      quests: [
+        {
+          tag: "백일해",
+          text: "백일해 주사는 <span class='hl'>맞아야 하나요?</span>",
+          choices: [
+            { text: "27~36주 사이 산부인과에 문의해 접종 일정을 잡는다", baby: 10, mom: 6,
+              fb: "임신 중 백일해 접종은 태어난 아기를 초기 감염에서 지키는 데 도움이 돼요. 접종 시기와 종류는 병원과 상의하세요." },
+            { text: "출산 후에 맞으면 된다", baby: 0, mom: 0,
+              fb: "출산 후 접종도 필요하지만, 태아에게 항체가 넘어가는 시기가 있어 임신 중 접종을 권하기도 해요." },
+            { text: "주사는 몸에 안 좋다며 안 맞는다", baby: -4, mom: 0,
+              fb: "접종 여부는 병원과 상의해서 정하세요. 정하지 않아도 궁금한 점은 물어볼 수 있어요." }
+          ]
+        },
+        {
+          tag: "출산용품",
+          text: "출산용품 리스트가 <span class='hl'>너무 많아요.</span>",
+          choices: [
+            { text: "병원에서 주는 것과 아닌 것부터 나눠 적는다", baby: 2, mom: 10,
+              fb: "병원 준비물 안내를 받으면 절반은 정리돼요. 사는 것보다 안 사도 되는 걸 아는 게 중요해요." },
+            { text: "리스트에 있는 걸 다 산다", baby: 2, mom: -8,
+              fb: "안 쓰고 남는 물건이 생겨요. 출산가방은 최소로, 나머지는 집에 두면 돼요." },
+            { text: "아직 시간이 많다고 미룬다", baby: 0, mom: -6,
+              fb: "36주 전에 끝내두면 막달에 몸이 무거워도 편해요." }
+          ]
+        },
+        {
+          tag: "아기 빨래",
+          text: "아기 옷은 <span class='hl'>언제부터 빨아야</span> 하나요?",
+          choices: [
+            { text: "32주쯤부터 신생아 옷을 두세 벌씩 나눠 빨아둔다", baby: 4, mom: 6,
+              fb: "세탁은 일반 세제 소량에 헹굼 한 번 더. 새 옷은 한 번은 빨아야 해요." },
+            { text: "출산 후에 한꺼번에 한다", baby: 0, mom: -6,
+              fb: "출산 후엔 몸이 무거워요. 지금 조금씩 해두면 그만큼 덜어져요." },
+            { text: "섬유유연제를 듬뿍 쓴다", baby: -4, mom: 0,
+              fb: "신생아 피부엔 향이 강한 유연제가 부담이 될 수 있어요. 소량이나 생략을 권해요." }
+          ]
+        },
+        {
+          tag: "배뭉침",
+          text: "배가 자주 뭉치는데 <span class='hl'>이게 진통인가요?</span>",
+          choices: [
+            { text: "규칙성과 간격을 시간으로 적어본다", baby: 8, mom: 6,
+              fb: "불규칙하고 쉬면 사라지는 건 연습 자궁수축인 경우가 많아요. 규칙적이거나 물 같은 분비물이 있으면 바로 병원이에요." },
+            { text: "아프면 참고 누워만 있는다", baby: -4, mom: -6,
+              fb: "쉬어서 좋아지면 괜찮지만, 10분에 한 번씩 규칙적이면 참지 말고 연락하세요." },
+            { text: "검색해서 주수를 보고 판단한다", baby: -2, mom: -8,
+              fb: "주수보다 간격과 강도가 기준이에요. 오늘은 병원 번호가 더 정확해요." }
+          ]
+        },
+        {
+          tag: "손발 저림",
+          text: "손이 저리고 <span class='hl'>밤에 다리에 쥐가 나요.</span>",
+          choices: [
+            { text: "손목 보호대를 쓰고 밤에 다리를 늘여준다", baby: 2, mom: 8,
+              fb: "손목 저림은 부종과 자세가 겹쳐 생기기 쉬워요. 한쪽만 심하거나 힘이 빠지면 진료를 받으세요." },
+            { text: "아프면 그냥 참는다", baby: 0, mom: -8,
+              fb: "참으면 잠이 깨서 다음 날까지 이어져요. 작은 도구로도 덜어집니다." },
+            { text: "붓기를 빼려고 물을 줄인다", baby: -4, mom: -4,
+              fb: "물을 줄이면 붓기가 더 심해질 수 있어요. 수분은 그대로 두고 짠 음식을 줄이세요." }
+          ]
+        }
+      ],
+      dex: {
+        plays: [
+          { k: "play1", em: "📦", t: "출산가방 반쯤 채우기", d: "산모·아기 물건을 각각 한 봉투씩. 병원 안내문을 옆에 두고 하면 빨라요.", tags: ["준비", "40분"] },
+          { k: "play2", em: "🧺", t: "아기 옷 세탁", d: "중성세제 소량, 헹굼 한 번 더. 손에 물이 차면 장갑을 껴도 돼요.", tags: ["준비", "30분"] },
+          { k: "play3", em: "🧘", t: "손목·어깨 풀기", d: "벽에 손을 짚고 가슴 열기 30초씩 3번. 저림이 덜해져요.", tags: ["스트레칭", "5분"] },
+          { k: "play4", em: "🎵", t: "출산실에서 틀 노래 정하기", d: "매일 같은 곡을 들어두기. 진통 중에 익숙한 소리가 도움이 돼요.", tags: ["태교", "5분"] },
+          { k: "play5", em: "📝", t: "병원 갈 때 연락 순서 적기", d: "남편·보호자·택시·병원 번호를 한 장에 적어 냉장고에 붙이기.", tags: ["준비", "10분"] }
+        ],
+        checks: [
+          { k: "c1", t: "백일해(Tdap) 접종 시기 문의 (27~36주)", when: "다음 진료" },
+          { k: "c2", t: "출산가방 36주까지 완성", when: "이번 달" },
+          { k: "c3", t: "신생아 옷·속싸개 세탁 시작", when: "32주~" },
+          { k: "c4", t: "규칙적 배뭉침·물 같은 분비물이면 병원 연락", when: "수시로" }
+        ],
+        shop: [
+          { t: "출산가방 세트", d: "산모·아기 봉투로 나뉜 구성" },
+          { t: "수유 브라", d: "컵 아래가 편한 타입" },
+          { t: "신생아 세탁세제", d: "향 적고 헹굼 쉬운 것" }
+        ]
+      }
+    },
+    {
+      id: "p4", kind: "preg", chip: "36주~출산", theme: "막달 · 출산가방·진통 대기",
+      stageNo: "P4", sub: "막달검사, 출산가방 완성, 진통 대기, 남편 시뮬레이션",
+      caption: "FRONT DOOR · 02:40",
+      scene: { sky: "#2b2b3a", floor: "#3a3a52", prop: "belly", pose: "sit", night: true },
+      care: [
+        { t: "출발 전 30초 체크", d: "건강보험증·신분증·산모수첩·휴대폰 충전. 이 네 가지면 대부분 해결돼요." },
+        { t: "진통 중 먹을 것", d: "진통이 길어지면 힘이 빠져요. 물·주스·먹기 쉬운 간식을 챙기되, 병원 안내에 따라 드세요." }
+      ],
+      quests: [
+        {
+          tag: "막달검사",
+          text: "36주부터 <span class='hl'>매주 병원에 가야 하나요?</span>",
+          choices: [
+            { text: "주 1회 검진 일정을 캘린더에 미리 잡는다", baby: 8, mom: 6,
+              fb: "막달엔 아기 심박·양수·태위를 확인해요. 일정이 고정되면 다른 계획도 세우기 쉬워요." },
+            { text: "특별한 증상이 없으니 한 번은 건너뛴다", baby: -6, mom: -2,
+              fb: "증상이 없어도 확인하는 게 목적이에요. 일정 변경은 병원과 상의하세요." },
+            { text: "검사 결과가 나올 때마다 검색해서 비교한다", baby: 2, mom: -8,
+              fb: "수치는 주수와 함께 봐야 해요. 궁금하면 검진 때 바로 물어보세요." }
+          ]
+        },
+        {
+          tag: "출산가방",
+          text: "출산가방이 <span class='hl'>아직 반만</span> 찼어요.",
+          choices: [
+            { text: "오늘 산모 물건부터 끝낸다", baby: 2, mom: 8,
+              fb: "서류·수건·속옷부터. 아기 물건은 병원에서 주는 것도 많아요." },
+            { text: "출산 하루 전에 몰아서 싼다", baby: -4, mom: -8,
+              fb: "진통은 예고 없이 와요. 36~37주엔 완성해두세요." },
+            { text: "남편이 알아서 챙길 거라고 생각한다", baby: 0, mom: -4,
+              fb: "가방 위치와 내용을 한 번 같이 확인해두면 급할 때 빨라요." }
+          ]
+        },
+        {
+          tag: "진통",
+          text: "진통이 시작된 것 같은데 <span class='hl'>언제 병원에 가야</span> 하나요?",
+          choices: [
+            { text: "간격을 재서 병원 안내 기준에 맞춰 연락한다", baby: 10, mom: 6,
+              fb: "5분 간격으로 1분씩 1시간 이어지면 출발 기준으로 안내하는 곳이 많아요. 병원마다 기준이 다르니 미리 확인하세요." },
+            { text: "참을 수 있으면 집에서 더 기다린다", baby: -2, mom: 4,
+              fb: "첫 출산은 시간이 길어요. 다만 양수가 터졌거나 출혈이 있으면 기다리지 마세요." },
+            { text: "아프면 무조건 바로 달려간다", baby: 2, mom: -4,
+              fb: "가도 되지만 첫 출산은 오래 걸려요. 간격을 적어 가면 훨씬 빨리 판단해요." }
+          ]
+        },
+        {
+          tag: "양수",
+          text: "물 같은 게 <span class='hl'>흘렀어요.</span>",
+          choices: [
+            { text: "색과 양을 확인하고 바로 병원에 연락한다", baby: 10, mom: 6,
+              fb: "양수는 색이 중요해요. 맑으면 괜찮은 경우가 많지만 판단은 병원이 해요." },
+            { text: "소변인 것 같아서 씻고 눕는다", baby: -8, mom: -4,
+              fb: "구분이 어려우면 병원에 전화하는 게 가장 빨라요. 패드를 대고 가면 확인이 쉬워요." },
+            { text: "검색해서 색을 비교해본다", baby: -4, mom: -6,
+              fb: "사진보다 병원 확인이 정확해요." }
+          ]
+        },
+        {
+          tag: "남편 시뮬레이션",
+          text: "남편이 <span class='hl'>아직 실감이 안 난다</span>고 해요.",
+          choices: [
+            { text: "병원 가는 길·연락 순서를 같이 한 번 해본다", baby: 4, mom: 10,
+              fb: "연습은 한 번이면 충분해요. 새벽에 길을 헤매지 않는 게 목적이에요." },
+            { text: "내가 다 준비했으니 그냥 두면 된다", baby: 0, mom: -6,
+              fb: "급할 때 필요한 건 준비물보다 판단이에요. 역할을 하나 정해두세요." },
+            { text: "실감이 안 난다고 서운하다고 말하고 싸운다", baby: 0, mom: -10,
+              fb: "말보다 한 가지 일을 맡기는 게 빨라요. 예: 병원 연락, 가방 들기." }
+          ]
+        }
+      ],
+      dex: {
+        plays: [
+          { k: "play1", em: "🎒", t: "출산가방 최종 점검", d: "산모·아기·서류 세 봉투로 나눠 확인. 남편에게 위치를 알려주기.", tags: ["준비", "20분"] },
+          { k: "play2", em: "🚗", t: "병원 가는 길 연습", d: "새벽 기준으로 한 번 다녀와 보기. 주차 위치까지 확인.", tags: ["준비", "40분"] },
+          { k: "play3", em: "📞", t: "연락 순서 리허설", d: "보호자 등록·남편 연락·가족 알림 순서를 소리 내어 해보기.", tags: ["준비", "10분"] },
+          { k: "play4", em: "🫁", t: "호흡 연습", d: "들이쉬기 4초, 내쉬기 6초 5번. 진통 중에 쓸 호흡을 미리 익혀두기.", tags: ["호흡", "5분"] },
+          { k: "play5", em: "🧺", t: "퇴원복 맨 위에 두기", d: "아기 퇴원복 한 벌을 가방 맨 위에. 계절에 맞는 겉싸개도 함께.", tags: ["준비", "10분"] }
+        ],
+        checks: [
+          { k: "c1", t: "주 1회 막달검진 일정 잡기 (36주~)", when: "매주" },
+          { k: "c2", t: "출산가방 100% 완성", when: "36~37주" },
+          { k: "c3", t: "병원 출발 기준·연락처 냉장고에 붙이기", when: "오늘" },
+          { k: "c4", t: "태동 감소·양수·출혈이면 즉시 병원", when: "수시로" }
+        ],
+        shop: [
+          { t: "출산가방", d: "산모·아기 물건이 한 번에" },
+          { t: "산모 패드", d: "출산 후 회복용" },
+          { t: "아기 퇴원복", d: "계절에 맞는 겉싸개 포함" }
+        ]
+      }
+    }
+  ];
+
+  /* 임신 준비 성향 테스트 5문항 (주수 공통 · 4유형 판정 구조 동일) */
+  var PREG_TEST = [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "출산준비물", text: "출산준비물 리스트, 지금 어떻게 정리하고 있어요?",
+      hint: "정답은 없어요. 지금의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "표로 나눠서 필요한 것만 체크해둔다", pick: "S" },
+        { text: "후기를 보며 장바구니에 담아두고 나중에 고른다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "남편 분담", text: "출산 준비, 남편과는 어떻게 나누고 있나요?",
+      hint: "실제로 하고 있는 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 정리하고, 필요한 건 남편에게 하나씩 부탁한다", pick: "A" },
+        { text: "처음부터 반씩 나눠서 각자 맡은 걸 한다", pick: "B" }
+      ]
+    },
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "조리원·산후", text: "조리원이나 산후 계획은 어떻게 정하고 있어요?",
+      hint: "정답은 없어요. 지금의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "기간·가격·서비스를 비교표로 만들어 보고 정한다", pick: "S" },
+        { text: "후기와 위치를 보다가 마음이 가는 곳으로 정한다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "정보 검색", text: "궁금한 게 생기면 주로 어떻게 확인해요?",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "밤에 혼자 검색해서 정리해두고 내가 판단한다", pick: "A" },
+        { text: "남편이나 아이 키운 사람에게 먼저 물어본다", pick: "B" }
+      ]
+    },
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "지금 이 시기, 제일 먼저 챙기고 있는 건?",
+      hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
+      choices: [
+        { text: "검사·진료 일정 — 캘린더에 다 들어 있어요", pick: "S" },
+        { text: "오늘 내 몸 상태 — 그때그때 컨디션", pick: "F" },
+        { text: "혼자서 준비하는 중 — 내가 다 정리", pick: "A" },
+        { text: "남편과의 분담 — 누가 뭘 할지", pick: "B" }
+      ]
+    }
+  ];
+
+  /* 임신 중 엄마 컨디션 체크 (선택 +5문항 · 아기 대신 임신 몸 기준) */
+  var MOM_CHECK_PREG = [
+    { tag: "수면·피로", text: "요즘 하루에 몇 시간 자나요? (밤에 깨는 횟수까지)", 
+      hint: "잘 못 잔 날이 많아도 괜찮아요. 지금 상태를 보는 거예요.",
+      choices: [
+        { text: "6시간 이상, 중간에 깨도 다시 잔다", v: 0 },
+        { text: "4~5시간, 밤에 두세 번 깬다", v: 1 },
+        { text: "합쳐서 3시간도 어렵다", v: 3 }
+      ] },
+    { tag: "몸·회복", text: "허리·손목·다리 중에 아픈 곳이 있나요?",
+      hint: "참고 있는 통증도 체크 대상이에요.",
+      choices: [
+        { text: "가끔 뻐근한 정도", v: 0 },
+        { text: "매일 아프지만 참을 만하다", v: 1 },
+        { text: "아파서 걷거나 자는 게 힘들다", v: 3 }
+      ] },
+    { tag: "식사·물", text: "오늘 물은 몇 번 마셨나요?",
+      hint: "입덧이 있으면 갈증을 잘 못 느껴요.",
+      choices: [
+        { text: "자주 마셨다 (5잔 이상)", v: 0 },
+        { text: "두세 잔, 밥은 한 끼", v: 1 },
+        { text: "물도 밥도 거의 못 챙겼다", v: 3 }
+      ] },
+    { tag: "분담·숨돌림", text: "출산 준비나 집안일, 지금 어떻게 하고 있나요?",
+      hint: "옆에 사람이 있어도 혼자였던 시간이 있죠.",
+      choices: [
+        { text: "나눠서 하고 있다", v: 0 },
+        { text: "대부분 내가 하지만 도움은 받는다", v: 1 },
+        { text: "거의 다 혼자 하고 있다", v: 3 }
+      ] },
+    { tag: "마음", text: "요즘 불안하거나 무서운 마음이 얼마나 자주 올라오나요?",
+      hint: "불안 자체보다, 그 뒤에 내가 어떤지가 중요해요.",
+      choices: [
+        { text: "가끔, 금방 괜찮아진다", v: 0 },
+        { text: "자주 오고 오래 남는다", v: 1 },
+        { text: "거의 매일, 잠들기 어려울 만큼 불안하다", v: 3 }
+      ] }
+  ];
+
+  var MOM_TYPES_PREG = {
+    urgent: {
+      key: "urgent", name: "방전 직전 긴급 케어형", em: "🪫",
+      line: "지금은 더 잘 챙기는 게 아니라 회복이 먼저예요. 준비 한 가지를 꼭 넘겨주세요.",
+      tips: [
+        "출산 준비 한 가지는 통째로 맡기기 — 출산가방·병원 서류·연락 순서 중 하나를 남편에게 넘기세요.",
+        "물 한 컵과 10분 눕기 — 하루 두 번, 알람 10분만 맞춰 누워보세요.",
+        "불안과 눈물이 2주 넘게 이어지면 산부인과나 정신건강복지센터 상담을 받아보세요. 임신 중 불안은 상담이 도움이 됩니다."
+      ]
+    },
+    holding: {
+      key: "holding", name: "꾸역꾸역 버티는 형", em: "🧱",
+      line: "버티는 힘은 충분해요. 다만 임신 중엔 버티는 걸 기본값으로 두면 몸이 먼저 신호를 보내요.",
+      tips: [
+        "하루 20분, 아무것도 안 하는 시간을 정해보세요.",
+        "허리·손목 통증은 참지 말고 쿠션·보호대로 자세부터 바꾸세요.",
+        "남편과 '이번 주 한 가지'만 정해 나눠보세요. 한 번에 다 바꾸지 않아도 돼요."
+      ]
+    },
+    balanced: {
+      key: "balanced", name: "나름 균형형", em: "🌤",
+      line: "지금 리듬이 잘 돌아가고 있어요. 이 상태를 지키는 게 목표예요.",
+      tips: [
+        "주 1회는 나만의 시간을 지키세요. 지키는 게 회복력이에요.",
+        "물·식사는 지금처럼 챙기고, 10분 걷기를 더해보세요.",
+        "기분이 가라앉는 날이 2주 이어지면 그때 상담을 생각해 보세요."
+      ]
+    }
+  };
+
+  /* 임신 5구간을 맨 앞에 붙여 0~4 = p0~p4, 5~14 = 기존 월령 */
+  STAGES = PREG_STAGES.concat(STAGES);
+
+  /* =========================================================
      DATA · 월령별 엄마 성향 테스트 (10개 월령 × 5문항 = 50문항)
      판정 로직: 축1 S/F 2문항, 축2 A/B 2문항, 보너스 4지선다 1문항(2점).
      ========================================================= */
@@ -2638,10 +3249,18 @@
     }
   };
 
+  function isPreg() { var st = STAGES[S.stage]; return !!(st && st.kind === "preg"); }
+  function stageWho(st) { st = st || STAGES[S.stage]; return (st && st.kind === "preg") ? "지금" : "우리 아기"; }
+  function stageWord(st) { st = st || STAGES[S.stage]; return (st && st.kind === "preg") ? "구간" : "월령"; }
+
   function curTest() {
     var st = STAGES[S.stage];
+    if (st && st.kind === "preg") return PREG_TEST;
     return (st && TEST_SETS[st.id]) ? TEST_SETS[st.id] : TEST_SETS.m0;
   }
+  function curMomCheck() { return isPreg() ? MOM_CHECK_PREG : MOM_CHECK; }
+  function charSet() { return isPreg() ? PREG_CHARACTERS : CHARACTERS; }
+  function momTypes() { return isPreg() ? MOM_TYPES_PREG : MOM_TYPES; }
 
   /* 캐릭터: S/F × A/B 네 조합 */
   var CHARACTERS = {
@@ -2668,6 +3287,34 @@
       name: "체력 안배 생존가",
       line: "집안일은 내일의 나에게. 일단 같이 눕고 보는 생존 천재예요.",
       tip: "넘기는 건 이미 잘해요. 대신 정말 필요한 한 가지만 오늘 처리하는 규칙을 하나 두면 훨씬 편해져요."
+    }
+  };
+
+  /* 임신·출산 준비 맥락의 캐릭터 문구 (이름·4유형 구조는 동일) */
+  var PREG_CHARACTERS = {
+    SA: {
+      key: "SA", icon: "ch-clip", em: "📋", color: "#f9e6a9",
+      name: "기록 집착 전략가",
+      line: "검사 일정·체중·출산준비물까지 표로 정리. 계획이 틀어지면 먼저 멘붕이 오는 타입이에요.",
+      tip: "기록은 무기가 아니라 지도예요. 오늘은 리스트 한 칸을 일부러 비워두는 연습을 해보세요. 비워도 아기는 잘 큽니다."
+    },
+    FA: {
+      key: "FA", icon: "ch-heart", em: "💗", color: "#f5a97f",
+      name: "혼자 다 하는 열정맘",
+      line: "남편 챙기기 미안해서 병원도 혼자 다녀오는 쪽. 따뜻한데, 그 따뜻함이 나를 먼저 지치게 해요.",
+      tip: "한 번만 부탁해보세요. 미안해서는 이유가 아니라 습관일 때가 많아요. 대신 부탁은 짧게, 한 가지씩."
+    },
+    FB: {
+      key: "FB", icon: "ch-eye", em: "👀", color: "#b7a6e8",
+      name: "눈치 백단 즉흥맘",
+      line: "리스트보다 몸이 보내는 신호가 기준. 순간 판단은 좋은데, 그 순간이 하루에 열 번쯤 와요.",
+      tip: "눈치가 좋은 만큼 내 몸 상태도 눈치채 주세요. 하루 한 번은 준비 대신 나를 먼저 봐도 됩니다."
+    },
+    SB: {
+      key: "SB", icon: "ch-batt", em: "🔋", color: "#7ecba1",
+      name: "체력 안배 생존가",
+      line: "할 일은 내일의 나에게. 오늘 누울 수 있으면 일단 눕는 임신 생존 천재예요.",
+      tip: "넘기는 건 이미 잘해요. 대신 병원 일정처럼 미룰 수 없는 한 가지만 따로 표시해두면 훨씬 편해져요."
     }
   };
 
@@ -2828,6 +3475,8 @@
     charBadge: $("#charBadge"), charName: $("#charName"), charLine: $("#charLine"), charMonth: $("#charMonth"),
     charTip: $("#charTip"), charAxes: $("#charAxes"),
     opCare: $("#opCare"), opCareBack: $("#opCareBack"), opMom: $("#opMom"), opMomResult: $("#opMomResult"),
+    opPreg: $("#opPreg"), opPregList: $("#opPregList"), opPregBack: $("#opPregBack"),
+    stageChipLabel: $("#stageChipLabel"), dexCheckTitle: $("#dexCheckTitle"), dexNote: $("#dexNote"), dexTinyNote: $("#dexTinyNote"),
     opMomBtn: $("#opMomBtn"), opMomGo: $("#opMomGo"), opMomRetest: $("#opMomRetest"),
     mStep: $("#mStep"), mDots: $("#mDots"), mTheme: $("#mTheme"), mQno: $("#mQno"), mText: $("#mText"), mHint: $("#mHint"), mChoices: $("#mChoices"),
     momBadge: $("#momBadge"), momName: $("#momName"), momLine: $("#momLine"), momStage: $("#momStage"), momTips: $("#momTips"),
@@ -2951,6 +3600,23 @@
       s += px(56, 32, 8, 6, "#e8735a") + px(65, 32, 8, 6, "#8fb8e0") + px(59, 26, 8, 6, "#f9e6a9") + px(68, 38, 10, 3, "#7ecba1");
       s += px(12, 34, 14, 4, "#efe7d4");
       s += babySprite("walk", 30, 38);
+    } else if (sc.prop === "belly") {
+      /* 임신 중 · 소파에 앉아 배를 쓰다듬는 장면 */
+      s += px(12, 32, 40, 3, "#a9793f") + px(14, 35, 3, 3, "#8a6330") + px(47, 35, 3, 3, "#8a6330");
+      s += px(12, 22, 3, 10, "#a9793f") + px(12, 22, 3, 1, "#c9a227");
+      /* 다리 */
+      s += px(28, 30, 12, 4, "#8fb8e0") + px(38, 33, 5, 2, "#e8e0cc");
+      /* 몸통 + 배 */
+      s += px(27, 20, 12, 11, "#f5a97f") + px(33, 22, 7, 8, "#f7bd8f");
+      /* 팔과 배 위의 손 */
+      s += px(38, 21, 2, 5, "#e0906a") + px(35, 26, 4, 2, "#ffd9b3");
+      /* 머리 */
+      s += px(28, 10, 9, 2, "#8a6a4f") + px(27, 12, 11, 8, "#ffd9b3");
+      s += px(30, 15, 2, 2, "#2b2b3a") + px(34, 15, 2, 2, "#2b2b3a");
+      s += px(32, 18, 3, 1, "#c98a6b");
+      /* 하트 */
+      s += px(50, 16, 3, 2, "#e8735a") + px(55, 16, 3, 2, "#e8735a") +
+        px(51, 18, 6, 2, "#e8735a") + px(52, 20, 4, 1, "#e8735a");
     } else {
       s += px(60, 14, 22, 24, "#a9793f") + px(62, 16, 18, 20, "#c9a227") + px(76, 25, 2, 2, "#2b2b3a");
       s += px(66, 20, 10, 1, "#b9921f") + px(66, 24, 10, 1, "#b9921f");
@@ -2980,13 +3646,13 @@
     el.monthRow.innerHTML = STAGES.map(function (st, i) {
       var best = b[st.id];
       return '<button class="mchip" type="button" data-stage="' + i + '" aria-pressed="' + (i === S.stage ? "true" : "false") + '">' +
-        "<b>" + st.chip + "</b><span>" + st.theme + "</span>" +
+        "<b>" + (st.kind === "preg" ? "🤰 " : "") + st.chip + "</b><span>" + st.theme + "</span>" +
         (best ? '<span class="best">최고 ' + best + "</span>" : "") +
         "</button>";
     }).join("");
     el.dexMonthRow.innerHTML = STAGES.map(function (st, i) {
       return '<button class="mchip" type="button" data-stage="' + i + '" aria-pressed="' + (i === S.stage ? "true" : "false") + '">' +
-        "<b>" + st.chip + "</b><span>" + st.theme + "</span></button>";
+        "<b>" + (st.kind === "preg" ? "🤰 " : "") + st.chip + "</b><span>" + st.theme + "</span></button>";
     }).join("");
 
     $$("#monthRow .mchip").forEach(function (c) {
@@ -3091,7 +3757,17 @@
   function renderOpeningMonths() {
     var b = bests();
     var last = savedStageIdx();
-    el.opMonthList.innerHTML = STAGES.map(function (st, i) {
+    var hubTag = (last >= 0 && STAGES[last] && STAGES[last].kind === "preg")
+      ? '<span class="last">지난번 · ' + STAGES[last].chip + '</span>' : "";
+    var hub = '<button class="m-pick-card preg-hub" type="button" data-preg="1" aria-label="임신 준비 5개 주수 구간 열기">' +
+      '<span class="no">STAGE 00 · 임신 준비</span>' +
+      '<span class="ch">🤰 출산 전 · 임신 준비</span>' +
+      '<span class="th">초기 입덧부터 막달 출산가방까지</span>' +
+      '<span class="ds">주수별 5문항 · 5개 구간 (임신 확인~막달)</span>' +
+      '<span class="tags">' + hubTag + '</span>' +
+    '</button>';
+    el.opMonthList.innerHTML = hub + STAGES.map(function (st, i) {
+      if (st.kind === "preg") return "";
       var best = b[st.id];
       return '<button class="m-pick-card" type="button" data-stage="' + i + '" aria-pressed="' + (i === last ? "true" : "false") + '">' +
         '<span class="no">STAGE ' + st.stageNo + '</span>' +
@@ -3105,8 +3781,46 @@
       '</button>';
     }).join("");
     $$("#opMonthList .m-pick-card").forEach(function (c) {
+      if (c.getAttribute("data-preg")) return;
       c.addEventListener("click", function () { pickOpeningStage(Number(c.getAttribute("data-stage"))); });
     });
+    var hubBtn = $("#opMonthList [data-preg]");
+    if (hubBtn) hubBtn.addEventListener("click", showPregStep);
+  }
+
+  /* 임신 준비 · 주수 5구간 선택 화면 */
+  function renderPregMonths() {
+    var b = bests();
+    var last = savedStageIdx();
+    el.opPregList.innerHTML = STAGES.map(function (st, i) {
+      if (st.kind !== "preg") return "";
+      var best = b[st.id];
+      return '<button class="m-pick-card" type="button" data-stage="' + i + '" aria-pressed="' + (i === last ? "true" : "false") + '">' +
+        '<span class="no">PRE ' + st.stageNo.slice(1) + ' · 임신 준비</span>' +
+        '<span class="ch">' + st.chip + '</span>' +
+        '<span class="th">' + st.theme + '</span>' +
+        '<span class="ds">' + (st.sub || "") + '</span>' +
+        '<span class="tags">' +
+          (best ? '<span class="best">최고 ' + best + '</span>' : "") +
+          (i === last ? '<span class="last">지난번 선택</span>' : "") +
+        '</span>' +
+      '</button>';
+    }).join("");
+    $$("#opPregList .m-pick-card").forEach(function (c) {
+      c.addEventListener("click", function () { pickOpeningStage(Number(c.getAttribute("data-stage"))); });
+    });
+  }
+
+  function showPregStep() {
+    el.opIntro.hidden = true;
+    el.opTest.hidden = true;
+    el.opChar.hidden = true;
+    if (el.opCare) el.opCare.hidden = true;
+    if (el.opMom) el.opMom.hidden = true;
+    if (el.opMomResult) el.opMomResult.hidden = true;
+    renderPregMonths();
+    if (el.opPreg) el.opPreg.hidden = false;
+    el.opening.scrollTop = 0;
   }
 
   function pickOpeningStage(i) {
@@ -3123,6 +3837,7 @@
     el.opIntro.hidden = true;
     el.opTest.hidden = true;
     el.opChar.hidden = true;
+    if (el.opPreg) el.opPreg.hidden = true;
     if (el.opMom) el.opMom.hidden = true;
     if (el.opMomResult) el.opMomResult.hidden = true;
     el.opCare.hidden = false;
@@ -3131,15 +3846,18 @@
 
   function updateTestMonthBar() {
     var st = STAGES[S.stage];
+    var preg = (st.kind === "preg");
     el.tMonthChip.textContent = st.chip;
     el.tMonthTheme.textContent = st.theme;
+    if (el.tMonthBack) el.tMonthBack.textContent = preg ? "주수 다시 고르기" : "개월수 다시 고르기";
     var note = $("#tMonthNote");
-    if (note) note.textContent = "우리 아기 " + st.chip;
+    if (note) note.textContent = preg ? ("지금 " + st.chip + " 시점") : ("우리 아기 " + st.chip);
   }
 
   function tick() {
     var st = STAGES[S.stage];
     el.stageChip.textContent = st.stageNo;
+    if (el.stageChipLabel) el.stageChipLabel.textContent = (st.kind === "preg") ? "PRE" : "STAGE";
     el.headSub.textContent = st.chip + " · " + st.theme;
   }
 
@@ -3263,8 +3981,8 @@
         '<button class="btn orange" type="button" id="againBtn">다시하기</button>' +
         '<button class="btn paper" type="button" id="copyBtn">문장 복사</button>' +
       "</div>" +
-      '<div class="btn-row"><button class="btn paper wide" type="button" id="goDex">이 월령 도감 열기 🍼</button></div>' +
-      '<button class="linkish" type="button" id="goHomeResult">🏠 처음 화면으로 (월령 다시 고르기)</button>' +
+      '<div class="btn-row"><button class="btn paper wide" type="button" id="goDex">' + (st.kind === "preg" ? "이 주수 도감 열기 🌸" : "이 월령 도감 열기 🍼") + '</button></div>' +
+      '<button class="linkish" type="button" id="goHomeResult">🏠 처음 화면으로 (' + stageWord(st) + ' 다시 고르기)</button>' +
       '<p class="foot-note">기록은 이 기기 브라우저에만 저장돼요. 서버로 보내지 않습니다.<br>이 앱은 의학적 진단을 대신하지 않아요.</p>';
 
     $("#againBtn").addEventListener("click", function () { resetGame(); });
@@ -3272,7 +3990,7 @@
     $("#goHomeResult").addEventListener("click", goHome);
     bindCare($("#resultCare"), st, function () { showResult(true); });
     $("#copyBtn").addEventListener("click", function () {
-      var line = "우리 아기 " + st.chip + " · " + charNameOf() + " Lv." + lv.lv + " " + lv.name +
+      var line = stageWho(st) + " " + st.chip + " · " + charNameOf() + " Lv." + lv.lv + " " + lv.name +
         " (" + score + "점). 오늘도 살아남았다 ㅋㅋ";
       copyText(line);
     });
@@ -3288,7 +4006,7 @@
     h += "</ul>";
     var m = savedMom();
     if (m) {
-      var t = MOM_TYPES[m.type];
+      var t = momTypes()[m.type];
       h += '<div class="momline"><span class="em">' + t.em + "</span> 방금 체크한 내 컨디션 · <b>" + t.name + "</b><br>" + t.tips[0] + "</div>";
     }
     h += "</div>";
@@ -3315,7 +4033,7 @@
       "</div>" +
       careBoxHTML(st) +
       '<div class="sec-title">한 줄만 보내보기</div>' +
-      '<textarea class="copy-box" id="rescueText" readonly>오늘 8시에 들어오면 아기 목욕 맡아줄 수 있어? 나 30분만 누울게.</textarea>' +
+      '<textarea class="copy-box" id="rescueText" readonly>' + (st.kind === "preg" ? "오늘 저녁에 출산가방 정리 맡아줄 수 있어? 나 30분만 누울게." : "오늘 8시에 들어오면 아기 목욕 맡아줄 수 있어? 나 30분만 누울게.") + '</textarea>' +
       '<div class="btn-row">' +
         '<button class="btn orange" type="button" id="rescueCopy">복사</button>' +
         '<button class="btn paper" type="button" id="rescueAgain">다시하기</button>' +
@@ -3344,7 +4062,15 @@
   function renderDex() {
     var st = STAGES[S.stage];
     var dex = st.dex;
-    el.dexPlayTitle.textContent = "🍼 " + st.chip + " 발달 놀이";
+    var preg = (st.kind === "preg");
+    el.dexPlayTitle.textContent = (preg ? "🌸 " : "🍼 ") + st.chip + (preg ? " 태교·놀이" : " 발달 놀이");
+    if (el.dexCheckTitle) el.dexCheckTitle.textContent = preg ? "✅ 체크리스트 · 산전검사·준비" : "✅ 체크리스트 · 영유아검진";
+    if (el.dexNote) el.dexNote.textContent = preg
+      ? "도감·체크 내용은 일반적인 태교·준비 예시예요. 개인 상태에 따라 다르고, 진단·치료를 대신하지 않아요. 걱정되는 증상은 산부인과에서 진료를 받아보세요."
+      : "도감·체크 내용은 일반적인 발달 놀이 예시예요. 아이마다 속도가 다르고, 진단·치료를 대신하지 않아요. 발달이 걱정되면 소아과에서 진료를 받아보세요.";
+    if (el.dexTinyNote) el.dexTinyNote.textContent = preg
+      ? "검사·검진 시기는 일반적인 안내를 참고한 값이에요. 병원 안내가 우선입니다."
+      : "검진 시기는 국민건강보험공단 영유아 건강검진 안내를 참고한 값이에요. 아이 상태에 따라 달라질 수 있어요.";
 
     el.dexPlays.innerHTML = dex.plays.map(function (p) {
       return '<div class="dex-card" data-dex="' + p.k + '">' +
@@ -3573,7 +4299,7 @@
   /* ---------------- opening · character test ---------------- */
   function savedChar() {
     var k = store(KEYS.char);
-    return (k && CHARACTERS[k]) ? CHARACTERS[k] : null;
+    return (k && charSet()[k]) ? charSet()[k] : null;
   }
 
   function updateCharUI() {
@@ -3608,6 +4334,7 @@
     el.opTest.hidden = true;
     el.opChar.hidden = true;
     if (el.opCare) el.opCare.hidden = true;
+    if (el.opPreg) el.opPreg.hidden = true;
     if (el.opMom) el.opMom.hidden = true;
     if (el.opMomResult) el.opMomResult.hidden = true;
     el.opening.scrollTop = 0;
@@ -3627,18 +4354,23 @@
     T = { i: 0, scores: { S: 0, F: 0, A: 0, B: 0 }, lastSF: "S", lastAB: "A", bonusPick: null, picked: -1 };
     el.opIntro.hidden = true;
     el.opChar.hidden = true;
+    if (el.opPreg) el.opPreg.hidden = true;
+    if (el.opCare) el.opCare.hidden = true;
     el.opTest.hidden = false;
     updateTestMonthBar();
     renderTest();
     el.opening.scrollTop = 0;
   }
 
-  function backToMonthPick() {
+  function backToMonthPick(forceIntro) {
     el.opTest.hidden = true;
     el.opChar.hidden = true;
     if (el.opCare) el.opCare.hidden = true;
+    if (el.opPreg) el.opPreg.hidden = true;
     if (el.opMom) el.opMom.hidden = true;
     if (el.opMomResult) el.opMomResult.hidden = true;
+    var st = STAGES[S.stage];
+    if (!forceIntro && st && st.kind === "preg") { showPregStep(); return; }
     el.opIntro.hidden = false;
     renderOpeningMonths();
     el.opening.scrollTop = 0;
@@ -3706,13 +4438,16 @@
     var s = T.scores;
     var a1 = (s.S === s.F) ? ((T.bonusPick === "S" || T.bonusPick === "F") ? T.bonusPick : T.lastSF) : (s.S > s.F ? "S" : "F");
     var a2 = (s.A === s.B) ? ((T.bonusPick === "A" || T.bonusPick === "B") ? T.bonusPick : T.lastAB) : (s.A > s.B ? "A" : "B");
-    return CHARACTERS[a1 + a2];
+    return charSet()[a1 + a2];
   }
 
   function showChar() {
     var ch = computeChar();
+    var st = STAGES[S.stage];
     el.opIntro.hidden = true;
     el.opTest.hidden = true;
+    if (el.opPreg) el.opPreg.hidden = true;
+    if (el.opCare) el.opCare.hidden = true;
     el.opChar.hidden = false;
 
     el.charBadge.innerHTML = '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#' + ch.icon + '"/></svg>';
@@ -3720,8 +4455,8 @@
     el.charName.textContent = ch.em + " " + ch.name;
     el.charLine.textContent = ch.line;
     el.charTip.textContent = ch.tip;
-    el.charMonth.textContent = "우리 아기 " + STAGES[S.stage].chip + " · " + STAGES[S.stage].theme;
-    el.opGo.textContent = STAGES[S.stage].chip + " 퀘스트 바로 출발!";
+    el.charMonth.textContent = stageWho(st) + " " + st.chip + " · " + st.theme;
+    el.opGo.textContent = st.chip + " 퀘스트 바로 출발!";
     if (el.opMomBtn) el.opMomBtn.textContent = "💛 엄마도 같이 챙겨볼까요? (+5문항)";
     if (el.opMom) el.opMom.hidden = true;
     if (el.opMomResult) el.opMomResult.hidden = true;
@@ -3740,27 +4475,29 @@
   /* ---------------- 엄마 컨디션 체크 (+5문항) ---------------- */
   function savedMom() {
     var m = store(KEYS.mom);
-    return (m && MOM_TYPES[m.type]) ? m : null;
+    return (m && momTypes()[m.type]) ? m : null;
   }
   function startMomCheck() {
     M = { i: 0, total: 0, picked: -1 };
     el.opIntro.hidden = true;
     el.opTest.hidden = true;
     el.opChar.hidden = true;
+    if (el.opPreg) el.opPreg.hidden = true;
     el.opMomResult.hidden = true;
     el.opMom.hidden = false;
     renderMomQ();
     el.opening.scrollTop = 0;
   }
   function renderMomQ() {
-    var q = MOM_CHECK[M.i];
+    var LIST = curMomCheck();
+    var q = LIST[M.i];
     M.picked = -1;
-    el.mStep.textContent = "M" + (M.i + 1) + " / " + MOM_CHECK.length;
+    el.mStep.textContent = "M" + (M.i + 1) + " / " + LIST.length;
     el.mTheme.textContent = q.tag;
     el.mQno.textContent = "M" + (M.i + 1) + " · " + q.tag;
     el.mText.textContent = q.text;
     el.mHint.textContent = q.hint || "";
-    el.mDots.innerHTML = MOM_CHECK.map(function (_, i) {
+    el.mDots.innerHTML = LIST.map(function (_, i) {
       var cls = i === M.i ? "cur" : (i < M.i ? "on" : "");
       return '<i class="' + cls + '"></i>';
     }).join("");
@@ -3777,24 +4514,26 @@
   }
   function pickMom(i) {
     if (M.picked >= 0) return;
+    var LIST = curMomCheck();
     M.picked = i;
-    M.total += MOM_CHECK[M.i].choices[i].v;
+    M.total += LIST[M.i].choices[i].v;
     $$(".t-choice", el.mChoices).forEach(function (btn, j) {
       btn.disabled = true;
       if (j === i) btn.classList.add("picked");
       else btn.style.opacity = ".45";
     });
     window.setTimeout(function () {
-      if (M.i >= MOM_CHECK.length - 1) { showMomResult(); return; }
+      if (M.i >= curMomCheck().length - 1) { showMomResult(); return; }
       M.i += 1;
       renderMomQ();
       el.opening.scrollTop = 0;
     }, 160);
   }
   function momTypeOf(score) {
-    if (score >= 11) return MOM_TYPES.urgent;
-    if (score >= 6) return MOM_TYPES.holding;
-    return MOM_TYPES.balanced;
+    var set = momTypes();
+    if (score >= 11) return set.urgent;
+    if (score >= 6) return set.holding;
+    return set.balanced;
   }
   function showMomResult() {
     var t = momTypeOf(M.total);
@@ -3805,7 +4544,7 @@
     el.momBadge.style.boxShadow = "4px 4px 0 #f5a97f";
     el.momName.textContent = t.em + " " + t.name;
     el.momLine.textContent = t.line;
-    el.momStage.textContent = "우리 아기 " + STAGES[S.stage].chip;
+    el.momStage.textContent = stageWho() + " " + STAGES[S.stage].chip;
     el.momTips.innerHTML = t.tips.map(function (x) { return "<li>" + x + "</li>"; }).join("");
     el.opMomGo.textContent = STAGES[S.stage].chip + " 퀘스트 출발!";
     el.opening.scrollTop = 0;
@@ -3825,7 +4564,8 @@
   $$("#opCare [data-care-pick]").forEach(function (b) {
     b.addEventListener("click", function () { applyCareMode(b.getAttribute("data-care-pick")); });
   });
-  if (el.opCareBack) el.opCareBack.addEventListener("click", backToMonthPick);
+  if (el.opCareBack) el.opCareBack.addEventListener("click", function () { backToMonthPick(true); });
+  if (el.opPregBack) el.opPregBack.addEventListener("click", function () { backToMonthPick(true); });
   $$("#careSheet [data-care-pick]").forEach(function (b) {
     b.addEventListener("click", function () { applyCareMode(b.getAttribute("data-care-pick")); });
   });
@@ -3842,7 +4582,7 @@
     el.opening.scrollTop = 0;
   });
 
-  el.tMonthBack.addEventListener("click", backToMonthPick);
+  el.tMonthBack.addEventListener("click", function () { backToMonthPick(); });
   $("#tClose").addEventListener("click", function () { closeOpening(); switchTab("quest"); });
   $("#tSkip").addEventListener("click", function () { closeOpening(); switchTab("quest"); });
   el.opRetest.addEventListener("click", startTest);
@@ -3853,9 +4593,10 @@
   });
 
   /* ---------------- init ---------------- */
-  el.mailMonth.innerHTML = STAGES.map(function (st) { return "<option>" + st.chip + "</option>"; }).join("");
+  el.mailMonth.innerHTML = STAGES.map(function (st) { return "<option>" + (st.kind === "preg" ? "🤰 " : "") + st.chip + "</option>"; }).join("");
   var initStage = savedStageIdx();
   if (initStage >= 0) S.stage = initStage;
+  else { var s0idx = stageIndexById("s0"); if (s0idx >= 0) S.stage = s0idx; }
   $("#opHero").innerHTML = buildScene(STAGES[S.stage]).replace(/^<svg[^>]*>|<\/svg>$/g, "");
 
   updateCharUI();
