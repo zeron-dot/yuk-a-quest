@@ -98,8 +98,9 @@
     box-shadow:3px 3px 0 rgba(0,0,0,.45);
   }
   .app-head h1{
-    margin:0;font-size:17px;letter-spacing:.5px;font-weight:normal;line-height:1.2;
+    margin:0;font-size:17px;letter-spacing:.5px;font-weight:normal;line-height:1.2;cursor:pointer;
   }
+  .app-head .logo{cursor:pointer}
   .app-head .sub{
     margin:0;font-size:10.5px;color:#cfc7b4;letter-spacing:.3px;
   }
@@ -3830,6 +3831,8 @@
   });
   $("#careSheetClose").addEventListener("click", closeCareSheet);
   $("#homeBtn").addEventListener("click", goHome);
+  $(".app-head .logo").addEventListener("click", goHome);
+  $(".app-head h1").addEventListener("click", goHome);
   if (el.opMomBtn) el.opMomBtn.addEventListener("click", startMomCheck);
   if (el.opMomRetest) el.opMomRetest.addEventListener("click", startMomCheck);
   if (el.opMomGo) el.opMomGo.addEventListener("click", finishOpening);
