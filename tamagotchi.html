@@ -5,6 +5,36 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fdf4e0">
 <title>육아 다마고치 · 아기 &amp; 엄마 듀얼 케어</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="육아 다마고치">
+<meta property="og:title" content="👾 육아 다마고치 · 아기 &amp; 엄마 듀얼 케어">
+<meta property="og:description" content="10턴 생존 미니게임 — 아기 평화와 엄마 체력, 둘 다 지키면 오늘 하루 생존!">
+<meta property="og:image" content="https://zeron-dot.github.io/yuk-a-quest/og-image.png">
+<meta property="og:url" content="https://zeron-dot.github.io/yuk-a-quest/tamagotchi.html">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+/* 카카오 JavaScript SDK v2 — 오프라인·차단 환경에서도 페이지가 멈추지 않도록 비동기 로드 + 방어적 초기화 */
+(function(){
+  window.__kakaoState = 'idle';
+  window.__kakaoInit = function(){
+    try{
+      if(window.Kakao && !window.Kakao.isInitialized()){
+        window.Kakao.init('d4be2f235a075f806a07dae08e768067');
+      }
+      window.__kakaoState = (window.Kakao && window.Kakao.isInitialized()) ? 'ready' : 'unavailable';
+    }catch(e){ window.__kakaoState = 'error'; }
+    return window.__kakaoState;
+  };
+  try{
+    var s = document.createElement('script');
+    s.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
+    s.async = true;
+    s.onload = function(){ window.__kakaoInit(); };
+    s.onerror = function(){ window.__kakaoState = 'unavailable'; };
+    document.head.appendChild(s);
+  }catch(e){ window.__kakaoState = 'unavailable'; }
+})();
+</script>
 <style>
   /* 둥근모꼴 계열 픽셀 폰트(Galmuri11, OFL)를 파일에 직접 넣어 오프라인에서도 동일하게 보입니다. */
   @font-face{
@@ -388,12 +418,18 @@
   }
   .card-btns button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(47,74,63,.3)}
   .card-btns button.primary{background:linear-gradient(180deg,#c8efd4,#a3ddb7)}
+  .share-row{display:flex;align-items:stretch;gap:4px;margin:0 0 4px}
   .share{
-    display:block;width:100%;margin:0 0 4px;padding:6px 0;font-family:inherit;font-size:10.5px;cursor:pointer;color:#223d2e;
+    flex:1 1 auto;min-width:0;display:block;margin:0;padding:6px 0;font-family:inherit;font-size:10.5px;cursor:pointer;color:#223d2e;
     background:linear-gradient(180deg,#fff4d2,#ffe2a6);border:2px solid var(--ink);border-radius:3px;
-    box-shadow:0 3px 0 rgba(47,74,63,.3);letter-spacing:-.2px;
+    box-shadow:0 3px 0 rgba(47,74,63,.3);letter-spacing:-.2px;white-space:nowrap;overflow:hidden;
   }
-  .share:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(47,74,63,.3)}
+  .share-copy{
+    flex:0 0 auto;padding:6px 7px;font-family:inherit;font-size:9.5px;cursor:pointer;color:#223d2e;
+    background:#fff;border:2px solid var(--ink);border-radius:3px;
+    box-shadow:0 3px 0 rgba(47,74,63,.3);letter-spacing:-.2px;white-space:nowrap;
+  }
+  .share:active,.share-copy:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(47,74,63,.3)}
 
   /* 토스트 */
   .toast{
@@ -412,7 +448,9 @@
     .card p.comment{font-size:9px;line-height:1.45;margin-bottom:4px}
     .tip li{font-size:8px;line-height:1.4}
     .tip{margin-bottom:5px}
-    .share{padding:4px 0;font-size:10px;margin-bottom:3px}
+    .share-row{margin-bottom:3px}
+    .share{padding:4px 0;font-size:10px}
+    .share-copy{padding:4px 6px;font-size:9px}
     .card-btns button{padding:7px 0}
   }
 
@@ -655,7 +693,10 @@
               <ul id="tipList"></ul>
             </div>
             <div class="record" id="endRecord"></div>
-            <button id="shareBtn" class="share" type="button">📤 내 결과 공유하기</button>
+            <div class="share-row">
+              <button id="shareBtn" class="share" type="button">💬 카톡으로 결과 공유하기</button>
+              <button id="copyBtn" class="share-copy" type="button" title="결과 요약과 링크를 복사해요">링크 복사</button>
+            </div>
             <div class="card-btns">
               <button id="againBtn" class="primary">다시 키우기</button>
               <button id="otherBtn">다른 시기 체험</button>
@@ -2874,8 +2915,10 @@
   acts.forEach(function(a){
     a.addEventListener('click', function(){ chooseAction(a.getAttribute('data-act')); });
   });
-  /* ============ 결과 공유 ============ */
+  /* ============ 결과 공유 (카카오톡 → 공유 시트 → 링크 복사) ============ */
   const SHARE_URL = 'https://zeron-dot.github.io/yuk-a-quest/tamagotchi.html';
+  const SHARE_IMG = 'https://zeron-dot.github.io/yuk-a-quest/og-image.png';
+  const KAKAO_JS_KEY = 'd4be2f235a075f806a07dae08e768067';
   let toastTimer = null;
   function toast(msg){
     const t = $('toast');
@@ -2924,23 +2967,86 @@
     }
     toast(legacyCopy(txt) ? '결과를 복사했어요. 카톡에 붙여넣기 해 보세요!' : '복사가 안 됐어요. 버튼을 길게 눌러 복사해 주세요.');
   }
-  function shareResult(){
-    const txt = shareSummary(false);
-    if(state.phase !== 'end' || !state.stage){ toast('게임을 먼저 끝내 주세요!'); return; }
-    if(navigator.share){
-      try{
-        const p = navigator.share({title:'육아 다마고치 · 아기 & 엄마 듀얼 케어', text:txt, url:SHARE_URL});
-        if(p && p.then){
-          p.then(function(){}, function(err){
-            if(err && err.name === 'AbortError') return;
-            copyResult();
-          });
-        }
-        return;
-      }catch(e){
-        if(e && e.name === 'AbortError') return;
+
+  /* 카카오 SDK 준비 여부 — 로드가 늦었거나 막혀 있으면 조용히 false */
+  function kakaoReady(){
+    try{
+      if(!window.Kakao) return false;
+      if(!window.Kakao.isInitialized()){
+        if(typeof window.__kakaoInit === 'function') window.__kakaoInit();
+        else if(window.Kakao.init) window.Kakao.init(KAKAO_JS_KEY);
       }
+      return !!(window.Kakao.isInitialized() && window.Kakao.Share && typeof window.Kakao.Share.sendDefault === 'function');
+    }catch(e){ return false; }
+  }
+  /* 인스타·페이스북 인앱 브라우저는 팝업이 막혀 카톡 공유 창이 안 뜰 수 있음 */
+  function popupHostileEnv(){
+    try{ return /instagram|fb_iab|fbios|barcelona/i.test(navigator.userAgent || ''); }catch(e){ return false; }
+  }
+  function stageShortName(st){
+    const n = String(st.name || '').split(' · ')[0];
+    return n || st.chip;
+  }
+  function gaugeLabel(s){
+    const t = String(s || '').replace(/^[^0-9A-Za-z가-힣]+/,'').trim();
+    return t || '';
+  }
+  function kakaoPayload(){
+    const st = stageById(state.stage);
+    if(!st) return null;
+    const c = endingContent();
+    const g = GAUGE[st.kind] || {baby:'', mom:''};
+    const link = { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL };
+    return {
+      objectType: 'feed',
+      content: {
+        title: '👾 육아 다마고치 · ' + st.chip + ' ' + stageShortName(st) + ' 10턴 생존',
+        description: c.title + ' · ' + gaugeLabel(g.baby) + ' ' + state.baby + '% · ' + gaugeLabel(g.mom) + ' ' + state.mom + '%',
+        imageUrl: SHARE_IMG,
+        link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL }
+      },
+      buttons: [
+        { title: '나도 생존 도전하기', link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL } }
+      ]
+    };
+  }
+  function tryKakaoShare(){
+    if(!state.stage) return false;
+    if(popupHostileEnv()) return false;
+    if(!kakaoReady()) return false;
+    const payload = kakaoPayload();
+    if(!payload) return false;
+    try{
+      const ret = window.Kakao.Share.sendDefault(payload);
+      if(ret && typeof ret.then === 'function'){
+        ret.then(function(){}, function(){ copyResult(); });
+      }
+      toast('카톡 공유 창을 열었어요. 안 보이면 링크 복사를 눌러 주세요!');
+      return true;
+    }catch(e){
+      return false;
     }
+  }
+  function tryNativeShare(){
+    if(!navigator.share) return false;
+    const txt = shareSummary(false);
+    try{
+      const p = navigator.share({title:'육아 다마고치 · 아기 & 엄마 듀얼 케어', text:txt, url:SHARE_URL});
+      if(p && p.then){
+        p.then(function(){}, function(err){
+          if(err && err.name === 'AbortError') return;
+          copyResult();
+        });
+      }
+      return true;
+    }catch(e){
+      return !!(e && e.name === 'AbortError');
+    }
+  }
+  function shareResult(){
+    if(state.phase !== 'end' || !state.stage){ toast('게임을 먼저 끝내 주세요!'); return; }
+    if(tryKakaoShare()) return;
+    if(tryNativeShare()) return;
     copyResult();
   }
 
@@ -2951,6 +3057,7 @@
   });
   $('otherBtn').addEventListener('click', function(){ resetGame(); });
   $('shareBtn').addEventListener('click', shareResult);
+  $('copyBtn').addEventListener('click', copyResult);
   $('soundBtn').addEventListener('click', function(){
     state.sound = !state.sound;
     this.setAttribute('aria-pressed', state.sound ? 'true' : 'false');
@@ -2977,7 +3084,12 @@
     stageById: stageById,
     startStage: function(id){ startGame(stageById(id)); },
     choose: chooseAction,
-    choiceId: choiceId
+    choiceId: choiceId,
+    share: shareResult,
+    copy: copyResult,
+    kakaoPayload: kakaoPayload,
+    kakaoReady: kakaoReady,
+    kakaoState: function(){ return window.__kakaoState; }
   };
 
 })();
