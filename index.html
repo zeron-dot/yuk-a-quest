@@ -710,6 +710,14 @@
   .carebox .momline .em{font-size:13px}
   .carebox .momline b{font-weight:normal;background:#ffd9a8;padding:0 2px}
 
+  .optbox{
+    background:#fffdf6;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--shell-line);
+    padding:11px;margin-bottom:12px;
+  }
+  .optbox .tiny{font-size:11px;color:var(--muted);line-height:1.55;margin:0 0 9px}
+  .optbox .btn-row{margin-top:0;flex-direction:column}
+  .optbox .btn-row .btn{width:100%}
+
   .care-sheet{position:absolute;inset:0;z-index:70;background:rgba(47,74,63,.55);display:flex;align-items:center;justify-content:center;padding:18px}
   .care-sheet[hidden]{display:none!important}
   .care-dialog{width:100%;max-width:330px;background:var(--paper);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:14px 13px}
@@ -977,7 +985,7 @@
       <div class="op-body">
         <p class="op-pick-lead"><b>지금 어디쯤인가요?</b><br>큰 카테고리를 하나만 고르세요.</p>
         <div class="m-pick one" id="opMonthList" role="group" aria-label="임신 준비·신생아·생후 4~36개월·유아기 허브 선택"></div>
-        <p class="op-flow">1 구간 고르기 → 2 성향 테스트 5문항 → 3 엄마 컨디션(선택) → 4 퀘스트 5개</p>
+        <p class="op-flow">1 구간 고르기 → 2 퀘스트 5문항 → 3 결과 카드<br>성향 테스트·컨디션은 결과 화면에서 선택</p>
         <div class="op-meta"><span>18개 구간 (임신 5 · 영유아 10 · 유아기 3)</span><span>내 구간 퀘스트 5문항</span><span>구간별 성향 테스트 5문항</span><span>저장은 이 기기에만</span></div>
       </div>
       <p class="op-pick-note">구간은 퀘스트 화면 위쪽 칩에서 언제든 바꿀 수 있어요.</p>
@@ -995,7 +1003,7 @@
         </div>
       </div>
       <div class="op-body">
-        <p class="op-pick-lead"><b>지금 몇 주차인가요?</b><br>주수마다 챙길 게 달라요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <p class="op-pick-lead"><b>지금 몇 주차인가요?</b><br>주수마다 챙길 게 달라요. 가까운 구간을 고르면 바로 Q1 퀘스트가 시작돼요.</p>
         <div class="m-pick one" id="opPregList" role="group" aria-label="임신 주수 구간 선택"></div>
       </div>
       <p class="op-pick-note">초기 입덧부터 막달 출산가방까지, 주수에 맞춰 5문항씩 준비했어요.</p>
@@ -1013,7 +1021,7 @@
         </div>
       </div>
       <div class="op-body">
-        <p class="op-pick-lead"><b>태어난 지 며칠 됐나요?</b><br>0개월은 일수로 나뉘어요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <p class="op-pick-lead"><b>태어난 지 며칠 됐나요?</b><br>0개월은 일수로 나뉘어요. 가까운 구간을 고르면 바로 Q1 퀘스트가 시작돼요.</p>
         <div class="m-pick one" id="opNewbornList" role="group" aria-label="신생아 구간 선택"></div>
       </div>
       <p class="op-pick-note">조리원 퇴소부터 백일까지, 구간별 5문항씩 준비했어요.</p>
@@ -1031,7 +1039,7 @@
         </div>
       </div>
       <div class="op-body">
-        <p class="op-pick-lead"><b>몇 개월인가요?</b><br>구간마다 터지는 상황이 달라요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <p class="op-pick-lead"><b>몇 개월인가요?</b><br>구간마다 터지는 상황이 달라요. 가까운 구간을 고르면 바로 Q1 퀘스트가 시작돼요.</p>
         <div class="m-pick" id="opInfantList" role="group" aria-label="생후 4~36개월 구간 선택"></div>
       </div>
       <p class="op-pick-note">뒤집기·이유식부터 배변훈련·사회성까지, 구간별 5문항씩 준비했어요.</p>
@@ -1049,7 +1057,7 @@
         </div>
       </div>
       <div class="op-body">
-        <p class="op-pick-lead"><b>지금 몇 살인가요?</b><br>구간마다 터지는 상황이 달라요. 가까운 구간을 고르면 바로 성향 테스트로 넘어가요.</p>
+        <p class="op-pick-lead"><b>지금 몇 살인가요?</b><br>구간마다 터지는 상황이 달라요. 가까운 구간을 고르면 바로 Q1 퀘스트가 시작돼요.</p>
         <div class="m-pick one" id="opToddList" role="group" aria-label="유아기 구간 선택"></div>
       </div>
       <p class="op-pick-note">만 3세 유치원 입학부터 만 5세 초등 준비까지, 구간별 5문항씩 준비했어요.</p>
@@ -1618,8 +1626,8 @@
               fb: "뒤집어 주는 건 몇 초면 끝나요. 밤에 몇 번을 반복해도 아기는 지금 연습 중이에요. 아직 스스로 되집지 못한다면 다시 등을 대고 눕혀 주는 게 안전해요." },
             { text: "낮에 뒤집기 연습을 충분히 시킨다", baby: 4, mom: -4,
               fb: "낮에 충분히 굴러본 아기는 밤에 덜 놀라워해요. 오늘 낮에 한 번 더 해보면 돼요." },
-            { text: "그대로 두고 옆에서 손만 잡아준다", baby: 0, mom: 4,
-              fb: "손만 잡아줘도 아기는 안심해요. 다만 엎드린 채로 다시 잠들면 얼굴이 막힐 수 있어요. 양쪽으로 자유롭게 뒤집고 되집는 아기라면 그대로 둬도 되지만, 한쪽으로만 뒤집는다면 등을 대고 눕혀 주세요." }
+            { text: "스스로 양쪽 뒤집기가 되는지 확인하고 바르게 눕힌다", baby: 2, mom: 0,
+              fb: "밤에 뒤집힌 채 깨면 얼굴이 막히지 않았는지 먼저 보고, 스스로 양쪽으로 뒤집고 되집는 아기라면 그대로 두고, 아직 한쪽으로만 뒤집는다면 등을 대고 눕혀 주세요. 손만 잡아주는 건 안심용이지 자세를 바르게 잡아주는 건 아니에요." }
           ]
         },
         {
@@ -4145,7 +4153,7 @@
   /* ---------------- state ---------------- */
   var S = { stage: 0, baby: 70, mom: 70, idx: 0, picked: -1, ended: false };
   var CHAR = null;   /* CHARACTERS[key] */
-  var T = { i: 0, scores: { S: 0, F: 0, A: 0, B: 0 }, lastSF: "S", lastAB: "A", bonusPick: null, picked: -1 };
+  var T = { i: 0, scores: { S: 0, F: 0, A: 0, B: 0 }, lastSF: "S", lastAB: "A", bonusPick: null, picked: -1, done: false };
   var M = { i: 0, total: 0, picked: -1 };
 
   var el = {
@@ -4733,9 +4741,19 @@
     store(KEYS.month, STAGES[i].id);
     selectStage(i, true);      /* 고른 월령으로 게이지·문항·도감을 바로 준바꿈 */
     renderOpeningMonths();
-    /* 13개월+ 는 기관 선택 스텝을 한 번 거쳐요 */
-    if (stageHasCare(STAGES[i]) && !careMode()) { showCareStep(); return; }
-    startTest();
+    /* 첫 진입은 성향 테스트·엄마 컨디션·기관 선택을 거치지 않고 곧바로 Q1 */
+    launchStageQuest();
+  }
+
+  /* 고른 구간으로 바로 퀘스트 시작 (첫 진입 · 숫자 바로 찾기 공통) */
+  function launchStageQuest() {
+    var st = STAGES[S.stage];
+    sfxStart();
+    updateCharUI();
+    closeOpening();
+    selectStage(S.stage, true);   /* Q1부터 */
+    switchTab("quest");
+    toast((CHAR ? CHAR.em + " " + CHAR.name + " 캐릭터로 " : "") + st.chip + " 퀘스트 출발!");
   }
 
   function showCareStep() {
@@ -4884,6 +4902,15 @@
         (isNew ? '<span class="new">NEW</span>' : "") + "</div>" +
       careBoxHTML(st) +
       '<div id="resultCare">' + careBranchHTML(st) + "</div>" +
+      '<div class="optbox" id="resultOptional">' +
+        '<div class="sec-title">원하면 더 해보기 <span class="cnt">선택</span></div>' +
+        '<p class="tiny">오늘 퀘스트는 여기서 끝났어요. 성향 테스트와 엄마 컨디션 체크는 원할 때만 하면 되고, 결과는 이 기기에 저장돼요.</p>' +
+        '<div class="btn-row">' +
+          '<button class="btn paper" type="button" id="resTest">🧠 ' + (CHAR ? "성향 테스트 다시 하기" : "엄마 성향 테스트") + ' (5문항)</button>' +
+          '<button class="btn paper" type="button" id="resMom">💛 ' + (savedMom() ? "엄마 컨디션 다시 체크" : "엄마 컨디션 체크") + ' (5문항)</button>' +
+        '</div>' +
+        (stageHasCare(st) ? '<p class="tiny" style="margin:8px 0 0">🏫 어린이집 · 🏡 가정보육은 위 체크리스트에서 언제든 바꿀 수 있어요.</p>' : '') +
+      '</div>' +
       '<div class="share-wrap">' +
         '<button class="btn wide share kakao" type="button" id="shareBtn">💬 카톡으로 결과 공유하기</button>' +
         '<button class="btn wide share-more" type="button" id="shareMoreBtn">📤 다른 앱으로 공유 / 복사</button>' +
@@ -4897,6 +4924,8 @@
       '<button class="linkish" type="button" id="goHomeResult">🏠 처음 화면으로 (' + stageWord(st) + ' 다시 고르기)</button>' +
       '<p class="foot-note">기록은 이 기기 브라우저에만 저장돼요. 서버로 보내지 않습니다.<br>이 앱은 의학적 진단을 대신하지 않아요.</p>';
 
+    $("#resTest").addEventListener("click", openOptionalTest);
+    $("#resMom").addEventListener("click", openOptionalMom);
     $("#againBtn").addEventListener("click", function () { resetGame(); });
     $("#goDex").addEventListener("click", function () { switchTab("dex"); });
     $("#goHomeResult").addEventListener("click", goHome);
@@ -5277,6 +5306,29 @@
     el.opening.hidden = true;
   }
 
+  /* 결과 화면에서 연 선택형 콘텐츠(성향 테스트·엄마 컨디션)는 끝나면 결과로 복귀 */
+  var OPENING_RETURN = null;   /* "result" 이면 결과 화면으로 돌아가요 */
+
+  function openOptionalTest() {
+    OPENING_RETURN = "result";
+    openOpening();
+    startTest();
+  }
+  function openOptionalMom() {
+    OPENING_RETURN = "result";
+    openOpening();
+    startMomCheck();
+  }
+  function closeOptional() {
+    closeOpening();
+    if (OPENING_RETURN === "result") {
+      OPENING_RETURN = null;
+      if (S.ended) showResult(true);
+      return;
+    }
+    switchTab("quest");
+  }
+
   /* 어느 화면에서든 Step 1(아기 월령 선택)으로 */
   function goHome() {
     closeCareSheet();
@@ -5285,7 +5337,7 @@
   }
 
   function startTest() {
-    T = { i: 0, scores: { S: 0, F: 0, A: 0, B: 0 }, lastSF: "S", lastAB: "A", bonusPick: null, picked: -1 };
+    T = { i: 0, scores: { S: 0, F: 0, A: 0, B: 0 }, lastSF: "S", lastAB: "A", bonusPick: null, picked: -1, done: false };
     el.opIntro.hidden = true;
     hideOpeningSteps();
     el.opTest.hidden = false;
@@ -5355,7 +5407,7 @@
     });
 
     window.setTimeout(function () {
-      if (T.i >= curTest().length - 1) { showChar(); return; }
+      if (T.i >= curTest().length - 1) { T.done = true; showChar(); return; }
       T.i += 1;
       renderTest();
       el.opening.scrollTop = 0;
@@ -5382,7 +5434,7 @@
     el.charLine.textContent = ch.line;
     el.charTip.textContent = ch.tip;
     el.charMonth.textContent = stageWho(st) + " " + st.chip + " · " + st.theme;
-    el.opGo.textContent = st.chip + " 퀘스트 바로 출발!";
+    el.opGo.textContent = OPENING_RETURN === "result" ? "결과 화면으로 돌아가기" : st.chip + " 퀘스트 바로 출발!";
     if (el.opMomBtn) el.opMomBtn.textContent = "💛 엄마도 같이 챙겨볼까요? (+5문항)";
     if (el.opMom) el.opMom.hidden = true;
     if (el.opMomResult) el.opMomResult.hidden = true;
@@ -5470,16 +5522,24 @@
     el.momLine.textContent = t.line;
     el.momStage.textContent = stageWho() + " " + STAGES[S.stage].chip;
     el.momTips.innerHTML = t.tips.map(function (x) { return "<li>" + x + "</li>"; }).join("");
-    el.opMomGo.textContent = STAGES[S.stage].chip + " 퀘스트 출발!";
+    el.opMomGo.textContent = OPENING_RETURN === "result" ? "결과 화면으로 돌아가기" : STAGES[S.stage].chip + " 퀘스트 출발!";
     el.opening.scrollTop = 0;
   }
 
   function finishOpening() {
-    var ch = computeChar();
     var st = STAGES[S.stage];
-    sfxStart();
-    store(KEYS.char, ch.key);
+    var ch = T.done ? computeChar() : savedChar();
+    if (T.done) store(KEYS.char, ch.key);
     updateCharUI();
+    /* 결과 화면에서 연 선택형 콘텐츠는 결과로 돌아가요 */
+    if (OPENING_RETURN === "result") {
+      OPENING_RETURN = null;
+      closeOpening();
+      if (S.ended) showResult(true);
+      toast(ch ? ch.em + " " + ch.name + " 캐릭터를 결과에 붙였어요!" : "결과 화면으로 돌아왔어요!");
+      return;
+    }
+    sfxStart();
     closeOpening();
     selectStage(S.stage, true);   /* 고른 월령 Q1부터 바로 시작 */
     switchTab("quest");
@@ -5508,17 +5568,19 @@
   if (el.opMomRetest) el.opMomRetest.addEventListener("click", startMomCheck);
   if (el.opMomGo) el.opMomGo.addEventListener("click", finishOpening);
   $("#mClose").addEventListener("click", function () {
+    if (OPENING_RETURN === "result") { closeOptional(); return; }
     el.opMom.hidden = true;
     el.opChar.hidden = false;
     el.opening.scrollTop = 0;
   });
 
   el.tMonthBack.addEventListener("click", function () { backToMonthPick(); });
-  $("#tClose").addEventListener("click", function () { closeOpening(); switchTab("quest"); });
-  $("#tSkip").addEventListener("click", function () { closeOpening(); switchTab("quest"); });
+  $("#tClose").addEventListener("click", closeOptional);
+  $("#tSkip").addEventListener("click", closeOptional);
   el.opRetest.addEventListener("click", startTest);
   el.opGo.addEventListener("click", finishOpening);
   el.charTestBtn.addEventListener("click", function () {
+    OPENING_RETURN = S.ended ? "result" : null;   /* 결과 화면에서 열면 결과로 복귀 */
     openOpening();
     startTest();
   });
