@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>육아 퀘스트 · 6개 월령 30문항 + 엄마 성향 테스트</title>
 <meta name="description" content="우리 아기 월령에 맞는 돌발 상황을 버티는 도트 게임형 육아 가이드. 0~24개월+ 6개 구간, 총 30문항.">
+
+<!-- 공유 미리보기 카드 (카카오톡·인스타·슬랙·X 등) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="육아 퀘스트">
+<meta property="og:url" content="https://zeron-dot.github.io/yuk-a-quest/">
+<meta property="og:title" content="육아 퀘스트 · 0~24개월+ 육아 생존 테스트">
+<meta property="og:description" content="엄마 성향 테스트부터 월령별 육아 퀘스트·발달 도감·영유아검진 체크까지 한 번에!">
+<meta property="og:image" content="https://zeron-dot.github.io/yuk-a-quest/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="육아 퀘스트 엄마 성향 테스트 화면">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="육아 퀘스트 · 0~24개월+ 육아 생존 테스트">
+<meta name="twitter:description" content="엄마 성향 테스트부터 월령별 육아 퀘스트·발달 도감·영유아검진 체크까지 한 번에!">
+<meta name="twitter:image" content="https://zeron-dot.github.io/yuk-a-quest/og-image.png">
+<meta name="twitter:image:alt" content="육아 퀘스트 엄마 성향 테스트 화면">
 <meta name="theme-color" content="#151522">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f7f1e3'/%3E%3Crect x='4' y='3' width='8' height='7' fill='%23ffd9b3'/%3E%3Crect x='5' y='5' width='2' height='2' fill='%232b2b3a'/%3E%3Crect x='9' y='5' width='2' height='2' fill='%232b2b3a'/%3E%3Crect x='3' y='10' width='10' height='4' fill='%237ecba1'/%3E%3C/svg%3E">
 <style>
@@ -330,6 +347,11 @@
   .note{
     border:2px solid #8a8272;background:#fdf6e4;padding:8px 9px;font-size:11px;
     color:#5f594d;line-height:1.55;margin:10px 0;
+  }
+
+  .trial-tag{
+    display:inline-block;font-size:10px;letter-spacing:.3px;padding:1px 6px;
+    background:var(--lav);border:2px solid var(--ink);line-height:1.5;
   }
 
   /* ---------- postbox ---------- */
@@ -670,24 +692,26 @@
 
   <!-- ================= POSTBOX ================= -->
   <main class="screen" id="tab-mail" role="tabpanel" aria-label="우체통" hidden>
-    <div class="sec-title">📮 익명 질문 보내기</div>
+    <div class="sec-title">📮 익명 질문 보내기 <span class="trial-tag">체험판</span></div>
+    <div class="note">지금은 <b>체험판</b>이라 적은 질문이 <b>내 브라우저에만</b> 임시로 저장돼요. 운영자에게 전달되지는 않고, 곧 진짜 익명 우체통이 열릴 예정이에요!</div>
     <form class="mail-form" id="mailForm">
-      <label for="mailText">하고 싶은 질문이나 고민 (익명으로 도착해요)</label>
+      <label for="mailText">하고 싶은 질문이나 고민</label>
       <textarea id="mailText" maxlength="300" placeholder="예) 3개월인데 밤에 갑자기 2시간마다 깨요. 원래 이런가요?"></textarea>
       <div class="form-foot">
         <select id="mailMonth" aria-label="아기 월령"></select>
         <span class="cnt-left" id="mailCnt">오늘 0 / 3건</span>
         <button class="btn small" type="submit" id="mailSend">보내기</button>
       </div>
-      <p class="tiny" style="margin:8px 0 0">보낸 질문은 바로 공개되지 않아요. 운영자가 확인하고 고른 질문만 아래에 답변과 함께 올라갑니다.</p>
+      <p class="tiny" style="margin:8px 0 0">우체통이 열리면 그때는 운영자가 확인하고 고른 질문만 답변과 함께 올라가요.</p>
     </form>
 
+    <div class="sec-title" id="lettersTitle" hidden>✉️ 내가 보낸 편지 <span class="cnt">이 브라우저에만 보여요</span></div>
     <ul class="letters" id="letters"></ul>
 
-    <div class="sec-title">💌 선별 Q&amp;A</div>
+    <div class="sec-title">💌 선별 Q&amp;A <span class="cnt">예시</span></div>
     <div id="qaList"></div>
 
-    <div class="note">댓글은 익명으로 표시돼요. 신고 3회가 모인 댓글은 자동으로 가려집니다. 진단·처방은 답하지 않고 병원 안내로 대신해요.</div>
+    <div class="note">선별 Q&amp;A와 댓글은 지금은 예시 화면이에요. 남긴 댓글도 내 화면에만 보이고 새로고침하면 사라져요. 우체통이 열리면 댓글은 익명으로 표시되고, 신고 3회가 모인 댓글은 자동으로 가려집니다. 진단·처방은 답하지 않고 병원 안내로 대신해요.</div>
   </main>
 
   <nav class="tabbar" role="tablist" aria-label="메뉴">
@@ -1663,6 +1687,7 @@
     dexPlayTitle: $("#dexPlayTitle"), dexCnt: $("#dexCnt"),
     dexPlays: $("#dexPlays"), dexChecks: $("#dexChecks"), dexShop: $("#dexShop"),
     qaList: $("#qaList"), letters: $("#letters"), mailCnt: $("#mailCnt"), mailMonth: $("#mailMonth"),
+    lettersTitle: $("#lettersTitle"),
     opening: $("#opening"), opIntro: $("#opIntro"), opTest: $("#opTest"), opChar: $("#opChar"),
     opStart: $("#opStart"), opResume: $("#opResume"), opSkip: $("#opSkip"), opGo: $("#opGo"), opRetest: $("#opRetest"),
     opSaved: $("#opSaved"), opSavedIcon: $("#opSavedIcon"), opSavedName: $("#opSavedName"),
@@ -2180,7 +2205,7 @@
         form.parentNode.insertBefore(cmt, form);
         $(".report", cmt).addEventListener("click", function () { toast("방금 올린 내 댓글이에요."); });
         input.value = "";
-        toast("익명 댓글을 남겼어요.");
+        toast("체험판이라 내 화면에만 남겨뒀어요. 새로고침하면 사라져요.");
       });
     });
 
@@ -2228,6 +2253,7 @@
       el.letters.appendChild(li);
     });
     el.mailCnt.textContent = "오늘 " + lettersToday().length + " / 3건";
+    if (el.lettersTitle) el.lettersTitle.hidden = all.length === 0;
   }
 
   $("#mailForm").addEventListener("submit", function (e) {
@@ -2249,7 +2275,7 @@
     store(KEYS.letters, all);
     ta.value = "";
     renderLetters();
-    toast("익명으로 접수됐어요. 고른 질문만 답변과 함께 올라갑니다.");
+    toast("체험판이라 내 브라우저에만 저장했어요. 실제 접수는 익명 우체통이 열리면 시작돼요!");
   });
 
   /* ---------------- opening · character test ---------------- */
