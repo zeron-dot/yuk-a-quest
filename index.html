@@ -493,6 +493,46 @@
   .saved-line .cb{width:28px;height:28px;flex:0 0 auto;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center}
   .saved-line .cb svg{width:18px;height:18px}
 
+  /* opening step 1 · 아기 월령 선택 */
+  .op-pick-lead{margin:0 0 10px;font-size:13.5px;line-height:1.6}
+  .op-pick-lead b{font-weight:normal;background:#ffe2bd;padding:0 3px}
+  .m-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .m-pick-card{
+    display:flex;flex-direction:column;text-align:left;font-family:inherit;color:var(--ink);
+    background:var(--paper);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    padding:8px 8px 7px;cursor:pointer;min-height:86px;line-height:1.35;letter-spacing:-.1px;
+  }
+  .m-pick-card:hover{background:#fff8e6}
+  .m-pick-card:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .m-pick-card .no{font-size:8.5px;color:var(--muted);letter-spacing:1.2px}
+  .m-pick-card .ch{font-size:14.5px;letter-spacing:.3px;margin-top:1px}
+  .m-pick-card .th{font-size:10.5px;color:var(--mint-d);line-height:1.35}
+  .m-pick-card .ds{font-size:10px;color:#5f594d;line-height:1.45;margin-top:3px}
+  .m-pick-card .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:auto;padding-top:5px}
+  .m-pick-card .best,.m-pick-card .last{font-size:9px;border:1.5px solid currentColor;padding:0 3px;line-height:1.4}
+  .m-pick-card .best{color:var(--mint-d)}
+  .m-pick-card .last{color:var(--coral)}
+  .op-pick-note{display:flex;align-items:center;gap:5px;margin:9px 0 0;font-size:10px;color:var(--muted);line-height:1.5}
+
+  /* test top · 고른 월령 표시 */
+  .t-monthbar{
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+    background:#eef7f1;border:2px solid var(--ink);padding:6px 7px;margin-bottom:10px;
+    font-size:11px;line-height:1.4;
+  }
+  .t-monthbar .lb{font-size:9.5px;color:var(--muted);letter-spacing:.3px}
+  .t-monthbar b{font-weight:normal;background:var(--ink);color:var(--cream);padding:1px 5px;font-size:11px}
+  .t-monthbar .th{color:#5f594d;flex:1 1 60px;min-width:0}
+  .t-monthbar .mb-back{
+    font-family:inherit;font-size:10.5px;color:var(--ink);background:var(--paper);
+    border:2px solid var(--ink);padding:4px 6px;cursor:pointer;line-height:1.3;min-height:30px;
+  }
+  .t-monthbar .mb-back:active{transform:translate(1px,1px)}
+  .charbox .charwho{
+    display:inline-block;margin:9px auto 0;font-size:11px;
+    border:2px solid var(--ink);background:#f2ead7;padding:2px 7px;line-height:1.45;
+  }
+
   /* test */
   .t-top{display:flex;align-items:center;gap:8px;margin-bottom:12px}
   .t-top .step{font-size:11px;letter-spacing:.5px;background:var(--ink);color:var(--cream);padding:2px 7px}
@@ -724,7 +764,7 @@
 
   <!-- ================= OPENING ================= -->
   <div class="opening" id="opening">
-    <!-- intro -->
+    <!-- step 1 · 우리 아기 월령 -->
     <section id="opIntro">
       <div class="op-head">
         <div class="logo"><svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#i-baby-dark"/></svg></div>
@@ -737,7 +777,7 @@
       <div class="op-hero">
         <svg viewBox="0 0 176 44" preserveAspectRatio="none" shape-rendering="crispEdges" aria-hidden="true" id="opHero"></svg>
         <p class="op-title">오늘, 우리 아기는<br>몇 개월인가요?</p>
-        <p class="op-lead">그 달에 진짜 터지는 상황 5개를 버티면<br>오늘의 엄마 등급이 나옵니다.</p>
+        <p class="op-lead">월령을 먼저 고르면, 그 달에 진짜 터지는<br>상황 5개가 바로 열립니다.</p>
       </div>
 
       <div class="saved-line" id="opSaved" hidden>
@@ -746,23 +786,16 @@
       </div>
 
       <div class="op-body">
-        <p><b>1분 엄마 성향 테스트</b>로 시작해 볼까요?</p>
-        <p>수유할 때 뭘 먼저 집는지, 새벽에 누구를 깨우는지 — 5문항이면 내 타입이 나와요.</p>
-        <ul>
-          <li>기록 집착 전략가 / 눈치 백단 즉흥맘</li>
-          <li>혼자 다 하는 열정맘 / 체력 안배 생존가</li>
-        </ul>
-        <div class="op-meta"><span>5문항</span><span>1분</span><span>저장은 이 기기에만</span></div>
+        <p class="op-pick-lead"><b>우리 아기 지금 몇 개월인가요?</b><br>고르면 그 월령 퀘스트가 열리고, 바로 1분 성향 테스트로 넘어가요.</p>
+        <div class="m-pick" id="opMonthList" role="group" aria-label="아기 월령 선택"></div>
+        <div class="op-meta"><span>6구간</span><span>월령별 성향 테스트 5문항</span><span>1분</span><span>저장은 이 기기에만</span></div>
         <div class="steps">
-          <div><b>1</b> 성향 테스트 5문항</div>
-          <div><b>2</b> 우리 아기 월령 선택 (6구간)</div>
-          <div><b>3</b> 돌발 상황 5개 버티고 결과 카드</div>
+          <div><b>1</b> 우리 아기 월령 선택 (6구간)</div>
+          <div><b>2</b> 고른 월령 성향 테스트 5문항</div>
+          <div><b>3</b> 고른 월령 퀘스트 5개 버티고 결과 카드</div>
         </div>
       </div>
-
-      <button class="btn wide lav" type="button" id="opStart">성향 테스트 시작하기</button>
-      <button class="btn wide orange" type="button" id="opResume" hidden>내 캐릭터로 퀘스트 출발!</button>
-      <button class="linkish" type="button" id="opSkip">건너뛰고 바로 퀘스트 하기</button>
+      <p class="op-pick-note">월령은 퀘스트 화면 위쪽 칩에서 언제든 바꿀 수 있어요.</p>
       <p class="foot-note">이 앱은 의학적 진단을 대신하지 않아요.<br>기록은 이 기기 브라우저에만 저장됩니다.</p>
     </section>
 
@@ -773,6 +806,12 @@
         <button class="btn small paper" type="button" id="tClose">닫기</button>
         <div class="tdots" id="tDots"></div>
       </div>
+      <div class="t-monthbar">
+        <span class="lb">우리 아기</span>
+        <b id="tMonthChip">월령</b>
+        <span class="th" id="tMonthTheme"></span>
+        <button type="button" class="mb-back" id="tMonthBack">개월수 다시 고르기</button>
+      </div>
       <div class="t-axis" id="tAxis">축 1 · 계획·기록파 vs 직관·아기눈치파</div>
       <div class="t-q">
         <span class="qno" id="tQno">Q1</span>
@@ -780,7 +819,7 @@
         <div class="hint" id="tHint">정답은 없어요. 오늘의 나에 가까운 쪽으로.</div>
       </div>
       <div class="t-choices" id="tChoices"></div>
-      <div class="note" style="margin-top:12px">5문항이 끝나면 <b>기록 집착 전략가 · 눈치 백단 즉흥맘 · 혼자 다 하는 열정맘 · 체력 안배 생존가</b> 중 하나가 나와요. 결과는 이 기기에만 저장됩니다.</div>
+      <div class="note" style="margin-top:12px"><b id="tMonthNote">이 월령</b>의 상황으로 5문항을 물어봐요. 끝나면 <b>기록 집착 전략가 · 눈치 백단 즉흥맘 · 혼자 다 하는 열정맘 · 체력 안배 생존가</b> 중 하나가 나오고, 결과는 이 기기에만 저장됩니다.</div>
       <button class="linkish" type="button" id="tSkip">테스트 그만하고 퀘스트로 가기</button>
     </section>
 
@@ -799,6 +838,7 @@
         <div class="kicker">TODAY'S MOM TYPE</div>
         <div class="cname" id="charName">캐릭터</div>
         <p class="cline" id="charLine">한 줄 요약</p>
+        <div class="charwho" id="charMonth">우리 아기 월령</div>
       </div>
 
       <div class="axes" id="charAxes"></div>
@@ -809,7 +849,8 @@
       </div>
 
       <div class="op-body">
-        <p>이 캐릭터로 <b>6개 월령 × 5문항</b>을 버티면, 결과 카드에 캐릭터 이름이 같이 붙어요.</p>
+        <p>이 캐릭터로 <b>고른 월령 5문항</b>을 버티면, 결과 카드에 캐릭터 이름이 같이 붙어요.</p>
+        <p>다른 월령은 퀘스트 화면 위쪽 월령 칩에서 언제든 바꿀 수 있어요.</p>
         <p class="tiny" style="margin:0">성향 테스트는 진단이 아니라 오늘의 나를 가볍게 보는 놀이예요. 결과는 이 기기에만 저장됩니다.</p>
       </div>
 
@@ -944,6 +985,7 @@
   var STAGES = [
     {
       id: "m0", chip: "0~3개월", theme: "신생아 생존기", stageNo: "01",
+      sub: "새벽 수유·등센서로 버티는 첫 구간",
       caption: "NURSERY · 03:00", scene: { sky: "#2b2b3a", floor: "#3a3a52", prop: "crib", pose: "lie", night: true },
       quests: [
         {
@@ -1030,6 +1072,7 @@
     },
     {
       id: "m1", chip: "4~6개월", theme: "뒤집기·이유식 입문", stageNo: "02",
+      sub: "뒤집기 지옥과 이유식 첫 숟가락",
       caption: "LIVING ROOM · 14:00", scene: { sky: "#8fb8e0", floor: "#c9a227", prop: "mat", pose: "roll", night: false },
       quests: [
         {
@@ -1116,6 +1159,7 @@
     },
     {
       id: "m2", chip: "7~12개월", theme: "잡고 서기·이유식 3끼", stageNo: "03",
+      sub: "잡고 서기, 분리불안, 하루 세 끼",
       caption: "LIVING ROOM · 10:30", scene: { sky: "#a9d3e8", floor: "#d8b26a", prop: "table", pose: "sit", night: false },
       quests: [
         {
@@ -1202,6 +1246,7 @@
     },
     {
       id: "m3", chip: "13~18개월", theme: "돌끝맘·걸음마 폭주", stageNo: "04",
+      sub: "걸음마 폭주, 우유만 찾는 시기",
       caption: "KITCHEN · 18:00", scene: { sky: "#f5a97f", floor: "#b9921f", prop: "chair", pose: "stand", night: false },
       quests: [
         {
@@ -1288,6 +1333,7 @@
     },
     {
       id: "m4", chip: "19~24개월", theme: "싫어병·자아 폭발", stageNo: "05",
+      sub: "싫어병, 때리는 행동, 두 단어 조합",
       caption: "PLAYROOM · 16:00", scene: { sky: "#b7a6e8", floor: "#c9a227", prop: "blocks", pose: "walk", night: false },
       quests: [
         {
@@ -1374,6 +1420,7 @@
     },
     {
       id: "m5", chip: "24개월+", theme: "어린이집·배변·말트임", stageNo: "06",
+      sub: "등원 첫 주, 배변훈련, 밥상 전쟁",
       caption: "FRONT DOOR · 08:40", scene: { sky: "#8fb8e0", floor: "#9a9aae", prop: "door", pose: "walk", night: false },
       quests: [
         {
@@ -1465,55 +1512,288 @@
      축1  S = 계획·기록파 / F = 직관·아기눈치파
      축2  A = 혼자 끙끙·완벽파 / B = 바로 교대·SOS 생존파
      ========================================================= */
-  var TEST = [
-    {
-      axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
-      tag: "수유 기록", text: "수유를 마치고 폰을 드는 순간, 손이 먼저 가는 건?",
+  /* =========================================================
+     DATA · 월령별 엄마 성향 테스트 (6개 월령 × 5문항 = 30문항)
+     판정 로직은 기존과 같습니다: 축1 S/F 2문항, 축2 A/B 2문항, 보너스 4지선다 1문항(2점).
+     고른 월령의 상황으로만 묻고, 문항·선택지·배점 구조는 6세트가 동일합니다.
+     ========================================================= */
+  var TEST_SETS = {
+    /* 0~3개월 · 신생아 생존기 */
+    m0: [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "수유텀", text: "분유를 80ml 먹이고 40분 만에 또 찾아요. 첫 달엔 원래 이런가 싶다가도 불안해져요.",
       hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
       choices: [
-        { text: "수유 기록 어플 — 텀·양·횟수 다 적는다", pick: "S" },
-        { text: "카메라 — 오늘 아기 얼굴부터 찍는다", pick: "F" }
+        { text: "수유 어플에 시간·양을 적어서 텀을 확인한다", pick: "S" },
+        { text: "울면 일단 안아보고 아기 반응을 살핀다", pick: "F" }
       ]
     },
-    {
-      axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
-      tag: "새벽 3시", text: "새벽 3시, 아기가 30분 만에 또 깼어요. 옆에서 남편이 코 자고 있어요.",
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "등센서", text: "새벽 3시, 겨우 재워 눕혔더니 10분 만에 깼어요. 옆에선 남편이 코 자고 있어요.",
       hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
       choices: [
-        { text: "내가 안고 다시 재운다. 내일 출근하는데 깨울 수 없다", pick: "A" },
-        { text: "어깨를 톡톡, 교대한다. 나도 자야 내일이 있다", pick: "B" }
+        { text: "내가 다시 안는다. 내일 출근하는데 깨울 수 없다", pick: "A" },
+        { text: "남편 어깨를 톡톡, 이번엔 교대한다", pick: "B" }
       ]
     },
-    {
-      axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
-      tag: "계획이 틀어지면", text: "오늘 외출 계획이 아기 낮잠 때문에 통째로 틀어졌어요.",
-      hint: "",
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "쪽잠", text: "낮잠을 20분 자고 깨는 날이 사흘째예요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
       choices: [
-        { text: "언제 다시 잘지 계산해서 동선을 다시 짠다", pick: "S" },
-        { text: "그날 아기 기분 따라 여기저기 다녀본다", pick: "F" }
+        { text: "수면 시간표를 찾아보고 재우는 시간을 맞춰본다", pick: "S" },
+        { text: "그날 아기 컨디션을 보면서 재우고 싶을 때 재운다", pick: "F" }
       ]
     },
-    {
-      axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
-      tag: "밤 10시", text: "밤 10시, 설거지가 남아 있고 아기는 겨우 잠들었어요.",
-      hint: "",
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "산후조리", text: "점심을 먹다가 아기가 울어요. 숟가락을 내려놓게 돼요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
       choices: [
-        { text: "다 끝내고 나서 눕는다. 안 끝내면 잠이 안 온다", pick: "A" },
-        { text: "내일의 나에게 넘긴다. 오늘은 여기까지", pick: "B" }
+        { text: "아기부터 달래고 밥은 다 식어도 나중에 먹는다", pick: "A" },
+        { text: "먹던 숟가락을 남편에게 넘기고 아기를 맡긴다", pick: "B" }
       ]
     },
-    {
-      axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
-      tag: "결정타", text: "오늘 하루를 딱 한 문장으로 남긴다면?",
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "첫 달, 오늘 하루를 한 문장으로 남긴다면?",
       hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
       choices: [
-        { text: "수유 7회 · 낮잠 2회 · 기저귀 6장 — 숫자로 남긴다", pick: "S" },
-        { text: "오늘 제일 웃긴 순간 한 컷 — 장면으로 남긴다", pick: "F" },
+        { text: "수유 8회 · 기저귀 10장 — 숫자로 남긴다", pick: "S" },
+        { text: "처음으로 눈을 마주친 순간 한 컷 — 장면으로 남긴다", pick: "F" },
+        { text: "혼자 다 넘긴 밤 하나 — 그걸로 남긴다", pick: "A" },
+        { text: "누군가에게 넘긴 일 하나 — 그걸로 남긴다", pick: "B" }
+      ]
+    }
+    ],
+    /* 4~6개월 · 뒤집기·이유식 입문 */
+    m1: [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "뒤집기", text: "기저귀를 채우는 중에 뒤집어서 도망가요. 하루에 열 번은 반복이에요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "갈이 순서를 정해두고 그 순서대로 빨리 끝낸다", pick: "S" },
+        { text: "노래 부르고 장난치며 그때그때 달랜다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "초기이유식", text: "첫 이유식 숟가락을 떠먹였는데 고개를 돌리고 다 뱉어요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "레시피를 다시 찾아보고 내가 조합을 바꿔본다", pick: "A" },
+        { text: "오늘은 여기까지, 내일 남편에게 한 번 맡겨본다", pick: "B" }
+      ]
+    },
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "밤수유 끊기", text: "밤에 두 번 먹던 아기를 슬슬 끊어볼까 싶어요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "며칠 시간을 재보고 줄여보는 계획을 세운다", pick: "S" },
+        { text: "자다가 깨면 그때그때 달래보고 반응을 본다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "이앓이", text: "잇몸이 부어서인지 밤마다 칭얼칭얼해요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 계속 안고 달랜다. 오늘 잠은 포기한다", pick: "A" },
+        { text: "새벽은 남편과 반씩 나눠서 안는다", pick: "B" }
+      ]
+    },
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "이 시기, 오늘 하루를 남긴다면?",
+      hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
+      choices: [
+        { text: "이유식 양과 뒤집기 횟수 — 숫자로 남긴다", pick: "S" },
+        { text: "이유식 범벅이 된 얼굴 한 컷 — 장면으로 남긴다", pick: "F" },
         { text: "혼자 다 넘긴 일 하나 — 그걸로 남긴다", pick: "A" },
         { text: "누군가에게 넘긴 일 하나 — 그걸로 남긴다", pick: "B" }
       ]
     }
-  ];
+    ],
+    /* 7~12개월 · 잡고 서기·이유식 3끼 */
+    m2: [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "배밀이·앉기", text: "배밀이를 시작했는데 앉히면 자꾸 옆으로 넘어져요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "거실 모서리·콘센트를 미리 막고 동선을 정리한다", pick: "S" },
+        { text: "일단 눈에 보이는 것부터 치우고 따라다닌다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "낯가림", text: "낯가림이 심해져서 할머니 품에만 가도 울어요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 계속 안고 있다. 오늘 모임은 포기한다", pick: "A" },
+        { text: "잠깐씩 맡겨보고 그 사이에 나는 숨을 고른다", pick: "B" }
+      ]
+    },
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "중기이유식", text: "중기로 넘어갔는데 며칠째 숟가락을 손으로 쳐내요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "한 끼 양과 식재료를 정해서 맞춰본다", pick: "S" },
+        { text: "먹는 만큼 주고 남기면 남긴 채로 둔다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "걸음마·돌준맘", text: "잡고 서기 시작하니 첫돌 준비물이 자꾸 늘어나요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 리스트를 다 정리하고 하나씩 챙긴다", pick: "A" },
+        { text: "남편에게 사진·의상 쪽을 맡기고 나는 식사만 본다", pick: "B" }
+      ]
+    },
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "돌 전, 오늘 하루를 남긴다면?",
+      hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
+      choices: [
+        { text: "이유식 3끼와 낮잠 시간 — 숫자로 남긴다", pick: "S" },
+        { text: "잡고 선 순간 한 컷 — 장면으로 남긴다", pick: "F" },
+        { text: "혼자 다 넘긴 일 하나 — 그걸로 남긴다", pick: "A" },
+        { text: "누군가에게 넘긴 일 하나 — 그걸로 남긴다", pick: "B" }
+      ]
+    }
+    ],
+    /* 13~18개월 · 돌끝맘·걸음마 폭주 */
+    m3: [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "떼쓰기", text: "마트에서 과자를 안 사줬더니 바닥에 누워 울어요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "들어가기 전에 살 것만 정하고 그대로 지킨다", pick: "S" },
+        { text: "그 자리에서 아기 기분을 달래보고 상황을 본다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "어린이집", text: "어린이집 상담에서 적응이 조금 느리다는 말을 들었어요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 집에서 계속 연습시키고 방법을 찾아본다", pick: "A" },
+        { text: "선생님께 집에서 뭘 하면 되는지 묻고 반은 맡긴다", pick: "B" }
+      ]
+    },
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "유아식", text: "유아식으로 바꿨는데 간을 어디까지 해야 할지 모르겠어요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "레시피와 나트륨 양을 찾아보고 맞춘다", pick: "S" },
+        { text: "우리 밥에서 덜어서 대충 맞춰준다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "말이 늦나", text: "또래보다 말이 늦은 것 같아서 밤마다 검색만 하게 돼요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 이것저것 알아보고 정리한다. 잠이 잘 안 온다", pick: "A" },
+        { text: "남편에게 같이 병원에 가보자고 말한다", pick: "B" }
+      ]
+    },
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "이 시기, 오늘 하루를 남긴다면?",
+      hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
+      choices: [
+        { text: "낮잠·식사·걸음마 횟수 — 숫자로 남긴다", pick: "S" },
+        { text: "걸음마 한 컷 — 장면으로 남긴다", pick: "F" },
+        { text: "혼자 다 넘긴 일 하나 — 그걸로 남긴다", pick: "A" },
+        { text: "누군가에게 넘긴 일 하나 — 그걸로 남긴다", pick: "B" }
+      ]
+    }
+    ],
+    /* 19~24개월 · 싫어병·자아 폭발 */
+    m4: [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "말문", text: "두 단어를 붙이기 시작했는데 어느 정도가 보통인지 모르겠어요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "새로 나온 단어를 적어보고 늘어나는지 확인한다", pick: "S" },
+        { text: "오늘 나온 말을 따라 해보며 놀아준다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "자아폭발", text: "옷을 입히려 하면 싫다고 다 벗어버려요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 붙잡고 입힌다. 늦으면 안 되니까", pick: "A" },
+        { text: "남편에게 한 번 맡기고 나는 준비를 마저 한다", pick: "B" }
+      ]
+    },
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "배변 관심", text: "변기에 앉겠다고는 하는데 10초 만에 일어나요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "앉는 시간을 정해두고 매일 같은 때 시도한다", pick: "S" },
+        { text: "아이가 관심 보일 때만 같이 앉아본다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "수면 독립", text: "밤에 자다 깨서 우리 침대로 와요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 다시 데려다 재운다. 매일 반복이어도 내가 한다", pick: "A" },
+        { text: "남편과 번갈아 데려다 준다", pick: "B" }
+      ]
+    },
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "두 돌 무렵, 오늘 하루를 남긴다면?",
+      hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
+      choices: [
+        { text: "낮잠·배변·식사 — 숫자로 남긴다", pick: "S" },
+        { text: "오늘 제일 웃긴 장면 한 컷 — 장면으로 남긴다", pick: "F" },
+        { text: "혼자 다 넘긴 일 하나 — 그걸로 남긴다", pick: "A" },
+        { text: "누군가에게 넘긴 일 하나 — 그걸로 남긴다", pick: "B" }
+      ]
+    }
+    ],
+    /* 24개월+ · 어린이집·배변·말트임 */
+    m5: [
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "등원 첫 주", text: "어린이집 첫 주, 아침마다 울면서 매달려요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "등원 시간과 인사 순서를 매일 똑같이 맞춘다", pick: "S" },
+        { text: "그날 기분에 맞춰 안아주고 달랜다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "배변훈련", text: "기저귀를 떼자고 했더니 사흘째 거부해요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 계속 시도한다. 이왕 시작했으니까", pick: "A" },
+        { text: "남편에게 주말 배변 담당을 맡긴다", pick: "B" }
+      ]
+    },
+    { axis: "sf", axisLabel: "축 1 · 계획·기록파 vs 직관·아기눈치파",
+      tag: "말트임", text: "또래는 문장으로 말하는데 우리 아이는 아직 두 단어예요.",
+      hint: "정답은 없어요. 오늘의 나에 가까운 쪽으로.",
+      choices: [
+        { text: "검진 때 물어볼 것들을 미리 정리해둔다", pick: "S" },
+        { text: "아이가 말을 걸 때마다 맞장구치며 받아준다", pick: "F" }
+      ]
+    },
+    { axis: "ab", axisLabel: "축 2 · 혼자 끙끙·완벽파 vs 바로 교대·SOS 생존파",
+      tag: "밥상 전쟁", text: "저녁마다 밥상에서 실랑이예요.",
+      hint: "실제로 했던 쪽으로 골라주세요. 이상적인 답 말고요.",
+      choices: [
+        { text: "내가 끝까지 앉혀서 먹인다", pick: "A" },
+        { text: "남편에게 저녁 한 끼를 통째로 맡긴다", pick: "B" }
+      ]
+    },
+    { axis: "bonus", axisLabel: "보너스 · 결정타 (점수 2배)",
+      tag: "결정타", text: "이 시기, 오늘 하루를 남긴다면?",
+      hint: "여기서 고른 답이 동점일 때 마지막 한 표가 돼요.",
+      choices: [
+        { text: "등원·배변·식사 — 숫자로 남긴다", pick: "S" },
+        { text: "처음 만든 문장 한 마디 — 장면으로 남긴다", pick: "F" },
+        { text: "혼자 다 넘긴 일 하나 — 그걸로 남긴다", pick: "A" },
+        { text: "누군가에게 넘긴 일 하나 — 그걸로 남긴다", pick: "B" }
+      ]
+    }
+    ]
+  };
+
+  function curTest() {
+    var st = STAGES[S.stage];
+    return (st && TEST_SETS[st.id]) ? TEST_SETS[st.id] : TEST_SETS.m0;
+  }
 
   /* 캐릭터: S/F × A/B 네 조합 */
   var CHARACTERS = {
@@ -1589,6 +1869,7 @@
   var KEYS = {
     char: "yukaQuest.char.v2",
     best: "yukaQuest.best.v2",
+    month: "yukaQuest.month.v2",
     dex: "yukaQuest.dex.v2",
     checks: "yukaQuest.checks.v2",
     letters: "yukaQuest.letters.v2",
@@ -1689,10 +1970,11 @@
     qaList: $("#qaList"), letters: $("#letters"), mailCnt: $("#mailCnt"), mailMonth: $("#mailMonth"),
     lettersTitle: $("#lettersTitle"),
     opening: $("#opening"), opIntro: $("#opIntro"), opTest: $("#opTest"), opChar: $("#opChar"),
-    opStart: $("#opStart"), opResume: $("#opResume"), opSkip: $("#opSkip"), opGo: $("#opGo"), opRetest: $("#opRetest"),
+    opMonthList: $("#opMonthList"), opGo: $("#opGo"), opRetest: $("#opRetest"),
     opSaved: $("#opSaved"), opSavedIcon: $("#opSavedIcon"), opSavedName: $("#opSavedName"),
     tStep: $("#tStep"), tDots: $("#tDots"), tAxis: $("#tAxis"), tQno: $("#tQno"), tText: $("#tText"), tHint: $("#tHint"), tChoices: $("#tChoices"),
-    charBadge: $("#charBadge"), charName: $("#charName"), charLine: $("#charLine"),
+    tMonthChip: $("#tMonthChip"), tMonthTheme: $("#tMonthTheme"), tMonthBack: $("#tMonthBack"),
+    charBadge: $("#charBadge"), charName: $("#charName"), charLine: $("#charLine"), charMonth: $("#charMonth"),
     charTip: $("#charTip"), charAxes: $("#charAxes")
   };
 
@@ -1873,6 +2155,50 @@
     resetGame();
     renderDex();
     el.headSub.textContent = STAGES[i].chip + " · " + STAGES[i].theme;
+  }
+
+  /* ---------------- opening step 1 · 아기 월령 선택 ---------------- */
+  function stageIndexById(id) {
+    for (var i = 0; i < STAGES.length; i++) { if (STAGES[i].id === id) return i; }
+    return -1;
+  }
+  function savedStageIdx() { return stageIndexById(store(KEYS.month)); }
+
+  function renderOpeningMonths() {
+    var b = bests();
+    var last = savedStageIdx();
+    el.opMonthList.innerHTML = STAGES.map(function (st, i) {
+      var best = b[st.id];
+      return '<button class="m-pick-card" type="button" data-stage="' + i + '" aria-pressed="' + (i === last ? "true" : "false") + '">' +
+        '<span class="no">STAGE ' + st.stageNo + '</span>' +
+        '<span class="ch">' + st.chip + '</span>' +
+        '<span class="th">' + st.theme + '</span>' +
+        '<span class="ds">' + (st.sub || "") + '</span>' +
+        '<span class="tags">' +
+          (best ? '<span class="best">최고 ' + best + '</span>' : "") +
+          (i === last ? '<span class="last">지난번 선택</span>' : "") +
+        '</span>' +
+      '</button>';
+    }).join("");
+    $$("#opMonthList .m-pick-card").forEach(function (c) {
+      c.addEventListener("click", function () { pickOpeningStage(Number(c.getAttribute("data-stage"))); });
+    });
+  }
+
+  function pickOpeningStage(i) {
+    if (i < 0 || i >= STAGES.length) return;
+    store(KEYS.month, STAGES[i].id);
+    selectStage(i);            /* 고른 월령으로 게이지·문항·도감을 바로 준바꿈 */
+    renderOpeningMonths();
+    startTest();               /* 월령을 고르면 바로 2단계 성향 테스트 */
+  }
+
+  function updateTestMonthBar() {
+    var st = STAGES[S.stage];
+    el.tMonthChip.textContent = st.chip;
+    el.tMonthTheme.textContent = st.theme;
+    var note = $("#tMonthNote");
+    if (note) note.textContent = "우리 아기 " + st.chip;
   }
 
   function tick() {
@@ -2293,13 +2619,11 @@
       el.opSaved.hidden = false;
       el.opSavedIcon.innerHTML = '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><use href="#' + CHAR.icon + '"/></svg>';
       el.opSavedName.innerHTML = "지난번 캐릭터 · <b>" + CHAR.name + "</b>";
-      el.opResume.hidden = false;
     } else {
       el.charStripIcon.textContent = "🙂";
       el.charStripName.textContent = "성향 테스트를 아직 안 했어요";
       el.charTestBtn.textContent = "성향 테스트";
       el.opSaved.hidden = true;
-      el.opResume.hidden = true;
     }
   }
 
@@ -2328,19 +2652,29 @@
     el.opIntro.hidden = true;
     el.opChar.hidden = true;
     el.opTest.hidden = false;
+    updateTestMonthBar();
     renderTest();
     el.opening.scrollTop = 0;
   }
 
+  function backToMonthPick() {
+    el.opTest.hidden = true;
+    el.opChar.hidden = true;
+    el.opIntro.hidden = false;
+    renderOpeningMonths();
+    el.opening.scrollTop = 0;
+  }
+
   function renderTest() {
-    var q = TEST[T.i];
+    var list = curTest();
+    var q = list[T.i];
     T.picked = -1;
-    el.tStep.textContent = "Q" + (T.i + 1) + " / " + TEST.length;
+    el.tStep.textContent = "Q" + (T.i + 1) + " / " + list.length;
     el.tAxis.textContent = q.axisLabel;
     el.tQno.textContent = "Q" + (T.i + 1) + " · " + q.tag;
     el.tText.textContent = q.text;
     el.tHint.textContent = q.hint || "";
-    el.tDots.innerHTML = TEST.map(function (_, i) {
+    el.tDots.innerHTML = list.map(function (_, i) {
       var cls = i === T.i ? "cur" : (i < T.i ? "on" : "");
       return '<i class="' + cls + '"></i>';
     }).join("");
@@ -2360,7 +2694,8 @@
   function pickTest(i) {
     if (T.picked >= 0) return;
     T.picked = i;
-    var q = TEST[T.i];
+    var list = curTest();
+    var q = list[T.i];
     var c = q.choices[i];
     var pts = q.axis === "bonus" ? 2 : 1;
 
@@ -2381,7 +2716,7 @@
     });
 
     window.setTimeout(function () {
-      if (T.i >= TEST.length - 1) { showChar(); return; }
+      if (T.i >= curTest().length - 1) { showChar(); return; }
       T.i += 1;
       renderTest();
       el.opening.scrollTop = 0;
@@ -2406,6 +2741,8 @@
     el.charName.textContent = ch.em + " " + ch.name;
     el.charLine.textContent = ch.line;
     el.charTip.textContent = ch.tip;
+    el.charMonth.textContent = "우리 아기 " + STAGES[S.stage].chip + " · " + STAGES[S.stage].theme;
+    el.opGo.textContent = STAGES[S.stage].chip + " 퀘스트 출발!";
 
     var s = T.scores;
     el.charAxes.innerHTML =
@@ -2418,19 +2755,19 @@
     el.opening.scrollTop = 0;
   }
 
-  el.opStart.addEventListener("click", startTest);
-  el.opResume.addEventListener("click", function () { closeOpening(); switchTab("quest"); });
-  el.opSkip.addEventListener("click", function () { closeOpening(); switchTab("quest"); });
+  el.tMonthBack.addEventListener("click", backToMonthPick);
   $("#tClose").addEventListener("click", function () { closeOpening(); switchTab("quest"); });
   $("#tSkip").addEventListener("click", function () { closeOpening(); switchTab("quest"); });
   el.opRetest.addEventListener("click", startTest);
   el.opGo.addEventListener("click", function () {
     var ch = computeChar();
+    var st = STAGES[S.stage];
     store(KEYS.char, ch.key);
     updateCharUI();
     closeOpening();
+    selectStage(S.stage);       /* 고른 월령 Q1부터 바로 시작 (신생아로 되돌리지 않음) */
     switchTab("quest");
-    toast(ch.em + " " + ch.name + " 캐릭터로 출발! 월령을 골라주세요.");
+    toast(ch.em + " " + ch.name + " 캐릭터로 " + st.chip + " 퀘스트 출발!");
   });
   el.charTestBtn.addEventListener("click", function () {
     openOpening();
@@ -2439,10 +2776,13 @@
 
   /* ---------------- init ---------------- */
   el.mailMonth.innerHTML = STAGES.map(function (st) { return "<option>" + st.chip + "</option>"; }).join("");
-  $("#opHero").innerHTML = buildScene(STAGES[0]).replace(/^<svg[^>]*>|<\/svg>$/g, "");
+  var initStage = savedStageIdx();
+  if (initStage >= 0) S.stage = initStage;
+  $("#opHero").innerHTML = buildScene(STAGES[S.stage]).replace(/^<svg[^>]*>|<\/svg>$/g, "");
 
   updateCharUI();
   renderMonths();
+  renderOpeningMonths();
   tick();
   paintGauges();
   renderQuestion();
