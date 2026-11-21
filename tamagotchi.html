@@ -2795,6 +2795,7 @@
     paintTurnDots();
     device.setAttribute('data-state','end');
     jingle();
+    checkKakaoDomain();
   }
 
   function resetGame(){
@@ -2986,6 +2987,54 @@
   function popupHostileEnv(){
     try{ return /instagram|fb_iab|fbios|barcelona/i.test(navigator.userAgent || ''); }catch(e){ return false; }
   }
+  function isMobileEnv(){
+    try{ return /android|iphone|ipad|ipod|mobile|samsungbrowser/i.test(navigator.userAgent || ''); }catch(e){ return false; }
+  }
+  /* 카카오는 '등록된 웹 도메인'이 아닌 곳의 공유 요청을 거부한다(-401 domain mismatched).
+     모바일에서는 그 실패가 지금 탭을 카카오 오류 페이지로 바꿔버리므로, 엔딩 화면이 뜰 때
+     조용히 미리 확인해 두고 안 되면 공유 시트·복사로 안전하게 넘어간다. */
+  const KAPI_URL = 'https://kapi.kakao.com/v2/api/kakaolink/talk/template/default';
+  const KAKAO_CHECK_TTL = 300000;
+  let kakaoDomain = null;
+  function kakaoDomainCached(){
+    try{
+      const raw = sessionStorage.getItem('tama.kakaoDomain');
+      if(!raw) return null;
+      const o = JSON.parse(raw);
+      if(o && typeof o.ok === 'boolean' && (Date.now() - o.t) < KAKAO_CHECK_TTL) return o.ok;
+    }catch(e){}
+    return null;
+  }
+  function saveKakaoDomain(ok){
+    try{ sessionStorage.setItem('tama.kakaoDomain', JSON.stringify({ok:ok, t:Date.now()})); }catch(e){}
+  }
+  function checkKakaoDomain(){
+    if(kakaoDomain !== null) return;
+    if(!kakaoReady()){
+      /* SDK가 아직 안 왔을 뿐이면 나중에 다시 확인, 로드는 됐는데 쓸 수 없으면 확정 실패 */
+      if(window.Kakao){ kakaoDomain = false; saveKakaoDomain(false); }
+      return;
+    }
+    const cached = kakaoDomainCached();
+    if(cached !== null){ kakaoDomain = cached; return; }
+    if(typeof fetch !== 'function'){ return; }
+    const link = { mobile_web_url: SHARE_URL, web_url: SHARE_URL };
+    const tpl = {
+      object_type: 'feed',
+      content: { title: '👾 육아 다마고치 · 10턴 생존', description: '공유 준비 확인', image_url: SHARE_IMG, link: link }
+    };
+    const ka = 'sdk/2.7.4 os/javascript sdk_type/javascript lang/' + (navigator.language || 'ko-KR')
+      + ' device/web origin/' + encodeURIComponent(location.origin);
+    fetch(KAPI_URL + '?link_ver=4.0&template_object=' + encodeURIComponent(JSON.stringify(tpl)), {
+      headers: { 'Authorization': 'KakaoAK ' + KAKAO_JS_KEY, 'KA': ka }
+    }).then(function(r){
+      return r.text().then(function(t){ return r.ok && !/domain mismatched/.test(t); });
+    }).then(function(ok){
+      kakaoDomain = ok; saveKakaoDomain(ok);
+    }, function(){
+      kakaoDomain = false; saveKakaoDomain(false);
+    });
+  }
   function stageShortName(st){
     const n = String(st.name || '').split(' · ')[0];
     return n || st.chip;
@@ -3016,6 +3065,12 @@
   function tryKakaoShare(){
     if(!state.stage) return false;
     if(popupHostileEnv()) return false;
+    if(kakaoDomain === false) return false;
+    if(kakaoDomain === null){
+      /* 아직 확인 전: 모바일은 실패 시 현재 탭이 카카오 오류 페이지로 넘어가므로 시도하지 않음 */
+      if(isMobileEnv()){ checkKakaoDomain(); return false; }
+      checkKakaoDomain();
+    }
     if(!kakaoReady()) return false;
     const payload = kakaoPayload();
     if(!payload) return false;
@@ -3092,7 +3147,9 @@
     copy: copyResult,
     kakaoPayload: kakaoPayload,
     kakaoReady: kakaoReady,
-    kakaoState: function(){ return window.__kakaoState; }
+    kakaoState: function(){ return window.__kakaoState; },
+    kakaoDomain: function(){ return kakaoDomain; },
+    checkKakaoDomain: checkKakaoDomain
   };
 
 })();
