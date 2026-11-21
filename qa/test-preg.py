@@ -58,10 +58,10 @@ with sync_playwright() as p:
     hub_txt = hub.inner_text()
     check("🤰 출산 전 · 임신 준비" in hub_txt, "허브 카드 제목 (%s)" % hub_txt.replace("\n", " / "))
     check("주수별 5문항" in hub_txt, "허브 카드 부제에 주수별 5문항")
-    check(pg.locator("#opMonthList .m-pick-card:not([data-preg])").count() == 10,
-          "기존 월령 카드 10개 유지 (%d)" % pg.locator("#opMonthList .m-pick-card:not([data-preg])").count())
-    check("임신 준비~36개월+" in pg.inner_text("#opIntro .sub2"), "인트로 배지 문구")
-    check("임신 준비~36개월+" in pg.title(), "title 문구 (%s)" % pg.title())
+    check(pg.locator("#opMonthList .m-pick-card:not([data-preg])").count() == 11,
+          "기존 월령 카드 10개 + 유아기 허브 유지 (%d)" % pg.locator("#opMonthList .m-pick-card:not([data-preg])").count())
+    check("임신 준비~72개월+" in pg.inner_text("#opIntro .sub2"), "인트로 배지 문구")
+    check("임신 준비~72개월+" in pg.title(), "title 문구 (%s)" % pg.title())
     no_overflow(pg, "첫 화면 430px")
     pg.screenshot(path=os.path.join(OUT, "01-step1-430.png"))
 
