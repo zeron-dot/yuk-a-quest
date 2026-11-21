@@ -297,6 +297,8 @@
   .btn.lav{background:var(--lav)}
   .btn.sky{background:var(--sky)}
   .btn.share{background:var(--butter);font-size:15px;letter-spacing:.2px}
+  .btn.share.kakao{background:#fee500;font-size:15px;letter-spacing:0}
+  .btn.share-more{margin-top:8px;font-size:13px;min-height:44px;box-shadow:3px 3px 0 var(--ink)}
   .share-note{margin:7px 0 2px;text-align:center;font-size:11px;color:var(--muted);line-height:1.4}
   .btn.small{font-size:12.5px;padding:7px 10px;min-height:38px;box-shadow:3px 3px 0 var(--ink)}
   .btn-row{display:flex;gap:8px;margin-top:12px}
@@ -778,6 +780,8 @@
     .jump-seg button{font-size:10px;padding:2px 4px}
   }
 </style>
+<!-- 카카오톡 공유용 JavaScript SDK v2. 네트워크가 막혀 있어도 아래 앱은 그대로 동작합니다(공유만 복사로 대체). -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" defer></script>
 </head>
 <body>
 <div class="device" id="app">
@@ -4066,6 +4070,43 @@
     }
   }
   var APP_URL = "https://zeron-dot.github.io/yuk-a-quest/";
+  var OG_IMAGE_URL = "https://zeron-dot.github.io/yuk-a-quest/og-image.png";
+  var KAKAO_JS_KEY = "d4be2f235a075f806a07dae08e768067";
+
+  /* 카카오 SDK는 '있으면 쓰고, 없으면 넘어가는' 방식 — 오프라인·차단 환경에서도 앱은 그대로 동작 */
+  function kakaoReady() {
+    try {
+      var K = window.Kakao;
+      if (!K || typeof K.init !== "function") return null;
+      if (typeof K.isInitialized === "function" && !K.isInitialized()) K.init(KAKAO_JS_KEY);
+      return K;
+    } catch (e) { return null; }
+  }
+  function kakaoShareApi() {
+    var K = kakaoReady();
+    if (!K) return null;
+    if (K.Share && typeof K.Share.sendDefault === "function") return K.Share;
+    if (K.Link && typeof K.Link.sendDefault === "function") return K.Link;  /* 구버전 SDK */
+    return null;
+  }
+  /* 성공하면 true(카톡 공유창 열림), 실패하면 false → 호출한 쪽이 다른 공유로 대체 */
+  function shareKakaoFeed(payload, fallbackTitle, fallbackBody) {
+    var api = kakaoShareApi();
+    if (!api) return false;
+    try {
+      var r = api.sendDefault(payload);
+      if (r && typeof r.then === "function") {
+        r.then(function () {}, function () { shareResult(fallbackTitle, fallbackBody); });
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  if (typeof document !== "undefined") {
+    window.addEventListener("load", function () { kakaoReady(); });
+  }
+
   function shareResult(title, body) {
     var full = body + "\n" + APP_URL;
     var copy = function () { copyText(full, "결과가 복사됐어요! 카톡방에 붙여넣기 하세요"); };
@@ -4844,8 +4885,9 @@
       careBoxHTML(st) +
       '<div id="resultCare">' + careBranchHTML(st) + "</div>" +
       '<div class="share-wrap">' +
-        '<button class="btn wide share" type="button" id="shareBtn">📤 내 결과 공유하기</button>' +
-        '<p class="share-note">카톡·문자로 오늘 결과를 보내보세요</p>' +
+        '<button class="btn wide share kakao" type="button" id="shareBtn">💬 카톡으로 결과 공유하기</button>' +
+        '<button class="btn wide share-more" type="button" id="shareMoreBtn">📤 다른 앱으로 공유 / 복사</button>' +
+        '<p class="share-note">카톡이 안 열리면 아래 버튼으로 보내거나 복사해요</p>' +
       "</div>" +
       '<div class="btn-row">' +
         '<button class="btn orange" type="button" id="againBtn">다시하기</button>' +
@@ -4864,12 +4906,26 @@
         " (" + score + "점). 오늘도 살아남았다 ㅋㅋ";
       copyText(line);
     });
+    /* ---- 공유: ①카카오톡 공식 공유 → ②공유 시트 → ③복사 ---- */
+    var shareTitle = "🌱 육아 퀘스트 · " + st.chip + " 오늘의 결과";
+    var shareDesc = charNameOf() + " Lv." + lv.lv + " " + lv.name + " (" + score + "점) · " +
+      (st.kind === "todd" ? "아이" : "아기") + " 컨디션 " + S.baby + " · 엄마 체력 " + S.mom;
+    var shareBody = shareTitle + "\n" + shareDesc + "\n너도 해볼래? 👇";
     $("#shareBtn").addEventListener("click", function () {
-      var body = "🌱 육아 퀘스트 · " + st.chip + " 오늘의 결과\n" +
-        charNameOf() + " Lv." + lv.lv + " " + lv.name + " · " + score + "점\n" +
-        (st.kind === "todd" ? "아이" : "아기") + " 컨디션 " + S.baby + " · 엄마 체력 " + S.mom + "\n" +
-        "너도 해볼래? 👇";
-      shareResult("육아 퀘스트 · " + st.chip + " 오늘의 결과", body);
+      var link = { mobileWebUrl: APP_URL, webUrl: APP_URL };
+      var payload = {
+        objectType: "feed",
+        content: { title: shareTitle, description: shareDesc, imageUrl: OG_IMAGE_URL, link: link },
+        buttons: [{ title: "나도 테스트 해보기", link: link }]
+      };
+      if (shareKakaoFeed(payload, shareTitle, shareBody)) {
+        toast("카톡 공유 창을 열었어요 💬");
+      } else {
+        shareResult(shareTitle, shareBody);   /* SDK 미로드·차단 → 공유 시트 또는 복사 */
+      }
+    });
+    $("#shareMoreBtn").addEventListener("click", function () {
+      shareResult(shareTitle, shareBody);
     });
     if (!keepScroll) $("#tab-quest").scrollTo({ top: 0, behavior: "auto" });
   }
