@@ -29,7 +29,8 @@
     --mom:#e0a13c;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{height:100%}
+  html{height:100%;width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  html,body{height:100%;width:100%;max-width:100%;overflow-x:hidden}
   body{
     margin:0;
     font-family:'QuestPixel','DungGeunMo','Apple SD Gothic Neo',sans-serif;
@@ -39,15 +40,21 @@
       radial-gradient(circle at 84% 100%, #e8f4e6 0%, rgba(232,244,230,0) 58%),
       #efe6d4;
     display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
+    min-width:0;
+    overflow:hidden;overflow-x:hidden;
     user-select:none;
   }
 
   /* ---------- 기기 본체 ---------- */
-  .stage{width:100%;max-width:360px;height:100dvh;max-height:820px;padding:6px;display:flex}
+  .stage{
+    width:100%;max-width:360px;min-width:0;margin:0 auto;
+    height:100vh;height:100dvh;max-height:820px;padding:6px;display:flex;justify-content:center;
+    padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right));
+  }
   .device{
     position:relative;
-    flex:1;display:flex;flex-direction:column;gap:6px;justify-content:space-between;
+    width:100%;min-width:0;
+    flex:1 1 auto;display:flex;flex-direction:column;gap:6px;justify-content:space-between;
     padding:7px 9px 5px;
     border-radius:34px;
     border:3px solid var(--shell-line);
@@ -59,7 +66,7 @@
       0 12px 26px rgba(120,88,45,.18),
       0 2px 0 rgba(255,255,255,.7);
   }
-  .shell-top{display:flex;align-items:center;justify-content:space-between;height:16px;padding:0 4px}
+  .shell-top{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;height:16px;padding:0 4px}
   .brand{
     font-size:9px;letter-spacing:1.2px;color:#a9926b;
     display:flex;align-items:center;gap:5px;
@@ -75,13 +82,13 @@
 
   /* ---------- 화면 ---------- */
   .screen{
-    position:relative;flex:1 1 auto;min-height:230px;max-height:392px;
+    position:relative;flex:1 1 auto;min-width:0;min-height:230px;max-height:392px;
     padding:5px;border-radius:16px;
     background:linear-gradient(180deg,#c8bda4,#b7ab90);
     box-shadow:inset 0 2px 5px rgba(70,55,30,.35), 0 1px 0 rgba(255,255,255,.6);
   }
   .lcd{
-    position:relative;height:100%;overflow:hidden;
+    position:relative;height:100%;min-width:0;overflow:hidden;
     border-radius:8px;
     background:var(--lcd);
     display:flex;flex-direction:column;
@@ -108,10 +115,10 @@
   .tint[data-p="survive"]{background:rgba(255,203,120,.22)}
 
   /* 상단 HUD */
-  .hud{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:5px 8px 3px;font-size:10px;color:#3a5546}
-  .hud-time{display:flex;align-items:center;gap:4px;font-size:11px}
+  .hud{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;padding:5px 8px 3px;font-size:10px;color:#3a5546}
+  .hud-time{display:flex;align-items:center;gap:4px;font-size:11px;flex:0 0 auto;white-space:nowrap}
   .hud-time .e{font-size:12px;line-height:1}
-  .hud-day{display:flex;align-items:center;gap:6px;color:#5c7767}
+  .hud-day{display:flex;align-items:center;gap:6px;color:#5c7767;min-width:0;white-space:nowrap}
   .dots{display:flex;gap:2px}
   .dots i{width:6px;height:6px;background:rgba(47,74,63,.16);display:block}
   .dots i.on{background:#31674b}
@@ -137,7 +144,7 @@
   .lcd[data-p="night"] .stars i:nth-child(2n), .lcd[data-p="dawn"] .stars i:nth-child(2n){animation-delay:1.1s}
   .sky{position:absolute;top:6px;right:10px;width:26px;height:26px;opacity:.9;z-index:1}
   .sky svg{width:100%;height:100%;display:block}
-  .chars{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:12px;width:100%;padding-bottom:10px;z-index:2}
+  .chars{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:12px;width:100%;min-width:0;padding-bottom:10px;z-index:2}
   .char{position:relative;width:calc(50% - 10px);aspect-ratio:18/19;display:flex;align-items:flex-end;transform-origin:50% 100%}
   .char svg{height:100%;width:100%;display:block;overflow:visible}
   .char::after{ /* 바닥 그림자 */
@@ -180,13 +187,13 @@
 
   /* 이벤트 박스 */
   .event-box{
-    position:relative;z-index:4;margin:0 5px 5px;padding:6px 8px 7px;
+    position:relative;z-index:4;min-width:0;margin:0 5px 5px;padding:6px 8px 7px;
     background:rgba(255,255,246,.72);
     border:2px solid rgba(47,74,63,.55);
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
     min-height:52px;display:flex;align-items:center;
   }
-  .event-box p{margin:0;font-size:10.5px;line-height:1.55;color:#284237;word-break:keep-all}
+  .event-box p{margin:0;font-size:10.5px;line-height:1.55;color:#284237;word-break:keep-all;overflow-wrap:break-word}
   .event-box p .lbl{color:#6d8a76}
 
   /* 돌발 이벤트 */
@@ -216,20 +223,20 @@
   @keyframes shake{0%,100%{transform:translateX(0)}18%{transform:translateX(-2px)}42%{transform:translateX(2px)}66%{transform:translateX(-1px)}84%{transform:translateX(1px)}}
 
   /* ---------- 게이지 ---------- */
-  .gauges{flex:0 0 auto;display:flex;flex-direction:column;gap:5px;padding:1px 3px 0}
-  .gauge{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 6px}
-  .g-head{grid-column:1/2;display:flex;align-items:baseline;justify-content:space-between;font-size:10px;color:#5b7062}
-  .g-name{display:flex;align-items:center;gap:3px;font-size:10.5px;color:#3c5646}
-  .g-val{position:relative;display:flex;align-items:center;gap:3px;font-size:10px;color:#4d6355}
+  .gauges{flex:0 0 auto;width:100%;min-width:0;display:flex;flex-direction:column;gap:5px;padding:1px 3px 0}
+  .gauge{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 6px;min-width:0}
+  .g-head{grid-column:1/2;display:flex;align-items:baseline;justify-content:space-between;gap:4px;min-width:0;overflow:hidden;font-size:10px;color:#5b7062}
+  .g-name{display:flex;align-items:center;gap:3px;min-width:0;font-size:10.5px;color:#3c5646;white-space:nowrap}
+  .g-val{position:relative;display:flex;align-items:center;gap:3px;flex:0 0 auto;margin-left:auto;font-size:10px;color:#4d6355;white-space:nowrap}
   .g-val b{font-size:12px;color:var(--ink)}
-  .g-track{grid-column:1/3;display:flex;gap:2px;height:16px;padding:2px;background:#e8dcc2;border:2px solid #d9c9a8;box-shadow:inset 0 1px 0 rgba(120,95,55,.12)}
+  .g-track{grid-column:1/3;display:flex;gap:2px;min-width:0;height:16px;padding:2px;background:#e8dcc2;border:2px solid #d9c9a8;box-shadow:inset 0 1px 0 rgba(120,95,55,.12)}
   .g-track i{flex:1;background:#dccdaf;display:block;transition:background .18s steps(2)}
   .g-track i.on{background:var(--c)}
   .g-track i.hot{background:var(--c);animation:blink .5s steps(1) infinite}
   .gauge.low .g-name{color:#a24b36}
   .gauge.low .g-val b{color:#a24b36}
   .delta{
-    position:absolute;right:calc(100% + 5px);top:1px;
+    position:absolute;right:calc(100% + 4px);top:1px;
     display:inline-block;font-size:9px;line-height:1;padding:2px 3px;white-space:nowrap;
     background:#fffdf3;border:1.5px solid #2f6b4d;color:#2f6b4d;
     animation:pop 1.35s steps(6,end) forwards;
@@ -238,9 +245,9 @@
   @keyframes pop{0%{opacity:0;transform:translateY(4px)}18%{opacity:1;transform:none}75%{opacity:1}100%{opacity:0;transform:translateY(-5px)}}
 
   /* ---------- 액션 ---------- */
-  .actions{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:0 1px}
+  .actions{flex:0 0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;width:100%;min-width:0;padding:0 1px}
   .act{
-    position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;
+    position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-width:0;
     padding:7px 8px 7px;min-height:76px;
     font-family:inherit;color:var(--ink);text-align:left;cursor:pointer;
     background:var(--cream);
@@ -248,9 +255,9 @@
     box-shadow:0 3px 0 rgba(47,74,63,.32), inset 0 2px 0 rgba(255,255,255,.85);
     transition:transform .05s steps(1), box-shadow .05s steps(1), filter .15s;
   }
-  .act .top{display:flex;align-items:center;gap:4px}
+  .act .top{display:flex;align-items:center;gap:4px;min-width:0}
   .act .ico{font-size:15px;line-height:1}
-  .act .name{font-size:10.5px;line-height:1.25;letter-spacing:-.3px;word-break:keep-all;overflow-wrap:break-word}
+  .act .name{font-size:10.5px;line-height:1.25;letter-spacing:-.3px;word-break:keep-all;overflow-wrap:break-word;min-width:0}
   .act .desc{font-size:8.5px;color:#7d9182;letter-spacing:-.3px;padding-left:19px;line-height:1.25;word-break:keep-all}
   .act[data-act="hug"]{background:#ffe6e4}
   .act[data-act="feed"]{background:#fff2d0}
@@ -268,7 +275,7 @@
   .act.pressed .flash{animation:flash .22s steps(2) 1}
 
   /* ---------- 하단 ---------- */
-  .shell-foot{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;height:18px;padding:0 4px}
+  .shell-foot{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;min-width:0;height:18px;padding:0 4px}
   .speaker{display:flex;gap:3px}
   .speaker i{width:3px;height:9px;background:#e2d0ab;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
   .foot-txt{font-size:8.5px;color:#a89a7e;letter-spacing:.2px}
@@ -344,7 +351,7 @@
     background:linear-gradient(180deg,#fffdf4,#fbf3dd);
     border:3px solid var(--ink);border-radius:4px;
     box-shadow:0 6px 0 rgba(20,35,26,.35), inset 0 0 0 2px #fff;
-    padding:10px 11px 11px;text-align:left;
+    padding:8px 10px 8px;text-align:left;
   }
   .card[data-branch="perfect"]{background:linear-gradient(180deg,#fffdf0,#f9eec6);border-color:#8a6a17}
   .card[data-branch="momdown"]{background:linear-gradient(180deg,#fff7f3,#fbe6de);border-color:#8a3f2c}
@@ -353,26 +360,26 @@
   .card[data-branch="perfect"] .verdict h3{color:#7a5a10}
   .card[data-branch="momdown"] .verdict h3{color:#963d28}
   .card[data-branch="babylow"] .verdict h3{color:#2f5c40}
-  .card-head{display:flex;align-items:flex-end;justify-content:space-between;gap:6px;border-bottom:2px dashed rgba(47,74,63,.35);padding-bottom:5px;margin-bottom:7px}
+  .card-head{display:flex;align-items:flex-end;justify-content:space-between;gap:6px;border-bottom:2px dashed rgba(47,74,63,.35);padding-bottom:4px;margin-bottom:5px}
   .card-head h2{margin:0;font-size:10.5px;letter-spacing:.2px;color:#3b5a47;white-space:nowrap;flex:0 0 auto}
   .card-head span{font-size:8px;color:#83998a;text-align:right;line-height:1.35;letter-spacing:-.2px}
-  .stat{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+  .stat{display:flex;align-items:center;gap:6px;margin-bottom:3px}
   .stat .s-name{font-size:10px;width:66px;color:#3c5646;white-space:nowrap}
   .stat .s-bar{flex:1;display:flex;gap:2px;height:11px;padding:1.5px;background:#e8dcc2;border:2px solid #d9c9a8}
   .stat .s-bar i{flex:1;background:#dccdaf}
   .stat.baby .s-bar i.on{background:var(--baby)}
   .stat.mom .s-bar i.on{background:var(--mom)}
   .stat .s-num{font-size:11px;width:34px;text-align:right;color:var(--ink)}
-  .verdict{display:flex;align-items:flex-start;gap:7px;margin:9px 0 6px}
+  .verdict{display:flex;align-items:flex-start;gap:7px;margin:6px 0 4px}
   .verdict .v-ico{font-size:22px;line-height:1}
   .verdict h3{margin:0 0 3px;font-size:13px;line-height:1.3;letter-spacing:-.4px;color:#26402f}
   .verdict .v-tag{font-size:8px;letter-spacing:.8px;color:#8a9d8d}
-  .card p.comment{margin:0 0 7px;font-size:9.5px;line-height:1.55;color:#3d5846;word-break:keep-all}
-  .tip{margin:0 0 8px;padding:7px 8px;background:#f1f7ea;border-left:3px solid #8fc3a2}
+  .card p.comment{margin:0 0 5px;font-size:9.5px;line-height:1.5;color:#3d5846;word-break:keep-all}
+  .tip{margin:0 0 6px;padding:5px 7px;background:#f1f7ea;border-left:3px solid #8fc3a2}
   .tip h4{margin:0 0 4px;font-size:9.5px;color:#3d6b51;letter-spacing:-.2px}
   .tip ul{margin:0;padding-left:11px}
-  .tip li{font-size:8.5px;line-height:1.5;color:#4b6553;word-break:keep-all;margin-bottom:2px}
-  .record{font-size:8.5px;color:#7d9384;border-top:1px dashed rgba(47,74,63,.3);padding-top:5px;margin-bottom:8px}
+  .tip li{font-size:8.5px;line-height:1.45;color:#4b6553;word-break:keep-all;margin-bottom:1px}
+  .record{font-size:8.5px;color:#7d9384;border-top:1px dashed rgba(47,74,63,.3);padding-top:4px;margin-bottom:5px}
   .card-btns{display:flex;gap:6px}
   .card-btns button{
     flex:1;padding:8px 0;font-family:inherit;font-size:10.5px;cursor:pointer;color:#223d2e;
@@ -381,6 +388,33 @@
   }
   .card-btns button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(47,74,63,.3)}
   .card-btns button.primary{background:linear-gradient(180deg,#c8efd4,#a3ddb7)}
+  .share{
+    display:block;width:100%;margin:0 0 4px;padding:6px 0;font-family:inherit;font-size:10.5px;cursor:pointer;color:#223d2e;
+    background:linear-gradient(180deg,#fff4d2,#ffe2a6);border:2px solid var(--ink);border-radius:3px;
+    box-shadow:0 3px 0 rgba(47,74,63,.3);letter-spacing:-.2px;
+  }
+  .share:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(47,74,63,.3)}
+
+  /* 토스트 */
+  .toast{
+    position:absolute;left:50%;bottom:64px;z-index:60;transform:translate(-50%,6px);
+    max-width:calc(100% - 22px);padding:7px 10px;
+    background:#2f4a3f;color:#f4fbf5;border:2px solid #20362a;border-radius:3px;
+    box-shadow:0 4px 0 rgba(20,35,26,.28);
+    font-size:9.5px;line-height:1.45;text-align:center;word-break:keep-all;letter-spacing:-.2px;
+    opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:344px){
+    .stage{padding:4px}
+    .device{padding:6px 7px 4px;border-radius:26px;gap:5px}
+    .actions{gap:4px}
+    .act{padding:6px 6px;min-height:70px}
+    .act .name{font-size:9.5px}
+    .act .desc{font-size:8px;padding-left:16px}
+    .g-name{font-size:9.5px}
+  }
 
   @keyframes bob{0%,49%{transform:translateY(0)}50%,100%{transform:translateY(-2px)}}
   @keyframes cry{0%{transform:translateX(-1px)}50%{transform:translateX(1px)}100%{transform:translateX(-1px)}}
@@ -611,6 +645,7 @@
               <ul id="tipList"></ul>
             </div>
             <div class="record" id="endRecord"></div>
+            <button id="shareBtn" class="share" type="button">📤 내 결과 공유하기</button>
             <div class="card-btns">
               <button id="againBtn" class="primary">다시 키우기</button>
               <button id="otherBtn">다른 시기 체험</button>
@@ -666,6 +701,7 @@
       <div class="foot-txt">10 TURN = 1 DAY</div>
       <button class="sound" id="soundBtn" aria-pressed="true" aria-label="효과음 켜기/끄기">♪</button>
     </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
 </div>
 <script>
@@ -680,10 +716,10 @@
            feed:{ico:'🍎', name:'크래커·미지근한 차',  desc:'냄새 없는 것부터 조금씩'},
            swap:{ico:'🤝', name:'남편에게 부탁하기',  desc:'한 가지는 넘겨요 (하루 2번)'},
            rest:{ico:'💛', name:'10분 눕기',          desc:'속이 가라앉는 시간'}}, ev:[
-      {t:'테스트 두 줄이 나왔다. 병원은 아직 안 갔는데 초음파 일정부터 잡아야 할 것 같다.',
+      {t:'테스트 두 줄이 나온 뒤로 아침마다 속이 울렁거린다. 일어나는 것부터가 일이다.',
        r:['아직 실감이 안 나지만 배에 손을 얹었다. 손바닥이 따뜻했다.',
           '크래커 한 조각. 물 대신 미지근한 차를 조금 마셨다.',
-          '남편에게 초음파 일정을 맡겼다. 검색하던 손이 멈췄다.',
+          '남편에게 아침 물을 부탁하고 조금 더 누웠다. 부엌에 서지 않으니 속이 편했다.',
           '10분 누우니 속이 조금 가라앉았다. 다리도 펴 봤다.']},
       {t:'점심 냄새만 맡아도 속이 울렁거린다. 오늘은 먹는 것부터가 일이다.',
        r:['배에 손 얹고 "오늘도 버텨줘" 말했다. 대답은 없어도 기분은 나았다.',
@@ -708,7 +744,7 @@
           '남편에게 물 한 컵을 부탁했다. 일어나지 않아도 되는 밤은 오랜만이다.',
           '안대를 쓰고 10분. 잠은 아니었지만 머리가 꺼졌다.']},
       {t:'자정이 넘었다. 물을 거의 못 마신 게 이제 생각났다.',
-       r:['냉장고까지 걸어가 물을 한 컵 마셨다. 속이 조금 가라앉았다.',
+       r:['배에 손을 얹고 물을 마셔야겠다고 말했다. 그 말에 일어날 힘이 났다.',
           '크래커 한 장을 물에 적셔 먹었다. 미지근해서 괜찮았다.',
           '남편에게 물을 부탁했다. 일어나지 않아도 되는 밤은 오랜만이다.',
           '물 한 모금만 마시고 다시 누웠다. 내일은 낮에 마시기로.']},
@@ -760,7 +796,7 @@
           {i:'🥤', n:'물로 바꿔 들고 버티기', d:'오늘만 넘기기', r:'물잔을 들고 버텼다. 아무도 눈치채지 못했지만 나는 지쳤다.', b:+8, m:-4},
           {i:'🚪', n:'자리에서 먼저 나오기', d:'인사하고 조용히', r:'인사하고 먼저 나왔다. 집에 오는 길이 가벼웠다.', b:+10, m:+8}]},
       {t:'배가 나오기 시작하니 앉는 자세마다 허리가 아프다.',
-       r:['쿠션을 허리에 받치고 앉았다. 배를 받쳐주니 무게가 덜하다.',
+       r:['옆으로 누워 배를 두드렸다. 허리를 덜 눌러서 숨이 편해졌다.',
           '저녁에 철분 있는 반찬을 챙겼다. 시금치와 달걀.',
           '장보기를 남편에게 맡겼다. 무거운 봉지는 오늘 안 든다.',
           '골반 스트레칭 10분. 일어설 때 통증이 줄었다.']},
@@ -771,12 +807,12 @@
           {i:'🤝', n:'남편 깨워 어깨 받기',    d:'뒷목이 굳어 있어요',        r:'남편이 어깨를 눌러줬다. 10분 만에 머리가 가벼워졌다.', b:+6,  m:+16, sw:true, f:{baby:'neutral', mom:'bright'}},
           {i:'🌙', n:'참고 다시 눕기',         d:'내일 병원에 물어보기',      r:'참고 누웠지만 잠은 늦게 왔다. 아침에 병원에 전화하기로 했다.', b:-6,  m:-4,  f:{baby:'fussy',   mom:'tired'}}]},
       {t:'자려는데 발목이 붓는다. 반지가 안 빠진다.',
-       r:['반지를 빼고 손을 주물렀다. 조금 가벼워졌다.',
-          '물은 줄이고 국물도 반만 먹기로 했다.',
+       r:['배에 손을 얹고 앉은 채로 발을 흔들었다. 조금 가벼워졌다.',
+          '짠 국물은 반만 남겼다. 물은 조금씩 나눠 마시기로.',
           '남편에게 다리를 주물러 달라고 했다. 10분이면 풀린다더라.',
           '발목 아래에 베개를 받치고 누웠다. 아침에 다시 보기로.']},
       {t:'다리에 쥐가 났다. 소리 지르지 않으려고 이를 물었다.',
-       r:['배를 감싸고 앉아 발끝을 당겼다. 쥐가 천천히 풀렸다.',
+       r:['배에 손을 얹고 숨을 고르며 발끝을 당겼다. 쥐가 천천히 풀렸다.',
           '물 한 모금. 쥐는 수분이 부족할 때도 온다더라.',
           '남편을 깨워 종아리를 눌러 달라고 했다. 오늘은 부탁해도 된다.',
           '발을 심장보다 높여 10분. 다리가 가벼워졌다.']},
@@ -786,11 +822,11 @@
           {i:'🤝', n:'남편에게 문자 보여주기', d:'같이 보기로', r:'남편에게 문자를 보여줬다. 그가 휴가를 내겠다고 했다.', b:+10, m:+14, sw:true},
           {i:'📄', n:'안내문 다시 읽기', d:'검색 대신 병원 자료', r:'병원 안내문을 다시 읽었다. 대부분 정밀 검사로 확인한다고 적혀 있었다.', b:+10, m:+6},
           {i:'🌙', n:'일단 다시 눕기', d:'아침에 생각하기', r:'문자를 끄고 다시 누웠다. 잠은 늦게 왔지만 아침에 결정하기로.', b:+2, m:+6}]},
-      {t:'19주. 배가 눈에 보이기 시작했다. 주변에 말해도 될까.',
-       r:['거울 앞에서 배를 봤다. 조금 웃었다.',
-          '아침에 단백질 하나. 오늘은 몸이 받아줬다.',
-          '"이제 말해도 될 것 같아." 남편과 그 이야기를 했다.',
-          '출근 전 10분 누워 다리 스트레칭. 오늘은 걸을 수 있겠다.']},
+      {t:'19주. 배가 눈에 보이기 시작한다. 걸을 때마다 허리가 무겁다.',
+       r:['배에 손을 얹고 걸었다. 아이가 같이 걷는 기분이 들었다.',
+          '아침에 단백질 하나를 챙겨 먹었다. 오늘은 몸이 받아줬다.',
+          '무거운 장바구니는 남편에게 넘겼다. 오늘은 안 든다.',
+          '출근 전 10분 다리 스트레칭. 허리가 조금 풀렸다.']},
       {t:'오늘 하루 다섯 번 앉았다 일어났다. 그게 다다.',
        r:['배에 손을 얹고 오늘을 정리했다. 아이는 잘 있다.',
           '저녁에 단백질 한 접시를 챙겨 먹었다.',
@@ -809,13 +845,13 @@
           '따뜻한 것 한 잔. 움직임을 기다리며 천천히.',
           '병원에 문의하는 전화는 남편이 맡았다.',
           '스트레칭 10분. 누워 있으니 태동이 더 잘 느껴졌다.']},
-      {t:'정밀초음파 예약. 꼭 받아야 하는 검사인지 다시 확인하고 싶다.',
-       r:['배에 손을 얹었다. 검사 결과가 어떻든 지금 이 아이.',
-          '점심은 철분제와 함께. 커피는 줄이기로.',
-          '남편이 검사 일정과 비용을 정리했다. 머릿속이 가벼워졌다.',
-          '점심시간 10분 눕기. 붓기가 덜했다.']},
+      {t:'오후가 되면 손이 저리고 배가 묵직하다. 앉아 있어도 편한 곳이 없다.',
+       r:['옆으로 누워 배를 두드렸다. 톡, 하고 답이 왔다.',
+          '철분제를 물과 함께 먹고 짠 국물은 반만 남겼다.',
+          '남편에게 저녁 준비를 부탁하고 소파에 기댔다.',
+          '발목 아래에 쿠션을 받치고 10분. 손 저림이 덜했다.']},
       {t:'오후가 되면 손발이 붓는다. 신발이 조인다.',
-       r:['앉은 자세에서 발을 조금 높였다. 조임이 덜해졌다.',
+       r:['배를 두드리니 톡, 대답이 왔다. 기다리는 동안 발 조임도 잊었다.',
           '국물을 반만 남겼다. 짠 것부터 줄이기로.',
           '남편에게 장보기를 맡겼다. 무거운 봉지는 오늘 안 든다.',
           '다리를 벽에 올리고 10분. 발목이 가벼워졌다.']},
@@ -826,7 +862,7 @@
           {i:'🤝', n:'남편에게 결과 보여주기', d:'재검 날 같이 가자고',       r:'남편이 재검 날 오전을 비웠다. 결과를 혼자 듣지 않아도 된다.', b:+8,  m:+14, sw:true, f:{baby:'neutral', mom:'bright'}},
           {i:'😶', n:'혼자 밤새 검색하기',     d:'답이 나올 때까지',          r:'새벽 두 시까지 검색했다. 답은 없고 무서운 글만 남았다.', b:-8,  m:-10, f:{baby:'fussy',   mom:'sweat'}}]},
       {t:'배가 커지니 자세를 바꿀 때마다 깬다. 세 번은 깬 것 같다.',
-       r:['옆잠 베개를 다시 잡았다. 배 아래를 받치니 덜 아팠다.',
+       r:['옆으로 누워 배를 두드렸다. 톡, 대답이 와서 마음이 놓였다.',
           '물 한 모금. 화장실은 두 번. 이게 이 시기의 밤이다.',
           '남편에게 물을 부탁했다. 밤에 일어나는 일을 나눴다.',
           '깬 김에 다리 스트레칭. 다시 누우니 조금 깊이 잤다.']},
@@ -848,11 +884,11 @@
           {i:'📞', n:'병원에 다시 물어보기', d:'얼마나 작은지', r:'전화해 물었다. 범위 안이라 다음 검진에서 보자고 했다.', b:+12, m:+8},
           {i:'🤝', n:'남편에게 말하고 상의', d:'혼자 담아두지 않기', r:'남편에게 문자를 보여줬다. 그는 "같이 갈게"라고만 했다.', b:+10, m:+14, sw:true},
           {i:'🔍', n:'검색 대신 안내문 보기', d:'무서운 글은 접기', r:'검색을 닫고 검진 안내문만 다시 읽었다.', b:+4, m:+10}]},
-      {t:'27주. 정밀초음파 결과를 받는 날. 마지막 한 번은.',
-       r:['초음파 사진을 배 위에 올려놨다. 오늘도 잘 자라고 있다.',
-          '검사 후 먹을 걸 챙겼다. 빵 하나와 물.',
-          '병원에 남편이 같이 갔다. 대기실에서 손을 잡았다.',
-          '결과를 기다리는 동안 화장실에서 10분 숨. 돌아오니 이름이 불렸다.']},
+      {t:'27주. 배가 한 뼘 더 나왔다. 앉았다 일어나기가 하루의 절반이다.',
+       r:['배를 두드리니 톡, 톡. 두 번 대답했다.',
+          '철분제와 물을 챙기고 잠깐 앉았다.',
+          '남편에게 저녁 준비를 넘겼다. 나는 다리만 올렸다.',
+          '다리를 벽에 올리고 10분. 발목이 가벼워졌다.']},
       {t:'오늘 하루 태동을 세어봤다. 열 번 남짓.',
        r:['배를 두드리니 한 번 톡 하고 답했다.',
           '저녁에 철분제와 물을 챙겼다.',
@@ -866,12 +902,12 @@
            feed:{ico:'🍲', name:'철분제·국물 챙기기',   desc:'붓는 날은 싱겁게'},
            swap:{ico:'🤝', name:'남편에게 부탁하기',   desc:'한 가지는 넘겨요 (하루 2번)'},
            rest:{ico:'💛', name:'다리 올리고 10분',     desc:'발목 붓기를 내려요'}}, ev:[
-      {t:'백일해 주사를 맞아야 하나. 맞으면 아기에게 좋다고 했다.',
-       r:['배에 손. 오늘 맞을 주사가 이 아이를 지킨다고 생각했다.',
-          '아침에 철분제와 함께 물 한 컵.',
-          '병원 예약 시간을 남편이 조정했다. 같이 가기로.',
-          '팔을 올리고 10분. 손 저림이 조금 덜했다.']},
-      {t:'출산용품 리스트가 끝이 없다. 다 사야 하는 건가.',
+      {t:'28주. 밤에 두 번 깨서 화장실을 갔다. 다시 잠들기가 어렵다.',
+       r:['배에 손을 얹고 아이에게 말을 걸었다. 잠이 조금 가셨다.',
+          '물을 조금 마시고 다시 누웠다. 많이 마시면 또 깬다.',
+          '남편에게 물을 부탁했다. 일어나지 않아도 되는 밤은 오랜만이다.',
+          '다리를 올리고 10분. 그 뒤로는 두 시간을 붙여 잤다.']},
+      {t:'출산용품 챙길 게 끝이 없다. 보면 볼수록 마음이 무겁다.',
        r:['리스트를 덮고 배를 쓰다듬었다. 다 사지 않아도 된다.',
           '점심은 국물 있는 걸로. 붓기가 있는 날은 짠 것부터 줄이기.',
           '리스트를 남편과 반씩 맡았다. 절반이 사라졌다.',
@@ -900,7 +936,7 @@
           {i:'💬', n:'이웃에 문자 남기기', d:'한 줄이면 충분', r:'옆집에 문자를 넣었다. "혹시 모르니 연락드려요."', b:+8, m:+10},
           {i:'🛌', n:'일단 누워 호흡부터', d:'지금은 아무 일 없다', r:'불을 끄고 호흡을 세며 누웠다. 오늘은 아무 일도 없었다.', b:+6, m:+12}]},
       {t:'다리에 쥐가 나고 손이 저리다. 뒤척이다 새벽이 왔다.',
-       r:['발끝을 당기고 배를 받쳤다. 쥐가 풀렸다.',
+       r:['배에 손을 얹고 다리를 폈다. 쥐가 천천히 풀렸다.',
           '물 한 모금. 영양제 이야기는 병원에 물어보기로.',
           '남편이 종아리를 주물렀다. 새벽 두 시에 고마웠다.',
           '스트레칭 10분. 그 뒤로는 깨지 않고 잤다.']},
@@ -910,7 +946,7 @@
           {i:'🥬', n:'철분 있는 반찬 챙기기', d:'시금치·달걀부터', r:'저녁에 시금치와 달걀을 챙겼다. 먹는 것부터 바꿨다.', b:+12, m:-2},
           {i:'🤝', n:'남편에게 결과 말하기', d:'장보기부터 나누기', r:'남편에게 결과를 말했다. 그가 철분 많은 걸 사 오겠다고 했다.', b:+10, m:+14, sw:true},
           {i:'📄', n:'검진 안내문 다시 보기', d:'수치 범위 확인', r:'안내문을 봤다. 조금 낮은 정도라 식이로 조정하라고 했다.', b:+8, m:+8}]},
-      {t:'35주. 이제 정말 얼마 안 남았다. 마지막 하나는.',
+      {t:'35주. 이제 정말 얼마 안 남았다. 오늘 챙길 마지막 한 가지는 몸을 눕히는 일이다.',
        r:['배에 손 얹고 "곧 만나자" 말했다. 배가 움찔했다.',
           '아침을 든든히. 오늘은 기운이 있다.',
           '출산가방 절반을 남편에게 맡겼다. 나머지는 내가.',
@@ -928,16 +964,16 @@
            feed:{ico:'🍫', name:'물·한 끼 챙기기',      desc:'진통 오기 전에 먹어둬요'},
            swap:{ico:'🤝', name:'남편에게 부탁하기',   desc:'한 가지는 넘겨요 (하루 2번)'},
            rest:{ico:'💛', name:'호흡 세며 10분',       desc:'들이쉬고 내쉬고'}}, ev:[
-      {t:'36주. 이제 매주 병원이다. 달력에 검사 날짜를 다 적었다.',
+      {t:'36주. 이제 매주 병원이다. 다녀온 날은 하루가 다 간다.',
        r:['배에 손 얹고 오늘 일정을 아이에게 읽어줬다.',
           '검사 가기 전 물 한 컵. 오늘은 금식이 없다.',
           '병원 동행은 남편이 조정했다. 혼자 가지 않는다.',
           '출발 전 10분 다리 스트레칭. 붓기가 덜했다.']},
-      {t:'출산가방이 반만 찼다. 아직 시간이 있다고 생각했는데.',
-       r:['가방을 펴 놓고 하나씩 넣었다. 아이 옷부터.',
-          '점심 먹고 남은 힘으로 서류와 충전기부터 챙겼다.',
-          '남편에게 나머지 반을 맡겼다. 오늘 다 채우지 않는다.',
-          '허리가 아파 앉았다. 가방은 내일 마저.']},
+      {t:'몸이 무겁고 손끝이 저리다. 오늘은 아무것도 못 할 것 같다.',
+       r:['배에 손을 얹고 오늘 할 수 있는 것만 세어봤다. 하나도 괜찮다.',
+          '물 한 컵과 남은 반찬으로 한 끼. 먹는 것부터 챙겼다.',
+          '남편에게 장보기를 부탁했다. 오늘은 무거운 봉지 안 든다.',
+          '호흡을 세며 10분. 손 저림이 조금 덜했다.']},
       {t:'오후 내내 배가 묵직하다. 앉아 있어도 편한 자리가 없다.',
        r:['배를 감싸고 자세를 바꿨다. 조금 편한 자리를 찾았다.',
           '물을 조금씩 나눠 마셨다. 한 번에 많이 마시면 더 무거웠다.',
@@ -961,18 +997,18 @@
           {i:'💊', n:'해열제 챙겨주고 재우기', d:'내가 할 수 있는 것', r:'해열제를 챙겨주고 방을 나왔다. 남편이 미안하다고 했다.', b:+10, m:-8},
           {i:'📞', n:'친정에 도움 요청', d:'오늘만 손 빌리기', r:'친정에 전화했다. 엄마가 다음 날 아침에 오겠다고 했다.', b:+10, m:+10},
           {i:'🎒', n:'출산가방 위치 다시 확인', d:'혼자서도 갈 수 있게', r:'가방을 현관 옆으로 옮겨뒀다. 혼자서도 들고 나갈 수 있게.', b:+8, m:+8}]},
-      {t:'10분 간격의 통증. 이게 진통인지 아닌지 아직 모르겠다.',
-       r:['배를 감싸고 호흡을 길게 했다. 통증이 지나가길 기다렸다.',
-          '물을 조금. 입이 말랐다.',
-          '남편이 손을 잡고 시간을 셌다. 간격이 줄고 있었다.',
-          '병원에 도착해 잠깐 앉았다. 검사실 불빛이 밝았다.']},
+      {t:'새벽에 몸이 무겁게 가라앉는다. 오늘은 아무 일정도 잡지 않기로 했다.',
+       r:['배에 손을 얹고 오늘 계획을 아이에게 읽어줬다. 하루가 조금 가벼워졌다.',
+          '물 한 컵, 남은 죽 한 그릇. 먹고 나니 기운이 났다.',
+          '남편에게 오늘 장보기를 맡겼다. 나는 집에 있기로.',
+          '호흡을 세며 10분. 몸의 힘이 조금 돌아왔다.']},
       {t:'예정일이 사흘 지났다. 병원은 다음 주까지 기다려 보자고 한다.',
        s:{n:'예정일이 지났다'},
        c:[{i:'👣', n:'하루 두 번 걷기', d:'계단과 평지로', r:'아침저녁으로 걸었다. 다음 날 배가 더 자주 뭉쳤다.', b:+12, m:-8},
           {i:'📞', n:'병원에 다시 문의', d:'언제까지 기다리는지', r:'전화해 물었다. 다음 주 초에 다시 보자고 했다.', b:+10, m:+8},
           {i:'🤝', n:'남편과 계획 정하기', d:'만약을 대비', r:'남편과 "언제든 출발" 규칙을 정했다. 가방은 차에 실었다.', b:+10, m:+14, sw:true},
           {i:'🧘', n:'태동 세고 기다리기', d:'아이는 잘 있다', r:'누워서 태동을 셌다. 열 번 넘게 움직였다.', b:+8, m:+10}]},
-      {t:'이제 정말 문 앞이다. 마지막 하나는.',
+      {t:'이제 정말 문 앞이다. 마지막으로 챙길 한 가지는 내 숨이다.',
        r:['배에 손을 얹고 "곧 만나자" 말했다. 통증이 와도 웃었다.',
           '출산 전 먹을 것 하나를 챙겼다. 초콜릿 한 조각.',
           '남편에게 가방을 맡기고 손을 잡았다.',
@@ -1056,7 +1092,7 @@
           {i:'🤝', n:'오전은 남편에게', d:'한 번은 넘겨요 (하루 2번)', r:'"오늘 오전은 내가 맡을게." 남편이 커피를 내렸다.', b:+10, m:+14, sw:true},
           {i:'💛', n:'침대에 다시 눕기', d:'5분이라도 눈 붙여요', r:'침대에 누웠다. 5분 뒤 아기가 깼지만, 그 5분이 약이었다.', b:-8, m:+18}]},
       {t:'오늘 몇 번 먹였는지 세다가 포기했다. 노트를 덮는다.',
-       r:['배에 손을 얹고 오늘을 마무리했다. 아기는 잘 자고 있다.',
+       r:['아기를 한 번 더 안고 냄새를 맡았다. 잘 자고 있다.',
           '마지막 수유를 하고 눕혔다.',
           '남편에게 밤 조를 부탁했다. 오늘은 통잠을 자고 싶다.',
           '노트는 내일 쓰기로. 지금은 눕는다.']}
@@ -1113,7 +1149,7 @@
           {i:'📞', n:'야간 진료 전화', d:'지금 가야 하는지', r:'야간 상담에 전화했다. 지금은 집에서 지켜보라고 했다.', b:+12, m:+8},
           {i:'🤝', n:'남편 깨워 함께 보기', d:'혼자 판단하지 않기', r:'남편을 깨웠다. 둘이 번갈아 재니 덜 무서웠다.', b:+10, m:+14, sw:true},
           {i:'💧', n:'물 먹이고 안아 재우기', d:'수분부터', r:'물을 조금 먹이고 안았다. 새벽 네 시에 열이 내렸다.', b:+12, m:-8}]},
-      {t:'이 주가 유난히 길었다. 오늘 한 가지만 더 챙긴다면.',
+      {t:'이 주가 유난히 길었다. 오늘 한 가지만 더 챙긴다면 나를 눕히는 일이다.',
        r:['아기를 안고 커튼을 열었다. 오늘은 어제보다 밝다.',
           '먹이는 시간을 노트에 적었다. 숫자가 있으면 마음이 놓인다.',
           '남편과 오전 조를 정했다. 말로 정해두니 덜 무섭다.',
@@ -1132,9 +1168,9 @@
           '먹이고 조금 놀다 눕혔다. 스스로 잠들기를 기다렸다.',
           '남편이 새벽 조를 맡아 한 번을 줄였다.',
           '아기가 자는 사이 10분 눕는다. 감시자가 사라진 10분.']},
-      {t:'터미타임 삼 초 만에 운다. 목을 세우는 연습이 필요한데.',
+      {t:'터미타임 3초 만에 운다. 목을 세우는 연습이 필요한데.',
        r:['무릎에 안아 세워보니 조금 버텼다. 울기 전까지 이 초.',
-          '젖병은 아니고, 옆에 누워 눈을 맞췄다. 터미타임 대신.',
+          '수유하고 조금 놀다가 옆에 누워 눈을 맞췄다. 그게 오늘의 터미타임.',
           '남편이 저녁 터미타임 담당. 나는 팔을 내려놨다.',
           '울음은 정상이라고 적어둔 메모를 다시 봤다. 숨을 골랐다.']},
       {t:'백일 손님이 왔다. 아기가 낯을 가려 안기자마자 운다.',
@@ -1165,7 +1201,7 @@
           '두 번째는 남편이 일어났다. 나는 한 번만 깼다.',
           '자는 사이 10분을 눈 붙였다. 그것도 잠이다.']},
       {t:'아기가 안 우는데도 새벽 두 시에 눈이 떠졌다. 몸이 먼저 배운다.',
-       r:['가만히 아기 얼굴을 봤다. 자고 있다. 다행이다.',
+       r:['아기를 살짝 안아 올렸다가 그대로 내려놓았다. 자고 있다. 다행이다.',
           '물 한 모금 마시고 다시 눕는다. 습관이 된 밤.',
           '남편이 아기를 일으켜 기저귀를 갈았다. 나는 누워 있었다.',
           '눈을 감고 10분. 그 뒤로는 두 시간을 붙여 잤다.']},
@@ -1219,7 +1255,7 @@
           {i:'🤝', n:'남편에게 상황 공유', d:'한 번은 넘겨요 (하루 2번)', r:'남편에게 사진을 보냈다. 그가 재료표를 정리해줬다.', b:+8, m:+12, sw:true}]},
       {t:'이앓이인지 잇몸을 자꾸 문지르고 밤에 갑자기 운다.',
        r:['안고 흔들었다. 식은 치발기를 물렸다.',
-          '잇몸에 차가운 물을 묻혀 닦아줬다. 잠깐 좋아했다.',
+          '차가운 간식을 조금 먹였다. 잇몸에 닿는 것만으로 좋아했다.',
           '남편이 저녁 재우기를 맡고 거실을 정리했다.',
           '이앓이 정점은 지나간다고 어디서 읽었다. 지금은 숨.']},
       {t:'뒤집기를 배운 뒤로 낮잠이 30분을 못 넘긴다. 깨면 바로 찡찡 모드.',
@@ -1245,10 +1281,10 @@
           {i:'💛', n:'기록만 남기고 넘기기', d:'먹은 양은 적어뒀어요', r:'먹은 양을 적고 노트를 덮었다. 다음 검진에 물어보기로.', b:-4, m:+14}]},
       {t:'새벽에 이앓이로 깼다. 잇몸을 눌러주고 다시 눕혔다.',
        r:['안고 잇몸을 눌러줬다. 울음이 잦아들었다.',
-          '치발기를 물려 다시 재웠다.',
+          '물을 조금 먹이고 치발기를 물려 다시 재웠다.',
           '남편에게 넘겼다. 새벽 네 시에 미안했지만 잠이 들었다.',
           '불을 끄고 10분 숨을 골랐다. 아기는 스스로 잠들었다.']},
-      {t:'뒤집기, 이유식, 이앓이. 하루에 다 겹쳤다. 마지막 하나는.',
+      {t:'뒤집기, 이유식, 이앓이. 하루에 다 겹쳤다. 오늘 마지막은 나를 눕히는 일이다.',
        r:['아기를 뒤집어 주고 같이 웃었다. 오늘도 했다.',
           '식탁을 대충 정리하고 이유식 하나를 더 시도했다.',
           '남편에게 오늘 있었던 일을 다 말했다. 혼자만 알기엔 많았다.',
@@ -1264,7 +1300,7 @@
 
     {id:'s4', kind:'infant', chip:'7~9개월', name:'앉기·배밀이·중기이유식', start:{baby:52,mom:44}, ev:[
       {t:'옆으로 앉히면 픽 쓰러진다. 쿠션을 사방에 둘러야 하나.',
-       r:['앉혀 놓고 뒤에 앉아 받쳐줬다. 3분 버텼다.',
+       r:['안아 올렸다가 무릎에 앉혀 받쳐줬다. 3분 버텼다.',
           '중기 이유식 한 그릇. 냄새는 괜찮다더니 잘 먹었다.',
           '남편이 아침 놀이를 맡았다. 나는 커피를 처음부터 다 마셨다.',
           '쿠션 챙기다 지쳐 잠깐 앉았다. 등이 아팠다.']},
@@ -1322,7 +1358,7 @@
           {i:'🧊', n:'부은 자리 냉찜질', d:'차갑게 10분만', r:'수건에 싸서 10분 얹어줬다. 아이가 조금 편해했다.', b:+12, m:-8},
           {i:'📞', n:'접종 병원에 문의', d:'부기 범위 확인', r:'전화해 물었다. 흔한 반응이라고 했다.', b:+10, m:+10},
           {i:'🤝', n:'남편 깨워 함께 보기', d:'한 번은 넘겨요 (하루 2번)', r:'남편이 일어나 같이 쟀다. 번갈아 재니 덜 무서웠다.', b:+10, m:+14, sw:true}]},
-      {t:'앉기, 배밀이, 낯가림. 이 시기가 제일 바쁘다는 걸 알았다. 마지막은.',
+      {t:'앉기, 배밀이, 낯가림. 이 시기가 제일 바쁘다는 걸 알았다. 마지막은 내 몫으로 남긴다.',
        r:['아이를 안고 바닥에서 굴렀다. 웃음소리가 컸다.',
           '숟가락 두 개는 직접 쥐여줬다. 먹는 건 일단 됐다.',
           '남편에게 아침을 맡기고 나는 화장실에서 10분.',
@@ -1394,7 +1430,7 @@
           '물을 조금 먹이고 다시 눕혔다.',
           '남편이 먼저 일어나 아기를 눕혔다.',
           '난간 쪽에 쿠션을 대고 10분 기다렸다. 스스로 앉았다 누웠다.']},
-      {t:'열두 달이 지났다. 첫돌 사진, 세 끼, 그리고 지금. 마지막 한 번.',
+      {t:'열두 달이 지났다. 첫돌 사진, 세 끼, 그리고 지금. 오늘 마지막으로 챙길 한 가지는 무엇일까.',
        r:['아기를 안고 거실을 걸었다. 다리로 서서 걸음마 직전이다.',
           '돌상 대신 작은 케이크를 굽기로. 재료를 적었다.',
           '남편과 첫돌 당일 역할을 정했다. 이제 남은 건 진행.',
@@ -1468,7 +1504,7 @@
           {i:'👀', n:'눈동자·구토 확인하기', d:'머리를 다쳤는지', r:'불 켜고 눈과 구토를 확인했다. 아무 이상이 없어 안심했다.', b:+12, m:+8},
           {i:'📞', n:'야간 상담 전화', d:'구토하면 바로 가야 해요', r:'야간 상담에 전화해 증상을 말했다. 지켜보라고 했다.', b:+12, m:+8},
           {i:'🤝', n:'남편 깨워 함께 보기', d:'한 번은 넘겨요 (하루 2번)', r:'남편과 번갈아 지켰다. 둘이니 덜 무서웠다.', b:+10, m:+14, sw:true}]},
-      {t:'해가 떴다. 오늘도 두 살과 한 판 붙었다. 마지막 선택은?',
+      {t:'해가 떴다. 오늘도 한 살과 한 판 붙었다. 마지막은 내 몫으로 남겨둔다.',
        r:['안고 창가에 섰다. 둘 다 기어이 살았다.',
           '첫 끼니를 차리고 내 커피도 같이 내렸다.',
           '"오늘 오전은 내가." 그 말에 하루가 달라졌다.',
@@ -1516,7 +1552,7 @@
           {i:'💛', n:'울음 두고 10분', d:'스스로 일어나요', r:'울음을 두고 10분 앉았다. 아이는 스스로 일어났다.', b:-8, m:+18}]},
       {t:'변기에 관심이 생겼는데 앉기만 하고 안 한다.',
        r:['변기 앞에서 안고 기다렸다. 오늘은 안 했다. 내일 다시.',
-          '기저귀를 다시 채웠다. 서두르지 않기로.',
+          '간식을 먹이며 기저귀를 채웠다. 서두르지 않기로.',
           '다음 주말 배변놀이는 남편이 맡기로.',
           '오늘은 아무것도 하지 않기로 했다. 10분 눕고 잊었다.']},
       {t:'자다가 이를 간다. 소리가 크다.',
@@ -1541,7 +1577,7 @@
           {i:'🗣', n:'아이에게 이유 물어보기', d:'혼내기 전에 듣기', r:'"왜 그랬어?" 물었다. "내 거였어"라고 했다.', b:+14, m:-6},
           {i:'🤝', n:'상대 부모 연락은 남편이', d:'한 번은 넘겨요 (하루 2번)', r:'남편이 상대 부모에게 전화했다. 사과는 같이 하기로.', b:+10, m:+14, sw:true},
           {i:'💬', n:'선생님께 방법 물어보기', d:'원에서 어떻게 하는지', r:'선생님께 물었다. 원에서는 말로 푸는 연습을 한다고 했다.', b:+10, m:+8}]},
-      {t:'하루 종일 "싫어"와 "더". 오늘도 살아남았다. 마지막 하나는.',
+      {t:'하루 종일 싫어와 더. 오늘도 살아남았다. 마지막 하나는 나를 눕히는 일이다.',
        r:['아이를 안고 창밖을 봤다. 조용한 3분.',
           '아침은 아이가 좋아하는 것만. 오늘은 싸우지 않는다.',
           '"오늘 오전은 내가." 남편이 말했다. 반나절이 열렸다.',
@@ -1619,7 +1655,7 @@
           '물을 조금 먹이고 덮었다.',
           '남편이 덮어줬다. 나는 그대로 잤다.',
           '덮는 걸 포기하고 얇은 이불로 바꿔줬다.']},
-      {t:'배변, 편식, 또래, 그리고 다음 아이. 마지막 한 번은.',
+      {t:'배변, 편식, 또래, 그리고 다음 아이. 마지막은 나를 눕히는 일이다.',
        r:['아이를 안고 다리 사이에 앉혔다. 오늘도 같이.',
           '아침엔 좋아하는 것, 저녁엔 새 것. 순서를 정했다.',
           '남편과 이번 주 역할을 나눠 적었다. 종이 한 장이면 됐다.',
@@ -1635,7 +1671,7 @@
     {id:'s9', kind:'todd', chip:'31~36개월', name:'기저귀 떼기·기관 고민', start:{baby:52,mom:42}, ev:[
       {t:'낮에는 성공인데 밤에는 기저귀다. 밤까지 기다려야 하나.',
        r:['잠든 아이를 변기에 한 번 앉혀봤다. 아무 일도 없었다.',
-          '아침 기저귀를 확인했다. 무거우면 밤은 아직 준비 단계.',
+          '아침 첫 끼를 먹이며 기저귀도 확인했다. 무거우면 밤은 준비 단계.',
           '남편이 밤 기저귀 교체를 맡았다. 나는 덜 깼다.',
           '밤 기저귀는 잠시 그대로 두기로. 오늘은 숨.']},
       {t:'어린이집 문 앞에서 매일 운다. 오늘도 선생님 품에 안겨 들어갔다.',
@@ -1681,7 +1717,7 @@
           {i:'📋', n:'발달 상담 예약하기', d:'한 달 뒤에 다시 보기', r:'상담을 예약했다. 대부분 일시적이라고 했다.', b:+12, m:+8},
           {i:'🗣', n:'천천히 다시 말해주기', d:'"엄마, 저기 봐"처럼', r:'"엄마, 저기 봐." 천천히 다시 말해줬다. 아이가 따라 했다.', b:+12, m:-2},
           {i:'🤝', n:'남편에게 이야기하기', d:'같이 지켜보기', r:'남편에게 말했다. 그도 며칠 지켜보자고 했다.', b:+8, m:+12, sw:true}]},
-      {t:'유치원과 어린이집 사이에서 결정을 못 하겠다. 마지막 한 번.',
+      {t:'유치원과 어린이집 사이에서 결정을 못 하겠다. 오늘 마지막으로 정할 한 가지는 무엇일까.',
        r:['아이를 안고 "어디가 좋아?" 물어봤다. "여기" 대답.',
           '아침은 아이가 좋아하는 것. 오늘은 싸우지 않는다.',
           '남편과 설명회 하나씩을 나눠 듣기로. 결정은 그 뒤.',
@@ -1765,7 +1801,7 @@
           '물을 조금 마시게 하고 다시 눕혔다.',
           '남편이 일어나 덮어줬다.',
           '그대로 두고 나왔다. 아침에 보니 잘 자고 있었다.']},
-      {t:'입학 첫 주가 끝났다. 마지막 하나는.',
+      {t:'입학 첫 주가 끝났다. 마지막 하나는 나를 눕히는 일이다.',
        r:['아이를 안고 오늘 하루를 물었다. 세 마디로 답했다.',
           '아침은 간단한 것으로. 오늘은 부엌을 덜 쓴다.',
           '"오늘 하원은 내가." 남편이 먼저 말했다.',
@@ -1838,7 +1874,7 @@
           {i:'📖', n:'거짓말 그림책 읽기', d:'이야기로 알려주기', r:'거짓말 다룬 그림책을 같이 읽었다. 아이가 조용히 들었다.', b:+10, m:-2},
           {i:'🤝', n:'남편과 대응 맞추기', d:'한쪽만 혼내면 안 돼요', r:'남편과 "혼내지 말고 묻기"로 맞췄다.', b:+10, m:+14, sw:true},
           {i:'💛', n:'한 번 넘어가기', d:'오늘은 넘기기', r:'오늘은 넘어갔다. 내일 다시 이야기하기로.', b:-4, m:+14}]},
-      {t:'만 네 살. 마지막 한 번은.',
+      {t:'만 네 살. 마지막 한 번은 내 몫으로 남긴다.',
        r:['아이를 안고 "오늘 뭐 하고 싶어" 물었다. 구체적인 대답이 왔다.',
           '아침은 선택 두 개로. 싸울 일을 줄인다.',
           '"오늘은 내가 데리러 갈게." 남편이 말했다.',
@@ -1854,7 +1890,7 @@
     {id:'k2', kind:'todd', chip:'61~72개월+', name:'초등 준비·규칙·독립심', start:{baby:55,mom:45}, ev:[
       {t:'혼자 입고 씻고 가방 싸는 게 아직 엄마 손이 필요하다.',
        r:['옷을 미리 골라 두고 아이가 입게 했다. 단추는 같이.',
-          '가방은 아이가 넣고 나는 확인만. 한 번에 안 되면 두 번.',
+          '아침을 먹이며 가방 넣기를 아이에게 맡겼다. 한 번에 안 되면 두 번.',
           '아침 준비는 남편 담당 하루. 나는 늦잠을 조금.',
           '다 못 해도 괜찮다고 정했다. 10분 숨.']},
       {t:'보드게임에서 자기가 이기려고 규칙을 바꾼다.',
@@ -1916,7 +1952,7 @@
           '물을 조금 마시게 하고 덮었다.',
           '남편이 덮어줬다.',
           '얇은 이불로 바꿔주고 나왔다.']},
-      {t:'일곱 살이 얼마 안 남았다. 마지막 한 번은.',
+      {t:'여섯 살이 얼마 안 남았다. 마지막 한 번은 나를 위해서도 쓴다.',
        r:['아이를 안고 오늘 하루를 시작했다. 아직 다섯 살이다.',
           '아침은 좋아하는 것. 준비는 오후에.',
           '"오늘은 내가 하원." 남편이 문 앞에서 말했다.',
@@ -2828,12 +2864,83 @@
   acts.forEach(function(a){
     a.addEventListener('click', function(){ chooseAction(a.getAttribute('data-act')); });
   });
+  /* ============ 결과 공유 ============ */
+  const SHARE_URL = 'https://zeron-dot.github.io/yuk-a-quest/tamagotchi.html';
+  let toastTimer = null;
+  function toast(msg){
+    const t = $('toast');
+    if(!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2400);
+  }
+  function shareSummary(withUrl){
+    const st = stageById(state.stage);
+    if(!st) return '';
+    const c = endingContent();
+    const g = GAUGE[st.kind];
+    const lines = [
+      '육아 다마고치 · ' + st.chip + ' ' + st.name + ' — 10턴 생존',
+      c.icon + ' ' + c.title + ' (' + c.tag + ')',
+      g.baby + ' ' + state.baby + '% · ' + g.mom + ' ' + state.mom + '%'
+    ];
+    if(withUrl) lines.push('나도 해보기 → ' + SHARE_URL);
+    return lines.join('\n');
+  }
+  function legacyCopy(txt){
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly','');
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, txt.length);
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e){ return false; }
+  }
+  function copyResult(){
+    const txt = shareSummary(true);
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){
+        toast('결과를 복사했어요. 카톡에 붙여넣기 해 보세요!');
+      }, function(){
+        toast(legacyCopy(txt) ? '결과를 복사했어요. 카톡에 붙여넣기 해 보세요!' : '복사가 안 됐어요. 버튼을 길게 눌러 복사해 주세요.');
+      });
+      return;
+    }
+    toast(legacyCopy(txt) ? '결과를 복사했어요. 카톡에 붙여넣기 해 보세요!' : '복사가 안 됐어요. 버튼을 길게 눌러 복사해 주세요.');
+  }
+  function shareResult(){
+    const txt = shareSummary(false);
+    if(state.phase !== 'end' || !state.stage){ toast('게임을 먼저 끝내 주세요!'); return; }
+    if(navigator.share){
+      try{
+        const p = navigator.share({title:'육아 다마고치 · 아기 & 엄마 듀얼 케어', text:txt, url:SHARE_URL});
+        if(p && p.then){
+          p.then(function(){}, function(err){
+            if(err && err.name === 'AbortError') return;
+            copyResult();
+          });
+        }
+        return;
+      }catch(e){
+        if(e && e.name === 'AbortError') return;
+      }
+    }
+    copyResult();
+  }
+
   $('againBtn').addEventListener('click', function(){
     const st = stageById(state.stage);
     resetGame();
     startGame(st);
   });
   $('otherBtn').addEventListener('click', function(){ resetGame(); });
+  $('shareBtn').addEventListener('click', shareResult);
   $('soundBtn').addEventListener('click', function(){
     state.sound = !state.sound;
     this.setAttribute('aria-pressed', state.sound ? 'true' : 'false');
