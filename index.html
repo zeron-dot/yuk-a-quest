@@ -22,7 +22,7 @@
 <meta name="twitter:description" content="출산 전 임신 주수 5구간부터 36개월+ 육아 10구간, 유아기 3구간까지. 엄마 성향 테스트·주수별 태교 도감·산전검사 체크까지 한 번에!">
 <meta name="twitter:image" content="https://zeron-dot.github.io/yuk-a-quest/og-image.png">
 <meta name="twitter:image:alt" content="육아 퀘스트 엄마 성향 테스트 화면">
-<meta name="theme-color" content="#151522">
+<meta name="theme-color" content="#fdf4e0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f7f1e3'/%3E%3Crect x='4' y='3' width='8' height='7' fill='%23ffd9b3'/%3E%3Crect x='5' y='5' width='2' height='2' fill='%232b2b3a'/%3E%3Crect x='9' y='5' width='2' height='2' fill='%232b2b3a'/%3E%3Crect x='3' y='10' width='10' height='4' fill='%237ecba1'/%3E%3C/svg%3E">
 <style>
   /* 둥근모꼴 계열 픽셀 폰트(Galmuri11, OFL)를 파일 안에 직접 넣어 인터넷 없이도 동일하게 보이도록 했습니다. */
@@ -32,30 +32,38 @@
     font-weight:normal;font-style:normal;font-display:block;
   }
   :root{
-    --ink:#2b2b2b;
-    --cream:#f7f1e3;
-    --paper:#fffdf6;
-    --mint:#7ecba1;
-    --mint-d:#3f9c72;
-    --apricot:#f5a97f;
-    --coral:#e8735a;
-    --lav:#b7a6e8;
-    --sky:#8fb8e0;
-    --night:#2b2b3a;
+    --ink:#2f4a3f;
+    --cream:#fffaf0;
+    --paper:#fffdf7;
+    --shell:#fdf4e0;
+    --shell-2:#f5e7ca;
+    --shell-line:#e6d3ae;
+    --mint:#bfe7d2;
+    --mint-d:#3f8f6c;
+    --butter:#ffe4a8;
+    --apricot:#ffd9a0;
+    --coral:#ec8069;
+    --lav:#d9caf2;
+    --sky:#c7e0f4;
+    --pink:#ffb6bb;
+    --lcd:#e3f4dc;
+    --night:#35584a;
     --muted:#7c7669;
-    --line:#2b2b2b;
+    --line:#2f4a3f;
     --radius:0px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   [hidden]{display:none !important}
   html,body{margin:0;padding:0}
   body{
-    background:#151522;
+    background-color:#efe6d4;
     background-image:
-      radial-gradient(circle at 12% 8%, rgba(183,166,232,.16) 0 2px, transparent 2px),
-      radial-gradient(circle at 78% 22%, rgba(126,203,161,.13) 0 2px, transparent 2px),
-      radial-gradient(circle at 40% 72%, rgba(245,169,127,.12) 0 2px, transparent 2px);
-    background-size:64px 64px, 80px 80px, 96px 96px;
+      radial-gradient(circle at 18% 0%, #fdf5e6 0%, rgba(253,245,230,0) 62%),
+      radial-gradient(circle at 84% 100%, #e8f4e6 0%, rgba(232,244,230,0) 58%),
+      radial-gradient(circle at 12% 8%, rgba(217,202,242,.22) 0 2px, transparent 2px),
+      radial-gradient(circle at 78% 22%, rgba(191,231,210,.5) 0 2px, transparent 2px),
+      radial-gradient(circle at 40% 72%, rgba(255,228,168,.45) 0 2px, transparent 2px);
+    background-size:100% 100%, 100% 100%, 64px 64px, 80px 80px, 96px 96px;
     color:var(--ink);
     font-family:'DungGeunMo','QuestPixel','Galmuri11','Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',monospace;
     display:flex;justify-content:center;
@@ -69,53 +77,60 @@
     position:relative;
     width:100%;max-width:440px;
     height:100dvh;
-    background:var(--cream);
+    border-radius:26px;
+    background:linear-gradient(180deg,#fffcf4 0%, var(--shell) 42%, var(--shell-2) 100%);
     display:flex;flex-direction:column;
     overflow:hidden;
-    box-shadow:0 0 0 3px var(--ink), 0 0 0 7px #3a3a52;
+    box-shadow:0 0 0 3px var(--shell-line), 0 0 0 8px #fbf1dc, 0 10px 24px 9px rgba(120,99,64,.18);
   }
   @media (min-width:520px){
-    .device{height:calc(100dvh - 32px);margin:16px 0;box-shadow:0 0 0 3px var(--ink), 0 0 0 7px #3a3a52, 10px 10px 0 7px rgba(0,0,0,.35)}
+    .device{height:calc(100dvh - 32px);margin:16px 0;box-shadow:0 0 0 3px var(--shell-line), 0 0 0 8px #fbf1dc, 10px 14px 0 9px rgba(120,99,64,.14)}
   }
   .device::after{
     content:"";position:absolute;inset:0;pointer-events:none;z-index:60;
-    background:repeating-linear-gradient(to bottom, rgba(43,43,43,.045) 0 1px, transparent 1px 4px);
+    background:repeating-linear-gradient(to bottom, rgba(47,74,63,.03) 0 1px, transparent 1px 4px);
     mix-blend-mode:multiply;
   }
 
   /* ---------- header ---------- */
   .app-head{
     flex:0 0 auto;
-    display:flex;align-items:center;gap:8px;
-    padding:10px 12px 8px;
-    background:var(--ink);color:var(--cream);
-    border-bottom:3px solid var(--ink);
+    display:flex;align-items:center;gap:7px;
+    padding:9px 10px 7px;
+    background:linear-gradient(180deg,#fff8e8 0%, #ffe9c6 100%);
+    color:var(--ink);
+    border-bottom:3px solid var(--shell-line);
   }
   .app-head .logo{
     width:30px;height:30px;flex:0 0 auto;
-    background:var(--cream);
+    background:var(--paper);border:2px solid var(--ink);
     display:grid;place-items:center;
-    box-shadow:3px 3px 0 rgba(0,0,0,.45);
+    box-shadow:2px 2px 0 rgba(47,74,63,.25);
   }
   .app-head h1{
-    margin:0;font-size:17px;letter-spacing:.5px;font-weight:normal;line-height:1.2;cursor:pointer;
+    margin:0;font-size:16px;letter-spacing:.5px;font-weight:normal;line-height:1.2;cursor:pointer;
   }
   .app-head .logo{cursor:pointer}
   .app-head .sub{
-    margin:0;font-size:10.5px;color:#cfc7b4;letter-spacing:.3px;
+    margin:0;font-size:10px;color:#8a7c60;letter-spacing:.3px;
   }
+  .head-tt{min-width:0;flex:1 1 auto}
+  .app-head .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .stage-chip{
-    margin-left:6px;font-size:10px;line-height:1.25;text-align:center;
-    padding:4px 6px;border:2px solid #cfc7b4;color:#f7f1e3;letter-spacing:.5px;
+    margin-left:2px;font-size:9.5px;line-height:1.25;text-align:center;
+    padding:3px 5px;border:2px solid var(--mint-d);background:var(--paper);color:var(--ink);letter-spacing:.4px;
   }
-  .home-btn{
-    margin-left:auto;display:flex;align-items:center;gap:3px;
+  .home-btn,.sound-btn{
+    display:flex;align-items:center;justify-content:center;gap:3px;
     font-family:inherit;font-size:10.5px;line-height:1.2;letter-spacing:.3px;
-    padding:5px 7px;border:2px solid #cfc7b4;background:transparent;color:#f7f1e3;
-    cursor:pointer;min-height:34px;white-space:nowrap;
+    padding:5px 6px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+    cursor:pointer;min-height:34px;white-space:nowrap;box-shadow:2px 2px 0 rgba(47,74,63,.22);
   }
-  .home-btn:active{background:#3a3a52;transform:translate(1px,1px)}
-  .stage-chip b{display:block;font-size:13px;letter-spacing:1px}
+  .home-btn{margin-left:auto}
+  .sound-btn{width:32px;flex:0 0 auto;font-size:15px;padding:2px 0}
+  .home-btn:active,.sound-btn:active{background:var(--butter);transform:translate(1px,1px);box-shadow:1px 1px 0 rgba(47,74,63,.22)}
+  .sound-btn[aria-pressed="false"]{color:#b0a48c;text-decoration:line-through;background:#f7efdd}
+  .stage-chip b{display:block;font-size:12.5px;letter-spacing:1px}
 
   /* ---------- screens ---------- */
   .screen{
@@ -138,7 +153,7 @@
     font-size:10.5px;color:var(--muted);letter-spacing:.6px;margin-bottom:7px;
   }
   .prog-chip{
-    background:var(--ink);color:var(--cream);padding:2px 7px;font-size:11px;letter-spacing:1px;
+    background:var(--mint-d);color:#fff;padding:2px 7px;font-size:11px;letter-spacing:1px;
   }
   .prog-chip b{font-size:13px}
   .stat{display:flex;align-items:center;gap:7px;margin-bottom:6px}
@@ -150,17 +165,17 @@
   .stat-line .v{font-size:11px;color:var(--muted)}
   .stat-line .v b{font-size:14px;color:var(--ink)}
   .bar{
-    position:relative;height:14px;background:#e7dfcc;
+    position:relative;height:14px;background:#efe7d4;
     border:2px solid var(--ink);overflow:hidden;
   }
   .bar > i{
     display:block;height:100%;width:70%;
     transition:width .45s steps(8,end);
-    box-shadow:inset 0 -3px 0 rgba(0,0,0,.13);
+    box-shadow:inset 0 -3px 0 rgba(0,0,0,.1);
   }
-  .bar.baby > i{background:var(--mint)}
-  .bar.mom > i{background:var(--apricot)}
-  .bar.low > i{background:var(--coral)}
+  .bar.baby > i{background:linear-gradient(180deg,#9ee4bf,#69c99c)}
+  .bar.mom > i{background:linear-gradient(180deg,#ffe0af,#f2bf74)}
+  .bar.low > i{background:linear-gradient(180deg,#ffb9a6,#e87c66)}
   .bar > i::after{
     content:"";position:absolute;inset:0;
     background:repeating-linear-gradient(to right, transparent 0 6px, rgba(255,255,255,.28) 6px 8px);
@@ -183,15 +198,15 @@
     flex:0 0 auto;font-family:inherit;font-size:11.5px;color:var(--ink);
     background:var(--paper);border:2px solid var(--ink);
     padding:6px 9px;cursor:pointer;position:relative;letter-spacing:.2px;
-    box-shadow:2px 2px 0 var(--ink);text-align:left;line-height:1.3;
+    box-shadow:2px 2px 0 var(--shell-line);text-align:left;line-height:1.3;
   }
-  .mchip:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
-  .mchip[aria-pressed="true"]{background:var(--ink);color:var(--cream);box-shadow:none;transform:translate(2px,2px)}
+  .mchip:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--shell-line)}
+  .mchip[aria-pressed="true"]{background:var(--mint);color:var(--ink);box-shadow:none;transform:translate(2px,2px);border-color:var(--mint-d)}
   .mchip b{display:block;font-size:12px;font-weight:normal;letter-spacing:.3px}
   .mchip span{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.2px}
-  .mchip[aria-pressed="true"] span{color:#cfc7b4}
+  .mchip[aria-pressed="true"] span{color:#3d6b57}
   .mchip .best{display:inline-block;font-size:9px;margin-top:2px;padding:0 3px;border:1.5px solid currentColor;color:var(--mint-d)}
-  .mchip[aria-pressed="true"] .best{color:#cfc7b4}
+  .mchip[aria-pressed="true"] .best{color:#2f6b52}
 
   /* ---------- character strip ---------- */
   .char-strip{
@@ -417,15 +432,15 @@
 
   /* ---------- result ---------- */
   .result-badge{
-    text-align:center;background:var(--ink);color:var(--cream);
-    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    text-align:center;background:linear-gradient(180deg,#fff6dc 0%, #ffe6b0 100%);color:var(--ink);
+    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--shell-line);
     padding:14px 10px 12px;margin-bottom:12px;
   }
-  .result-badge .lv{font-size:12px;letter-spacing:3px;color:#cfc7b4}
+  .result-badge .lv{font-size:12px;letter-spacing:3px;color:#a4682f}
   .result-badge .nm{font-size:21px;letter-spacing:1px;margin:3px 0 2px;line-height:1.35}
-  .result-badge .lv2{font-size:15px;letter-spacing:1px;margin:2px 0 6px;color:#f7f1e3}
-  .result-badge .stars{font-size:13px;letter-spacing:3px;color:#f9e6a9}
-  .result-badge .ch{padding:10px 0 0;border-top:2px solid #55556f;margin-top:9px;font-size:12px;color:#e9e2d1;line-height:1.5;letter-spacing:.2px}
+  .result-badge .lv2{font-size:15px;letter-spacing:1px;margin:2px 0 6px;color:#4a6a5b}
+  .result-badge .stars{font-size:13px;letter-spacing:3px;color:#e0733f}
+  .result-badge .ch{padding:10px 0 0;border-top:2px dashed #dcc79c;margin-top:9px;font-size:12px;color:#5f594d;line-height:1.5;letter-spacing:.2px}
   .score-box{
     display:flex;align-items:stretch;background:var(--paper);border:3px solid var(--ink);
     box-shadow:4px 4px 0 var(--ink);margin-bottom:12px;
@@ -458,28 +473,33 @@
   /* ---------- opening ---------- */
   .opening{
     position:absolute;inset:0;z-index:55;background:var(--cream);
+    background-image:linear-gradient(180deg,#fffaf0 0%, #fdf4e2 100%);
     display:flex;flex-direction:column;
     overflow-y:auto;overscroll-behavior:contain;
     padding:14px 14px calc(16px + env(safe-area-inset-bottom,0px));
   }
   .opening[hidden]{display:none}
   .op-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .op-head .op-snd{margin-left:auto}
+  .op-head .op-snd[aria-pressed="false"]{color:#b0a48c;text-decoration:line-through;background:#f7efdd}
+  .op-head .op-snd{box-shadow:2px 2px 0 var(--shell-line);border:2px solid var(--ink);border-radius:0}
   .op-head .logo{
-    width:30px;height:30px;flex:0 0 auto;background:var(--ink);
-    display:grid;place-items:center;box-shadow:3px 3px 0 rgba(0,0,0,.25);
+    width:30px;height:30px;flex:0 0 auto;background:var(--paper);border:2px solid var(--ink);
+    display:grid;place-items:center;box-shadow:2px 2px 0 var(--shell-line);
   }
   .op-head .ttl{font-size:15px;letter-spacing:.4px}
-  .op-head .sub2{font-size:10px;color:var(--muted);letter-spacing:.4px}
+  .op-head .sub2{font-size:10px;color:var(--muted);letter-spacing:.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .op-head > div{min-width:0}
   .op-hero{
-    background:var(--night);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
-    padding:12px;margin-bottom:12px;color:var(--cream);text-align:center;
+    background:linear-gradient(180deg,#eef9f1 0%, var(--lcd) 100%);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--shell-line);
+    padding:12px;margin-bottom:12px;color:var(--ink);text-align:center;
   }
-  .op-hero svg{width:100%;height:96px;display:block;image-rendering:pixelated}
+  .op-hero svg{width:100%;height:96px;display:block;image-rendering:pixelated;border:2px solid var(--ink)}
   .op-title{
     margin:12px 0 2px;font-size:19px;letter-spacing:.5px;line-height:1.4;
   }
   .op-lead{
-    margin:0;font-size:12.5px;color:#cfc7b4;line-height:1.55;
+    margin:0;font-size:12.5px;color:#4a6a5b;line-height:1.55;
   }
   .op-body{
     background:var(--paper);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
@@ -507,13 +527,13 @@
   .m-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .m-pick.one{grid-template-columns:1fr}
   .m-pick-card.preg-hub{
-    grid-column:1/-1;background:#fdf1e3;border-left-width:9px;border-left-color:var(--apricot);
+    grid-column:1/-1;background:linear-gradient(180deg,#fff6e6,#fff0d6);border-left-width:9px;border-left-color:var(--apricot);
   }
   .m-pick-card.preg-hub .no{color:#a45b33}
   .m-pick-card.preg-hub .ch{font-size:16px}
   .m-pick-card.preg-hub .th{color:#a45b33}
   .m-pick-card.tod-hub{
-    grid-column:1/-1;background:#eaf6ef;border-left-width:9px;border-left-color:var(--mint-d);
+    grid-column:1/-1;background:linear-gradient(180deg,#eefaf2,#e2f5ea);border-left-width:9px;border-left-color:var(--mint-d);
   }
   .m-pick-card.tod-hub .no{color:var(--mint-d)}
   .m-pick-card.tod-hub .ch{font-size:16px}
@@ -521,11 +541,11 @@
   .m-pick-card .ageb{font-size:11px;color:var(--muted);letter-spacing:0}
   .m-pick-card{
     display:flex;flex-direction:column;text-align:left;font-family:inherit;color:var(--ink);
-    background:var(--paper);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    background:var(--paper);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--shell-line);
     padding:8px 8px 7px;cursor:pointer;min-height:86px;line-height:1.35;letter-spacing:-.1px;
   }
   .m-pick-card:hover{background:#fff8e6}
-  .m-pick-card:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .m-pick-card:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--shell-line)}
   .m-pick-card .no{font-size:8.5px;color:var(--muted);letter-spacing:1.2px}
   .m-pick-card .ch{font-size:14.5px;letter-spacing:.3px;margin-top:1px}
   .m-pick-card .th{font-size:10.5px;color:var(--mint-d);line-height:1.35}
@@ -592,8 +612,8 @@
     padding:14px 12px;margin-bottom:12px;text-align:center;
   }
   .charbadge{
-    width:104px;height:104px;margin:2px auto 10px;background:var(--ink);
-    border:3px solid var(--ink);box-shadow:4px 4px 0 #b7a6e8;display:grid;place-items:center;
+    width:104px;height:104px;margin:2px auto 10px;background:var(--night);
+    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--lav);display:grid;place-items:center;
   }
   .charbadge svg{width:72px;height:72px;image-rendering:pixelated;display:block}
   .charbox .kicker{font-size:10.5px;letter-spacing:2px;color:var(--muted)}
@@ -614,18 +634,18 @@
 
   /* ---------- tab bar ---------- */
   .tabbar{
-    flex:0 0 auto;display:flex;background:var(--ink);
-    border-top:3px solid var(--ink);padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px));
-    gap:3px;
+    flex:0 0 auto;display:flex;background:linear-gradient(180deg,#ffeccb,#ffe0ae);
+    border-top:3px solid var(--shell-line);padding:5px 4px calc(5px + env(safe-area-inset-bottom,0px));
+    gap:4px;
   }
   .tab{
     flex:1 1 0;font-family:inherit;font-size:11px;line-height:1.25;
-    background:#3a3a52;color:#cfc7b4;border:2px solid #55556f;
+    background:var(--paper);color:#7d7566;border:2px solid var(--shell-line);
     padding:7px 2px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;
-    min-height:52px;justify-content:center;
+    min-height:52px;justify-content:center;box-shadow:1px 2px 0 rgba(120,99,64,.12);
   }
   .tab .em{font-size:16px;line-height:1}
-  .tab[aria-selected="true"]{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+  .tab[aria-selected="true"]{background:var(--mint);color:var(--ink);border-color:var(--ink);box-shadow:none}
   .tab:active{transform:translateY(1px)}
 
   .foot-note{
@@ -667,8 +687,8 @@
   .branch-lead{margin:0 0 8px;font-size:11px;color:var(--muted);line-height:1.5}
 
   .carebox{
-    background:#fdf1e3;border:3px solid var(--ink);border-left-width:9px;border-left-color:var(--apricot);
-    box-shadow:4px 4px 0 var(--ink);padding:11px;margin-bottom:12px;
+    background:linear-gradient(180deg,#fff6e6,#fff0d8);border:3px solid var(--ink);border-left-width:9px;border-left-color:var(--apricot);
+    box-shadow:4px 4px 0 var(--shell-line);padding:11px;margin-bottom:12px;
   }
   .carebox .lbl{display:block;font-size:11px;letter-spacing:.4px;color:#a45b33;margin-bottom:5px}
   .carebox ul{margin:0;padding-left:15px}
@@ -682,7 +702,7 @@
   .carebox .momline .em{font-size:13px}
   .carebox .momline b{font-weight:normal;background:#ffd9a8;padding:0 2px}
 
-  .care-sheet{position:absolute;inset:0;z-index:70;background:rgba(20,20,32,.72);display:flex;align-items:center;justify-content:center;padding:18px}
+  .care-sheet{position:absolute;inset:0;z-index:70;background:rgba(47,74,63,.55);display:flex;align-items:center;justify-content:center;padding:18px}
   .care-sheet[hidden]{display:none!important}
   .care-dialog{width:100%;max-width:330px;background:var(--paper);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:14px 13px}
   .care-dialog h2{margin:0 0 4px;font-size:16px;font-weight:normal;line-height:1.4}
@@ -704,6 +724,54 @@
   .mom-cta{background:linear-gradient(180deg,#ffe9c9,#ffd9a8)}
   .mominfo{margin:0 0 10px;font-size:11px;color:var(--muted);line-height:1.5}
   .mom-badge{font-size:44px;line-height:1}
+
+  /* ---------- 바로 찾기 · 주수/개월수 숫자 입력 ---------- */
+  .jump{
+    background:linear-gradient(180deg,#fff9ec,#fff2d9);
+    border:3px solid var(--ink);border-left-width:9px;border-left-color:var(--butter);
+    box-shadow:4px 4px 0 var(--shell-line);
+    padding:10px 11px 11px;margin-bottom:12px;
+  }
+  .jump-hd{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+  .jump-ttl{font-size:13px;letter-spacing:.2px}
+  .jump-hd .sub3{margin-left:auto;font-size:9.5px;color:var(--muted)}
+  .jump-seg{display:flex;gap:6px;margin-bottom:8px}
+  .jump-seg button{
+    flex:1 1 0;font-family:inherit;font-size:12px;color:var(--ink);background:var(--paper);
+    border:2.5px solid var(--ink);padding:7px 4px;min-height:40px;cursor:pointer;box-shadow:2px 2px 0 var(--shell-line);
+  }
+  .jump-seg button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-d);box-shadow:none;transform:translate(2px,2px)}
+  .jump-seg button[data-jump-mode="preg"][aria-pressed="true"]{background:var(--butter);border-color:#d9a94e}
+  .jump-row{display:flex;gap:7px;align-items:stretch}
+  .jump-field{
+    flex:1 1 auto;display:flex;align-items:center;gap:5px;min-width:0;
+    background:#fff;border:2.5px solid var(--ink);padding:0 8px;
+  }
+  .jump-field input{
+    flex:1 1 auto;width:100%;min-width:0;font-family:inherit;font-size:19px;color:var(--ink);
+    background:transparent;border:0;padding:8px 0;text-align:right;letter-spacing:.5px;
+    -moz-appearance:textfield;appearance:textfield;
+  }
+  .jump-field input::-webkit-outer-spin-button,.jump-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .jump-field input:focus{outline:none}
+  .jump-field:focus-within{outline:3px solid var(--mint);outline-offset:1px}
+  .jump-field .unit{flex:0 0 auto;font-size:12px;color:#5f594d}
+  .jump-go{flex:0 0 auto;font-size:13px;padding:9px 12px;min-height:46px;background:var(--mint);box-shadow:3px 3px 0 var(--shell-line)}
+  .jump-quick{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:8px}
+  .jump-quick .lb{font-size:9.5px;color:var(--muted)}
+  .jump-quick button{
+    font-family:inherit;font-size:10.5px;color:var(--ink);background:var(--paper);
+    border:1.5px solid var(--ink);padding:3px 6px;cursor:pointer;min-height:30px;
+  }
+  .jump-quick button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-d)}
+  .jump-quick button:active{transform:translate(1px,1px)}
+  .jump-preview{margin:8px 0 0;font-size:10.5px;line-height:1.45;color:#5f594d;min-height:15px}
+  .jump-preview b{font-weight:normal;background:#ffe9b8;padding:0 3px}
+  .jump-preview.err{color:#a8442f}
+  @media (max-width:359px){
+    .jump-go{font-size:12px;padding:9px 8px}
+    .jump-field input{font-size:17px}
+  }
 </style>
 </head>
 <body>
@@ -713,10 +781,11 @@
     <div class="logo" aria-hidden="true">
       <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges"><use href="#i-baby"/></svg>
     </div>
-    <div>
+    <div class="head-tt">
       <h1>육아 퀘스트</h1>
       <p class="sub" id="headSub">임신 준비~72개월+ · 구간별 5문항</p>
     </div>
+    <button class="sound-btn" type="button" id="soundBtn" aria-pressed="true" aria-label="효과음 끄기" title="효과음 켜기/끄기">♪</button>
     <button class="home-btn" type="button" id="homeBtn" aria-label="첫 화면(월령 선택)으로 돌아가기">🏠 홈</button>
     <div class="stage-chip"><span id="stageChipLabel">STAGE</span><b id="stageChip">01</b></div>
   </header>
@@ -858,6 +927,33 @@
           <div class="ttl">육아 퀘스트</div>
           <div class="sub2">임신 준비~72개월+ · 18개 구간 · 구간별 5문항</div>
         </div>
+        <button class="sound-btn op-snd" type="button" data-sound="1" aria-pressed="true" aria-label="효과음 끄기" title="효과음 켜기/끄기">♪</button>
+      </div>
+
+      <!-- 바로 찾기 · 주수/개월수 숫자 입력 -->
+      <div class="jump" id="opJump">
+        <div class="jump-hd">
+          <span class="jump-ttl">🔎 내 아기 · 임신 주수 바로 찾기</span>
+          <span class="sub3">숫자만 넣으면 그 구간으로 직행</span>
+        </div>
+        <div class="jump-seg" role="group" aria-label="임신 중 · 육아 중 선택">
+          <button type="button" data-jump-mode="preg" aria-pressed="false">🤰 임신 중</button>
+          <button type="button" data-jump-mode="baby" aria-pressed="true">👶 육아 중</button>
+        </div>
+        <div class="jump-row">
+          <label class="jump-field" for="jumpNum">
+            <input id="jumpNum" type="number" inputmode="numeric" min="0" max="72" step="1" placeholder="26" aria-label="임신 주수 또는 아기 개월수" autocomplete="off">
+            <span class="unit" id="jumpUnit">개월</span>
+          </label>
+          <button class="btn jump-go" type="button" id="jumpGo">바로 시작 ▶</button>
+        </div>
+        <div class="jump-quick" id="jumpQuick" hidden>
+          <span class="lb">0개월이면</span>
+          <button type="button" data-quick="s0">~30일</button>
+          <button type="button" data-quick="s1">31~60일</button>
+          <button type="button" data-quick="s2">61~100일</button>
+        </div>
+        <p class="jump-preview" id="jumpPreview">개월수를 넣으면 갈 구간을 미리 보여드려요.</p>
       </div>
 
       <div class="op-hero">
@@ -3804,7 +3900,8 @@
     letters: "yukaQuest.letters.v3",
     reports: "yukaQuest.reports.v3",
     care: "yukaQuest.care.v3",
-    mom: "yukaQuest.mom.v3"
+    mom: "yukaQuest.mom.v3",
+    sound: "yukaQuest.sound.v3"
   };
 
   /* ---------------- helpers ---------------- */
@@ -3830,6 +3927,82 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+
+  /* ---------------- 8비트 효과음 (Web Audio · 끄기 가능) ---------------- */
+  var SFX = { on: store(KEYS.sound) === false ? false : true, ctx: null };
+
+  function sfxUnlock() {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!SFX.ctx) SFX.ctx = new AC();
+      if (SFX.ctx.state === "suspended") SFX.ctx.resume();
+    } catch (e) { /* 오디오를 못 쓰는 환경에서는 조용히 넘어감 */ }
+  }
+
+  function sfxTone(freq, dur, type, vol, delay) {
+    if (!SFX.on) return;
+    try {
+      sfxUnlock();
+      if (!SFX.ctx) return;
+      var t0 = SFX.ctx.currentTime + (delay || 0);
+      var o = SFX.ctx.createOscillator(), g = SFX.ctx.createGain();
+      o.type = type || "square";
+      o.frequency.setValueAtTime(freq, t0);
+      g.gain.setValueAtTime(vol || 0.03, t0);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      o.connect(g); g.connect(SFX.ctx.destination);
+      o.start(t0); o.stop(t0 + dur + 0.02);
+    } catch (e) {}
+  }
+  function sfxTap() { sfxTone(720, 0.035, "square", 0.022); }
+  function sfxPick() { sfxTone(660, 0.05, "square", 0.03); sfxTone(990, 0.07, "square", 0.026, 0.06); }
+  function sfxNext() { sfxTone(520, 0.055, "square", 0.026); sfxTone(780, 0.08, "square", 0.026, 0.07); }
+  function sfxStart() { sfxTone(523, 0.09, "square", 0.03); sfxTone(659, 0.09, "square", 0.03, 0.09); sfxTone(784, 0.12, "square", 0.03, 0.18); }
+  function sfxErr() { sfxTone(196, 0.12, "sawtooth", 0.024); sfxTone(147, 0.14, "sawtooth", 0.024, 0.1); }
+  function sfxJingle() {
+    [[523, 0], [659, 110], [784, 220], [1046, 330]].forEach(function (n) {
+      sfxTone(n[0], 0.12, "square", 0.03, n[1] / 1000);
+    });
+  }
+
+  function paintSoundBtn() {
+    $$(".sound-btn").forEach(function (b) {
+      b.setAttribute("aria-pressed", SFX.on ? "true" : "false");
+      b.setAttribute("aria-label", SFX.on ? "효과음 끄기" : "효과음 켜기");
+    });
+  }
+
+  function toggleSound() {
+    if (SFX.on) {
+      sfxTone(660, 0.05, "square", 0.028);
+      sfxTone(440, 0.09, "square", 0.028, 0.06);
+      SFX.on = false;
+      store(KEYS.sound, false);
+      paintSoundBtn();
+      toast("효과음 꺼짐 · ♪ 다시 누르면 켜져요");
+    } else {
+      SFX.on = true;
+      store(KEYS.sound, true);
+      sfxUnlock();
+      sfxTone(660, 0.05, "square", 0.03);
+      sfxTone(990, 0.09, "square", 0.03, 0.07);
+      paintSoundBtn();
+      toast("효과음 켜짐 ♪");
+    }
+  }
+
+  /* 모바일은 첫 터치에서 오디오를 열어둬야 소리가 나요. */
+  document.addEventListener("pointerdown", sfxUnlock, { once: true, passive: true });
+  document.addEventListener("touchstart", sfxUnlock, { once: true, passive: true });
+  document.addEventListener("click", function (e) {
+    var b = (e.target && e.target.closest) ? e.target.closest("button") : null;
+    sfxUnlock();
+    if (!b || b.id === "soundBtn") return;
+    if (b.classList.contains("sound-btn")) return;
+    if (b.classList.contains("choice") || b.classList.contains("t-choice")) return;
+    sfxTap();
+  }, true);
 
   var toastTimer = null;
   function toast(msg) {
@@ -3915,7 +4088,8 @@
     opMomBtn: $("#opMomBtn"), opMomGo: $("#opMomGo"), opMomRetest: $("#opMomRetest"),
     mStep: $("#mStep"), mDots: $("#mDots"), mTheme: $("#mTheme"), mQno: $("#mQno"), mText: $("#mText"), mHint: $("#mHint"), mChoices: $("#mChoices"),
     momBadge: $("#momBadge"), momName: $("#momName"), momLine: $("#momLine"), momStage: $("#momStage"), momTips: $("#momTips"),
-    careSheet: $("#careSheet"), dexCareWrap: $("#dexCareWrap")
+    careSheet: $("#careSheet"), dexCareWrap: $("#dexCareWrap"),
+    jumpNum: $("#jumpNum"), jumpUnit: $("#jumpUnit"), jumpGo: $("#jumpGo"), jumpQuick: $("#jumpQuick"), jumpPreview: $("#jumpPreview")
   };
 
   /* ---------------- pixel scene ---------------- */
@@ -4097,6 +4271,17 @@
     $$("#dexMonthRow .mchip").forEach(function (c) {
       c.addEventListener("click", function () { selectStage(Number(c.getAttribute("data-stage"))); });
     });
+    centerChip(el.monthRow);
+    centerChip(el.dexMonthRow);
+  }
+
+  /* 고른 구간 칩이 줄 밖으로 나가 있으면 가운데로 당겨줘요 (숫자로 바로 온 경우) */
+  function centerChip(row) {
+    if (!row) return;
+    var cur = row.querySelector('.mchip[aria-pressed="true"]');
+    if (!cur) return;
+    var cr = cur.getBoundingClientRect(), rr = row.getBoundingClientRect();
+    row.scrollLeft += (cr.left - rr.left) - (rr.width - cr.width) / 2;
   }
 
   function markMonths() {
@@ -4233,6 +4418,148 @@
     if (hubBtn) hubBtn.addEventListener("click", showPregStep);
     var todBtn = $("#opMonthList [data-todd]");
     if (todBtn) todBtn.addEventListener("click", showToddStep);
+  }
+
+  /* ---------------- 바로 찾기 · 주수/개월수 숫자 입력 ---------------- */
+  var JUMP = { mode: "baby", quick: "" };
+
+  function jumpStageId(mode, n) {
+    if (mode === "preg") {
+      if (!(n >= 1 && n <= 42)) return "";
+      if (n <= 12) return "p0";
+      if (n <= 19) return "p1";
+      if (n <= 27) return "p2";
+      if (n <= 35) return "p3";
+      return "p4";
+    }
+    if (!(n >= 0 && n <= 72)) return "";
+    if (n === 0) return JUMP.quick || "s0";
+    if (n === 1) return "s1";
+    if (n <= 3) return "s2";
+    if (n <= 6) return "s3";
+    if (n <= 9) return "s4";
+    if (n <= 12) return "s5";
+    if (n <= 18) return "s6";
+    if (n <= 24) return "s7";
+    if (n <= 30) return "s8";
+    if (n <= 36) return "s9";
+    if (n <= 48) return "k0";
+    if (n <= 60) return "k1";
+    return "k2";
+  }
+
+  function jumpValue() {
+    var raw = el.jumpNum ? el.jumpNum.value : "";
+    if (String(raw).trim() === "") return null;
+    var n = Number(raw);
+    return isFinite(n) ? Math.floor(n) : NaN;
+  }
+
+  function jumpStageInfo(mode, n) {
+    var id = jumpStageId(mode, n);
+    var idx = id ? stageIndexById(id) : -1;
+    return { id: id, idx: idx, st: idx >= 0 ? STAGES[idx] : null };
+  }
+
+  function updateJumpPreview() {
+    if (!el.jumpPreview) return;
+    var n = jumpValue();
+    var preg = JUMP.mode === "preg";
+    var showQuick = (!preg && n === 0);
+    if (el.jumpQuick) el.jumpQuick.hidden = !showQuick;
+    el.jumpPreview.classList.remove("err");
+
+    if (n === null) {
+      el.jumpPreview.textContent = preg ? "주수를 넣으면 갈 구간을 미리 보여드려요." : "개월수를 넣으면 갈 구간을 미리 보여드려요.";
+      return;
+    }
+    if (isNaN(n) || (preg ? (n < 1 || n > 42) : (n < 0 || n > 72))) {
+      el.jumpPreview.classList.add("err");
+      el.jumpPreview.textContent = preg ? "1~42주 사이로 넣어 주세요." : "0~72개월 사이로 넣어 주세요.";
+      return;
+    }
+    if (showQuick && !JUMP.quick) {
+      el.jumpPreview.textContent = "0개월이면 아래 ~30일 / 31~60일 / 61~100일 중에서 하나를 골라 주세요.";
+      return;
+    }
+    var info = jumpStageInfo(JUMP.mode, n);
+    if (!info.st) {
+      el.jumpPreview.textContent = "구간을 찾지 못했어요. 숫자를 다시 확인해 주세요.";
+      return;
+    }
+    el.jumpPreview.innerHTML = "→ <b>" + info.st.chip + "</b> · " + info.st.theme + " 구간으로 바로 가요.";
+  }
+
+  function paintJump() {
+    if (!el.jumpNum) return;
+    var preg = JUMP.mode === "preg";
+    $$("#opJump [data-jump-mode]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-jump-mode") === JUMP.mode ? "true" : "false");
+    });
+    el.jumpUnit.textContent = preg ? "주" : "개월";
+    el.jumpNum.min = preg ? "1" : "0";
+    el.jumpNum.max = preg ? "42" : "72";
+    el.jumpNum.placeholder = preg ? "22" : "26";
+    el.jumpNum.setAttribute("aria-label", preg ? "임신 주수 (1~42주)" : "아기 개월수 (0~72개월)");
+    updateJumpPreview();
+  }
+
+  function setJumpMode(mode) {
+    if (mode !== "preg" && mode !== "baby") return;
+    if (JUMP.mode === mode) return;
+    JUMP.mode = mode;
+    JUMP.quick = "";
+    if (el.jumpNum) el.jumpNum.value = "";
+    $$("#opJump [data-quick]").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    paintJump();
+  }
+
+  function doJump() {
+    var n = jumpValue();
+    var preg = JUMP.mode === "preg";
+    if (n === null || isNaN(n) || (preg ? (n < 1 || n > 42) : (n < 0 || n > 72))) {
+      sfxErr();
+      updateJumpPreview();
+      if (el.jumpNum) el.jumpNum.focus();
+      return;
+    }
+    if (!preg && n === 0 && !JUMP.quick) {
+      sfxErr();
+      if (el.jumpQuick) el.jumpQuick.hidden = false;
+      updateJumpPreview();
+      return;
+    }
+    var info = jumpStageInfo(JUMP.mode, n);
+    if (!info.st) { sfxErr(); return; }
+    sfxStart();
+    pickOpeningStage(info.idx);
+    toast((preg ? n + "주" : n + "개월") + " → " + info.st.chip + " 구간으로 출발!");
+  }
+
+  function bindJump() {
+    if (!el.jumpNum) return;
+    $$("#opJump [data-jump-mode]").forEach(function (b) {
+      b.addEventListener("click", function () { setJumpMode(b.getAttribute("data-jump-mode")); });
+    });
+    el.jumpNum.addEventListener("input", function () {
+      if (!(JUMP.mode === "baby" && Number(el.jumpNum.value) === 0)) JUMP.quick = "";
+      $$("#opJump [data-quick]").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+      updateJumpPreview();
+    });
+    el.jumpNum.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); doJump(); }
+    });
+    if (el.jumpGo) el.jumpGo.addEventListener("click", doJump);
+    $$("#opJump [data-quick]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        JUMP.quick = b.getAttribute("data-quick");
+        $$("#opJump [data-quick]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        updateJumpPreview();
+      });
+    });
+    var saved = savedStageIdx();
+    if (saved >= 0 && STAGES[saved] && STAGES[saved].kind === "preg") JUMP.mode = "preg";
+    paintJump();
   }
 
   /* 임신 준비 · 주수 5구간 선택 화면 */
@@ -4383,6 +4710,7 @@
     var q = STAGES[S.stage].quests[S.idx];
     var c = q.choices[i];
     S.picked = i;
+    sfxPick();
 
     $$(".choice", el.choiceList).forEach(function (btn, j) {
       btn.disabled = true;
@@ -4409,6 +4737,7 @@
 
   function next() {
     if (S.picked < 0) return;
+    sfxNext();
     if (S.baby === 0 || S.mom === 0) { showRescue(); return; }
     if (S.idx >= STAGES[S.stage].quests.length - 1) { showResult(); return; }
     S.idx += 1;
@@ -4428,6 +4757,7 @@
 
   function showResult(keepScroll) {
     S.ended = true;
+    if (!keepScroll) sfxJingle();
     var st = STAGES[S.stage];
     var score = S.baby + S.mom;
     var lv = levelOf(score);
@@ -4650,6 +4980,8 @@
       if (n === name) panel.scrollTop = 0;
     });
     if (name === "dex") renderDex();
+    if (name === "quest") centerChip(el.monthRow);
+    if (name === "dex") centerChip(el.dexMonthRow);
   }
   $$(".tab").forEach(function (t) {
     t.addEventListener("click", function () { switchTab(t.getAttribute("data-tab")); });
@@ -4899,6 +5231,7 @@
   function pickTest(i) {
     if (T.picked >= 0) return;
     T.picked = i;
+    sfxPick();
     var list = curTest();
     var q = list[T.i];
     var c = q.choices[i];
@@ -5010,6 +5343,7 @@
   }
   function pickMom(i) {
     if (M.picked >= 0) return;
+    sfxPick();
     var LIST = curMomCheck();
     M.picked = i;
     M.total += LIST[M.i].choices[i].v;
@@ -5049,6 +5383,7 @@
   function finishOpening() {
     var ch = computeChar();
     var st = STAGES[S.stage];
+    sfxStart();
     store(KEYS.char, ch.key);
     updateCharUI();
     closeOpening();
@@ -5067,6 +5402,9 @@
     b.addEventListener("click", function () { applyCareMode(b.getAttribute("data-care-pick")); });
   });
   $("#careSheetClose").addEventListener("click", closeCareSheet);
+  var soundBtnEl = $("#soundBtn");
+  if (soundBtnEl) soundBtnEl.addEventListener("click", toggleSound);
+  $$("[data-sound]").forEach(function (b) { b.addEventListener("click", toggleSound); });
   $("#homeBtn").addEventListener("click", goHome);
   $(".app-head .logo").addEventListener("click", goHome);
   $(".app-head h1").addEventListener("click", goHome);
@@ -5097,6 +5435,8 @@
   $("#opHero").innerHTML = buildScene(STAGES[S.stage]).replace(/^<svg[^>]*>|<\/svg>$/g, "");
 
   updateCharUI();
+  paintSoundBtn();
+  bindJump();
   renderMonths();
   renderOpeningMonths();
   tick();
